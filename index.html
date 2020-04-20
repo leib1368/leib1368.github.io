@@ -29,7 +29,7 @@
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/assets/favicon.png">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -53,7 +53,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Leib</a></h1>
@@ -113,7 +113,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Leib</h1>
@@ -166,39 +166,207 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/hello-world/">Hello World</a>
+      <a class="article-title" href="/2020/04/20/Linux/">Linux</a>
     </h1>
   
 
         
-        <a href="/2020/04/20/hello-world/" class="archive-article-date">
-  	<time datetime="2020-04-20T08:40:49.712Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+        <a href="/2020/04/20/Linux/" class="archive-article-date">
+  	<time datetime="2020-04-20T08:48:19.394Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h1 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h1><p>1下载 今天使用的是linux6.8 vmware12（收费的）<br>linux:centos 6.8</p>
+<p>2.在windows上安装centos(linux)<br>    买电脑（硬件）：文件-新建虚拟机<br>    装系统：在“买电脑”里装centos:编辑虚拟机设置-CD/DVD中 指定 centos的文件位置 - 开启：<br>    如果报错：Intel vt-x禁用…，愿意是 真实物理机没有开发 虚拟化设置。<br>    解决：进入bios(如何进入，自己搜)，找到 intel VItural TEchnology ：Enable</p>
+<p>关于vmware中 计算机名字：<br>    虚拟机名：bigdata01<br>    计算机名：bigdata01<br>    网络中的名字：bigdata01<br>    用户名：root</p>
+<p>默认超级管理员：root/自己设置</p>
+<p>磁盘布局：<br>    /boot：系统启动时 需要的内存 200M<br>    /：系统的可用磁盘大小 10240M<br>    swap:交换内存 ，建议大小 和内存一致  2048M</p>
+<p>鼠标从虚拟机中释放：ctrl+alt</p>
+<p>查看计算机名：hostname<br>修改计算机名：/etc/sysconfig/network</p>
+<p>通过文本编辑器打开文件：vi  路径/文件名<br>            vi /etc/sysconfig/network<br>查看文件：cat /etc/sysconfig/network<br>编辑：a<br>保存： esc ,shift +z+z</p>
+<p>重启：reboot<br><strong>关机：halt</strong></p>
+<p>实现真实物理机  和 虚拟机之间的 复制粘贴操作：<br>虚拟机-安装vmware tools-讲VMwareTools-xxx.tar.gz赋值到桌面-解压缩-执行<br>vmware-install.pl -回车 -最后 reboot<br>设置共享文件夹：编辑虚拟机-选项-共享文件夹-指定 共享文件夹 ，该文件夹 在虚拟机中对应的目录：<strong>/mnt/hgfs</strong></p>
+<p>ps:该文件夹是固定的</p>
+<p>3.centos网络配置（约定配置）<br>    bigdata01:    192.168.2.128        192.168.2.1（网关）<br>    bigdata02    192.168.2.129        192.168.2.1（网关）<br>    bigdata03    192.168.2.130        192.168.2.1（网关）</p>
+<pre><code>a.编辑-虚拟机网络编辑器
+VMNet8 (NAT)    
+i.子网 192.168.2.0
+ii.更改设置-DHCP设置 ：
+    起始192.168.2.128    bigdata01
+    结束192.168.2.254  
+iii.NAT设置：网关 192.168.2.1
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+b.配置windows访问虚拟机
+    网络连接-vmNet8-TCP/IP V4 - IP192.168.2.2 ， 192.168.2.1（网关）
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+c.centos网卡
+修改网卡配置 vi /etc/sysconfig/network-scripts/ifcfg-eth0
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+DEVICE=eth0
+HWADDR=00:0C:29:7A:D1:F2
+TYPE=Ethernet
+UUID=b129cd07-0a05-419e-a3a1-4d73d3f37917
+ONBOOT=yes
+---修改以下配置----
+NM_CONTROLLED=yes
+BOOTPROTO=static
+IPADDR=192.168.2.128
+GATEWAY=192.168.2.1
+BROADCAST=192.168.2.255
+DNS2=8.8.8.8
+DNS1=114.114.114.114  
+--如果域名无法解析，则加入dns设置（设置的内容：推荐是 当地的DNS）
+vi如果使用shift+z+z无法保存， 则使用 &quot;:wq!&quot;
+d.通过网络名访问虚拟机 (192.168.2.128 -&gt;bigdata01)
+    centos:
+        vi /etc/hosts,
+        追加：
+        192.168.2.128 bigdata01
+    windows:
+        C:\Windows\System32\drivers\etc\hosts
+        追加：
+        192.168.2.128 bigdata01
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+e.配置网络服务
+    service NetworkManager stop
+    /etc/init.d/network restart
+    chkconfig NetworkManager off
+    vi /etc/resolv.conf  追加nameserver 192.168.2.1
+
+    重启网卡 service network restart</code></pre><p>4.防火墙：关闭<br>centos:<br>    service iptables stop关闭防火墙<br>    chkconfig iptables off禁止开机自启<br>    service iptables status查看防火墙状态<br>windows:<br>    网络-右键 属性-关闭防火墙</p>
+<p>5.自动同步时间<br>    安装用于同步时间的 ntp插件 ：<br>        yum -y install ntp ntpdate<br>    与该网站同步时间<br>        ntpdate cn.pool.ntp.org<br>    将系统时间写入硬盘时间<br>        hwclock –systohc</p>
+<p>6.windows真实机 通过SecureCRT 操作centos<br>    下载SecureCRT<br>    通过SecureCRT 对centos进行文件的上传下载：yum install lrzsz<br>        上传：切换到当前目录 cd /tmp， 直接用鼠标拖拽,Zmodem…</p>
+<p>linux:一切都是文件，一切都是命令</p>
+<p>7.下载安装jdk （rpm方式）<br>     exe  :   rpm<br>     rar  :  .tar.gz</p>
+<pre><code>下载rpm版jdk
+安装：  切到 rpm版jdk的文件夹中， rpm -ivh  jdk名字
+rpm版本的软件，安装的默认路径：/usr中，
+例如，/usr/java/jdk1.8.0_181-amd64
+
+配置环境变量：
+vi /etc/profile中的最后追加：</code></pre><p>export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64<br>export CLASSPATH=$JAVA_HOME$\lib:$CLASSPATH<br>export PATH=$JAVA_HOME$\bin:$PATH</p>
+<pre><code>让环境变量立刻生效： source /etc/profile</code></pre><p>8.集群（3台） ：完整克隆<br>bigdata01 -&gt; bigdata02/bigdata03<br>    克隆完毕后：<br>        a.将从计算机 的内存适当降低<br>        b.修改从计算中 唯一性 的配置（ip、uuid、hostname映射）<br>            在克隆后的bigdata02/bigdata03中<br>            vi /etc/sysconfig/network-scripts/ifcfg-eth0<br>            修改ip地址、删除uuid/hwaddr(在重启时，自动生成)<br>            删除文件 rm -r  /etc/udev/rules.d/70-persistent-net.rules 输入yes</p>
+<pre><code>    计算机名：vi /etc/sysconfig/network
+c.映射
+
+centos:
+    vi /etc/hosts,
+    追加：
+    192.168.2.128 bigdata01
+    192.168.2.129 bigdata02
+    192.168.2.130 bigdata03
+
+windows:
+    C:\Windows\System32\drivers\etc\hosts
+    追加：
+    192.168.2.128 bigdata01
+    192.168.2.129 bigdata02
+    192.168.2.130 bigdata03</code></pre><p>9.SSH免密钥登陆<br>    私钥：密钥留在本机<br>    公钥: 密钥发给本机<br>    bigdata01:<br>    生成密钥：ssh-keygen -t rsa   (密钥存放位置：/root/.ssh ，  id_rsa:私钥     id_rsa.pub)<br>    发送私钥（本机）： ssh-copy-id localhost    ， 需要输入bigdata01节点(root)的密码<br>    发送公钥（其他计算机）：ssh-copy-id bigdata02， 需要输入bigdata02节点(root)的密码<br>    测试免密钥登陆：<br>        ssh localhost<br>        ssh bigdata02</p>
+<pre><code>用上述方法，给每2台计算机 设置免密钥</code></pre><p>10.用户<br>    a.用户组<br>        groupadd bd</p>
+<pre><code>b.在用户组中增加用户
+    useradd -g bd yq
+    密码
+    passwd yq  回车
+
+c.提升用户的权限:  在/etc/sudoers文中设置yq的权限
+        因为/etc/sudoers文件本身是只读的，所以修改该文件前，需要 将 只读禁止。
+        chmod 777 /etc/sudoers      --设置sudoers 可读可写
+        编辑 vi /etc/sudoers:追加
+        yq     ALL=(ALL)       ALL
+        还原sudoers的权限为只读：chmod 440 /etc/sudoers
+
+d:切换用户 ： 
+    切换为普通用户： su 用户名    
+    切换为超级管理员root：  su
+
+d.删除用户：userdel  用户名
+    如果提示 正在使用，无法删除...重启后再删
+
+
+    查看进程        jps
+    结束进程        kill -9 进程编号</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/20/Linux/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-FirstBlog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/FirstBlog/">新建了一个自己的博客 好好记录咯 ~</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/20/FirstBlog/" class="archive-article-date">
+  	<time datetime="2020-04-20T08:48:19.390Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用的yilia模板，有空需要行尾加个浏览量统计。<br>以及左侧标签跳转，还有hexo部署的时候，避免把CNAME覆盖。<br>其他没了 下面是hexo的用法，需要的去主页docs里看就好了。<br><a href="https://hexo.io/docs" target="_blank" rel="noopener">hexo</a></p>
+<p>因为要上传到git，如果后期需要加域名话，要把CNAME文件放到source里面</p>
+<p>这样部署的时候该文件就不会被覆盖。提前在阿里云上解析域名 </p>
+<p>例：CNAME   里面内容–&gt;leib1368.cn</p>
+<h2 id="Quick-Start-快速搭建"><a href="#Quick-Start-快速搭建" class="headerlink" title="Quick Start 快速搭建"></a>Quick Start 快速搭建</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server 	//其实hexo s 效果也一样</span><br></pre></td></tr></table></figure>
+
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate		//同理hexo g</span><br></pre></td></tr></table></figure>
+
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy		//hexo d</span><br></pre></td></tr></table></figure>
 
       
 
@@ -211,7 +379,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/04/20/FirstBlog/">展开全文 >></a>
         </p>
       
 
