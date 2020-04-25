@@ -168,6 +168,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-多态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/25/%E5%A4%9A%E6%80%81/">多态</a>
+    </h1>
+  
+
+        
+         
+<a href="/2020/04/25/%E5%A4%9A%E6%80%81/" class="archive-article-date">
+  	<time datetime="2020-04-25T12:00:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a><strong>多态</strong></h1><p>T1 a= new T1();<br>T2 b= new T1();<br>区别：<br>问题1：不是实例化一个a，是实例化一个T1</p>
+<p><strong>T1 的一个 对象的引用 a  指向了堆空间里的一个新T1对象</strong></p>
+<p>new是java里面的关键字.一般用于创建一个新的对象.<br>T1 a= new T1();表示创建一个新的T1对象.<br>T2 b= new T1();这种多用在接口类与实现类之间或子类与父类间<br>在接口中使用时：T2应该是一个接口类，T1为T2的实现类。<br>在子类与父类关系时：T2为父类，T1为T2的子类。</p>
+<h2 id="这些用法都是Java中多态性的一个表现"><a href="#这些用法都是Java中多态性的一个表现" class="headerlink" title="这些用法都是Java中多态性的一个表现 "></a>这些用法都是Java中多态性的一个表现 </h2><p>JAVA中都是用引用来操作对象，a是引用，new T1()是对象，T1 a = new T1()这段代码，则是将他们连接起来，这样就可以通过a来操作new T1()这个对象；</p>
+<p>new这个关键字可以理解为“给我一个新对象”的意思；<br>那么T1 a = new T1(),可理解为:a说“给我一个新的T1对象”；<br>T2 b= new T1();可理解为:b说“给我一个新的T1对象”,可b是属于T2类型的引用，不兼容，所以不能连接T1，因此编译时会报错。</p>
+<p>所以两者区别是，他们同为T1类型的引用，但却连接不同的对象，因为给他们的都是一个新的对象，并不一样。 </p>
+<p>T2与T1之间有继承关系吗？？ 如果有，则说明T2为T1的父类，就好像花和玫瑰的关系一样，玫瑰属于玫瑰，玫瑰也属于花，所以T2 b= new T1()也可以建立连接，如果调用的方法在T1里有，则是T1里。 </p>
+<p>第一个问题：<br>这句话 T1 a 是告诉虚拟机，开辟一个可以存放T1类型的空间a<br>new T1()就是获得一个T1的对象<br>连起来就是开辟一个可以存放T1实例的空间a，并且指向一个T1的实例。</p>
+<p>一般说就是，新建 一个T1的对象a</p>
+<p>第二个问题：<br>T2 b开辟了一个可以存放T2类型的空间<br>由于T1是T2的子类，所以T1可以放在T2的空间里</p>
+<p>这时候调用T1与T2中共有的方法时，由于方法覆盖，所以执行的是T1中的方法<br>但是由于b的类型是T2，所以b这个对象不可以使用T1类的专有方法(也就是T1有的方法，但是T2没有这个方法)</p>
+<p>如果b希望执行T1中的专有方法<br>将b转换成T1类型，就可以了<br>也就是做一个这个操作：(T1)b</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/25/%E5%A4%9A%E6%80%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mockjs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -528,17 +618,6 @@ d.删除用户：userdel  用户名
 	
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -984,15 +1063,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mockjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mockjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
             
             <div class="clearfix"></div>
