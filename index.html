@@ -168,6 +168,104 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-0430" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/30/0430/">迭代与递归+Lambda 遍历</a>
+    </h1>
+  
+
+        
+         
+<a href="/2020/04/30/0430/" class="archive-article-date">
+  	<time datetime="2020-04-30T14:34:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>迭代：从已知推未知 </p>
+<p>迭代–&gt;利用变量的原值推算出变量的一个新值.</p>
+<p>如果递归是自己调用自己的话,迭代就是A不停的调用B.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">funcB</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,s=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">       s+=i;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>递归：从未知回溯到已知，再推未知</p>
+<p>使用递归要注意的有两点:</p>
+<p>1)递归就是在过程或函数里面调用自身;</p>
+<p>2)在使用递归时,必须有一个明确的递归结束条件,称为递归出口.</p>
+<p>递归分为两个阶段:</p>
+<p>1)递推:把复杂的问题的求解推到比原问题简单一些的问题的求解;</p>
+<p>2)回归:当获得最简单的情况后,逐步返回,依次得到复杂的解.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">funcA</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &gt; <span class="number">1</span>)</span><br><span class="line">       <span class="keyword">return</span> n+funcA(n-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">       <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>递归中一定有迭代,但是迭代中不一定有递归,大部分可以相互转换.能用迭代的不用递归,递归调用函数,浪费空间,并且递归太深容易造成堆栈的溢出.</p>
+<p>ps:今天手贱把leetcode美国站的记录pull到中国站 记录全清空了 ToT</p>
+<p>pss : mybatis中的#{}和${}区别</p>
+<p>#方式防止Sql注入。$方式无法防止Sql注入。<br>具体还是网上再看吧 ，突然想记录一下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//============Java8之前的方式==========</span></span><br><span class="line">Map&lt;String, Integer&gt; items = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">items.put(<span class="string">"A"</span>, <span class="number">10</span>);</span><br><span class="line">items.put(<span class="string">"B"</span>, <span class="number">20</span>);</span><br><span class="line">items.put(<span class="string">"C"</span>, <span class="number">30</span>);</span><br><span class="line">items.put(<span class="string">"D"</span>, <span class="number">40</span>);</span><br><span class="line">items.put(<span class="string">"E"</span>, <span class="number">50</span>);</span><br><span class="line">items.put(<span class="string">"F"</span>, <span class="number">60</span>);</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : items.entrySet()) &#123;</span><br><span class="line">    System.out.println(<span class="string">"Item : "</span> + entry.getKey() + <span class="string">" Count : "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//============forEach + Lambda表达式==========</span></span><br><span class="line">Map&lt;String, Integer&gt; items = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">items.put(<span class="string">"A"</span>, <span class="number">10</span>);</span><br><span class="line">items.put(<span class="string">"B"</span>, <span class="number">20</span>);</span><br><span class="line">items.put(<span class="string">"C"</span>, <span class="number">30</span>);</span><br><span class="line">items.put(<span class="string">"D"</span>, <span class="number">40</span>);</span><br><span class="line">items.put(<span class="string">"E"</span>, <span class="number">50</span>);</span><br><span class="line">items.put(<span class="string">"F"</span>, <span class="number">60</span>);</span><br><span class="line">items.forEach((k,v)-&gt;System.out.println(<span class="string">"Item : "</span> + k + <span class="string">" Count : "</span> + v));</span><br><span class="line">items.forEach((k,v)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">"Item : "</span> + k + <span class="string">" Count : "</span> + v);</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"E"</span>.equals(k))&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello E"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">List&lt;String&gt; items = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">items.add(<span class="string">"A"</span>);</span><br><span class="line">items.add(<span class="string">"B"</span>);</span><br><span class="line">items.add(<span class="string">"C"</span>);</span><br><span class="line">items.add(<span class="string">"D"</span>);</span><br><span class="line">items.add(<span class="string">"E"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(String item : items)&#123;</span><br><span class="line">    System.out.println(item);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//============forEach + Lambda表达式==========</span></span><br><span class="line">List&lt;String&gt; items = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">items.add(<span class="string">"A"</span>);</span><br><span class="line">items.add(<span class="string">"B"</span>);</span><br><span class="line">items.add(<span class="string">"C"</span>);</span><br><span class="line">items.add(<span class="string">"D"</span>);</span><br><span class="line">items.add(<span class="string">"E"</span>);</span><br><span class="line"><span class="comment">//输出：A,B,C,D,E</span></span><br><span class="line">items.forEach(item-&gt;System.out.println(item));</span><br><span class="line"><span class="comment">//输出 : C</span></span><br><span class="line">items.forEach(item-&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"C"</span>.equals(item))&#123;</span><br><span class="line">        System.out.println(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/30/0430/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MapJDK8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -970,19 +1068,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mockjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mockjs</a>
               </li>
             
             <div class="clearfix"></div>
