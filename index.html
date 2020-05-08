@@ -168,6 +168,124 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-0508" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/08/0508/">子类继承父类的static变量与方法</a>
+    </h1>
+  
+
+        
+         
+<a href="/2020/05/08/0508/" class="archive-article-date">
+  	<time datetime="2020-05-08T12:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> Java中子类是否可以继承父类的static变量和方法而呈现多态特性</p>
+<p><strong>静态方法</strong><br>通常，在一个类中定义一个方法为static，那就是说，无需本类的对象即可调用此方法，关于static方法，声明为static的方法有以下几条限制：</p>
+<p>它们仅能调用其他的static 方法。<br>它们只能访问static数据。<br>它们不能以任何方式引用this 或super。<br>无论是static修饰的变量，还是static修饰的方法，我们都知道他们是属于类本身的，不是属于某一个对象的，当声明一个对象时，并不产生static变量和方法的拷贝。也就是说，用static修饰的变量和方法在类加载的时候，只分配一块存储空间，所有此类的对象都可以操控此块存储空间；</p>
+<p><strong>注：这里要说明的时，当子类没有与之同名的static变量（或方法时），子类的对象也可以操控这块内存空间。但是子类并没有继承父类中static修饰的变量和方法。因为static修饰的变量和方法是属于父类本身的。</strong></p>
+<p>//————————以上我相信我们每个人都比较清楚。</p>
+<p>但是，不知道你有没有注意到这种情况，当存在继承关系时，父类中有一个static修饰的变量（或方法），而子类中也存在一个同名的static修饰的变量（或方法）时，他们到底是否满足“重写”，而最终体现出多态的效果呢？？</p>
+<p>下面来看一个例子。<br>父类中有一个static修饰的方法和一个普通的方法，子类中也有一个同名的static方法和一个普通的方法。如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">staticMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Parent staticMethod run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Parent method run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">staticMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Son staticMethod run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Son method run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent child=<span class="keyword">new</span> Son();</span><br><span class="line">        child.staticMethod();<span class="comment">//输出：Parent staticMethod run</span></span><br><span class="line">        <span class="comment">//不应该通过类实例访问静态成员</span></span><br><span class="line"></span><br><span class="line">        Son s=<span class="keyword">new</span> Son();</span><br><span class="line">        s.staticMethod();</span><br><span class="line">        child.method();<span class="comment">//这样才存在多态        </span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">运行后的结果如下：</span><br></pre></td></tr></table></figure>
+
+<p>Parent staticMethod run<br>Son staticMethod run<br>Son method run</p>
+<p>从结果可以看出：对于静态方法在子类中是不存在“重写”这一说的，就像前面我们提到的，用static关键字修饰的方法和变量都是属于类自己本身的，即使存在继承关系，子类并没有继承父类的static修饰的变量和方法，所以说即使子类和父类中都有同样的static方法和变量，他们是没有任何关系的，他们是相互独立的，他们是属于各自类本身的。因此也是不存在多态特性的。而对于普通方法的调用是存在“重写”而最终呈现出多态特性的。</p>
+<p>同样的道理：对于static修饰的变量，当子类与父类中存在相同的static变量时，也是根据“静态引用”而不是根据“动态引用”来调用相应的变量的。</p>
+<p>而在父类和子类中对于非static变量和方法，是根据“动态引用”来调用相应的变量和方法。</p>
+<p>然而，接着会有这样的问题存在：java中 子类会不会继承父类的static变量和static方法</p>
+<p>1）先说static方法：子类会不会继承父类的static方法呢？？答案是：不会的，但是是可以访问的。</p>
+<p>看如下的代码 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">staticMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Parent staticMethod run"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent child=<span class="keyword">new</span> Son();</span><br><span class="line">        child.staticMethod();<span class="comment">//输出：Parent staticMethod run   </span></span><br><span class="line">        Son s=<span class="keyword">new</span> Son();</span><br><span class="line">        s.staticMethod();<span class="comment">//输出：Parent staticMethod run   </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>运行结果如下</p>
+<p>Parent staticMethod run<br>Parent staticMethod run</p>
+<p>从上面的运行结果可以看出，static方法是可以被子类访问的。</p>
+<p>2）接着来看父类的static修饰的变量，是否能够被子类继承呢？？<br>答案：也是不可以的。但是也是可以被子类访问的。</p>
+<p>小结<br>1）子类是不继承父类的static变量和方法的。因为这是属于类本身的。但是子类是可以访问的。 </p>
+<p>2）子类和父类中同名的static变量和方法都是相互独立的，并不存在任何的重写的关系。</p>
+<p><strong>3)     不应该通过类实例访问静态成员</strong></p>
+<p>ps 小知识↓</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> min_depth = Integer.MAX_VALUE;</span><br></pre></td></tr></table></figure>
+
+<p>最大值为Integer.MAX_VALUE，即2147483647，最小值为Integer.MIN_VALUE -2147483648。<br>对整形最大值加1，2147483648（越界了），那么此时值为多少呢？结果是-2147483648，即是Integer.MIN_VALUE。<br>类似的，对Integer.MIN_VALUE取反或者取绝对值呢？仍为Integer.MIN_VALUE，因为值为-2147483648，绝对值2147483648超过Integer.MAX_VALUE 2147483647。<br>所以就有以下结果<br>Integer.MAX_VALUE + 1 = Integer.MIN_VALUE<br>Math.abs(Integer.MIN_VALUE) =  Integer.MIN_VALUE<br>Long，short，byte的结论是相同的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/08/0508/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Vue实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
