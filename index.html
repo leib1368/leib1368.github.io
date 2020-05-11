@@ -168,6 +168,151 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-0511" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/0511/">SpringCloud</a>
+    </h1>
+  
+
+        
+         
+<a href="/2020/05/11/0511/" class="archive-article-date">
+  	<time datetime="2020-05-11T06:21:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://i.loli.net/2020/05/11/VXWP8n9TkcOAhL4.png" alt="SpringCloud"></p>
+<p>SpringCloud 微服务架构的集大成者</p>
+<p>SpringCloud的<strong>基础功能</strong>：</p>
+<ul>
+<li>服务治理： Spring Cloud Eureka</li>
+<li>客户端负载均衡： Spring Cloud Ribbon</li>
+<li>服务容错保护： Spring Cloud Hystrix</li>
+<li>声明式服务调用： Spring Cloud Feign</li>
+<li>API网关服务：Spring Cloud Zuul</li>
+<li>分布式配置中心： Spring Cloud Config</li>
+</ul>
+<p>Eureka 负责自动化管理服务地址 不然的话就要手动维护静态配置（ip）极为麻烦</p>
+<p>Eureka的治理机制：</p>
+<ul>
+<li><p>服务提供者</p>
+</li>
+<li><ul>
+<li><strong>服务注册：启动的时候会通过发送REST请求的方式将自己注册到Eureka Server上</strong>，同时带上了自身服务的一些元数据信息。</li>
+<li><strong>服务续约：</strong>在注册完服务之后，<strong>服务提供者会维护一个心跳</strong>用来持续告诉Eureka Server: “我还活着 ” 、</li>
+<li><strong>服务下线：当服务实例进行正常的关闭操作时，它会触发一个服务下线的REST请求</strong>给Eureka Server, 告诉服务注册中心：“我要下线了 ”。</li>
+</ul>
+</li>
+<li><p>服务消费者</p>
+</li>
+<li><ul>
+<li><strong>获取服务：当我们启动服务消费者</strong>的时候，它会发送一个REST请求给服务注册中心，来获取上面注册的服务清单</li>
+<li><strong>服务调用：服务消费者在获取服务清单后，通过服务名</strong>可以获得具体提供服务的实例名和该实例的元数据信息。在进行服务调用的时候，<strong>优先访问同处一个Zone中的服务提供方</strong>。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Eureka Server(服务注册中心)：</p>
+</li>
+<li><ul>
+<li><strong>失效剔除：</strong>默认每隔一段时间（默认为60秒） 将当前清单中超时（默认为90秒）<strong>没有续约的服务剔除出去</strong>。</li>
+<li><strong>自我保护：</strong>。EurekaServer 在运行期间，会统计心跳失败的比例在15分钟之内是否低于85%(通常由于网络不稳定导致)。 Eureka Server会将当前的<strong>实例注册信息保护起来</strong>， 让这些实例不会过期，尽可能<strong>保护这些注册信息</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2020/05/11/82ihkGBC6pZA95q.png" alt="2"></p>
+<p>搞懂了eureka，那么其余的就很简单</p>
+<h2 id="RestTemplate和Ribbon"><a href="#RestTemplate和Ribbon" class="headerlink" title="RestTemplate和Ribbon"></a>RestTemplate和Ribbon</h2><p>RestTemplate是spring封装好的工具类，可以直接进行远程调用。而Ribbon是防止大量用户并发的负载均衡。默认策略是轮询，还有其他随机，或者进行自定义。</p>
+<h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p>在<strong>高并发</strong>的情况下，由于单个服务的延迟，可能导致<strong>所有的请求都处于延迟状态</strong>，甚至在几秒钟就使服务处于负载饱和的状态，资源耗尽，直到不可用，最终导致这个分布式系统都不可用，这就是“雪崩”。</p>
+<p>hystrix提供了断路器，线程隔离。还有个hystrix仪表盘来反馈实时信息。</p>
+<h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>Ribbon和Hystrix了，可以发现的是：他俩作为基础工具类框架<strong>广泛地应用</strong>在各个微服务的实现中。我们会发现对这两个框架的<strong>使用几乎是同时出现</strong>的。</p>
+<p>为了<strong>简化</strong>我们的开发，Spring Cloud Feign出现了！它基于 Netflix Feign 实现，<strong>整合</strong>了 Spring Cloud Ribbon 与 Spring Cloud Hystrix, 除了整合这两者的强大功能之外，它还提 供了<strong>声明式的服务调用</strong>(不再通过RestTemplate)。</p>
+<blockquote>
+<p>Feign是一种声明式、模板化的HTTP客户端。在Spring Cloud中使用Feign, 我们可以做到使用HTTP请求远程服务时能与调用本地方法一样的编码体验，开发者完全感知不到这是远程方法，更感知不到这是个HTTP请求。</p>
+</blockquote>
+<p>个人理解这是面向接口式开发，让开发者更便利。</p>
+<h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><p><strong>API网关</strong>的概念应运而生。在SpringCloud中了提供了基于Netfl ix Zuul实现的API网关组件<strong>Spring Cloud Zuul</strong>。</p>
+<p>Zuul天生就拥有线程隔离和断路器的自我保护功能，以及对服务调用的客户端负载均衡功能。也就是说：<strong>Zuul也是支持Hystrix和Ribbon</strong>。</p>
+<h2 id="SpringCloud-Config"><a href="#SpringCloud-Config" class="headerlink" title="SpringCloud Config"></a>SpringCloud Config</h2><p>随着业务的扩展，我们的服务会越来越多，越来越多。每个服务都有自己的配置文件。</p>
+<p>既然是配置文件，给我们配置的东西，那<strong>难免会有些改动</strong>的。</p>
+<p>比如我们的Demo中，每个服务都写上<strong>相同</strong>的配置文件。万一我们有一天，配置文件中的密码需要更换了，那就得<strong>三个都要重新更改</strong>。</p>
+<blockquote>
+<p>在分布式系统中，某一个基础服务信息变更，都<strong>很可能</strong>会引起一系列的更新和重启</p>
+</blockquote>
+<p>Spring Cloud Config项目是一个解决分布式系统的配置管理方案。它包含了Client和Server两个部分，<strong>server提供配置文件的存储、以接口的形式将配置文件的内容提供出去，client通过接口获取数据、并依据此数据初始化自己的应用</strong>。</p>
+<ul>
+<li>简单来说，使用Spring Cloud Config就是将配置文件放到<strong>统一的位置管理</strong>(比如GitHub)，客户端通过接口去获取这些配置文件。</li>
+<li>在GitHub上修改了某个配置文件，应用加载的就是修改后的配置文件。</li>
+</ul>
+<p>最后，</p>
+<p>参考代码    –&gt;    <a href="https://github.com/leib1368/springcloud" target="_blank" rel="noopener">https://github.com/leib1368/springcloud</a></p>
+<p>参考文档    –&gt;     <a href="https://www.springcloud.cc/" target="_blank" rel="noopener">https://www.springcloud.cc/</a></p>
+<p>参考视频    –&gt;    bilibili.com/video/BV1jJ411S7xr</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">SpringCloud</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/11/0511/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-0508" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1750,106 +1895,10 @@ d.删除用户：userdel  用户名
 
 
   
-    <article id="post-FirstBlog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/FirstBlog/">First Blog (keep calm and do it)</a>
-    </h1>
-  
-
-        
-         
-<a href="/2020/04/20/FirstBlog/" class="archive-article-date">
-  	<time datetime="2020-04-20T08:48:19.390Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>用的yilia模板，有空需要行尾加个浏览量统计。<br>以及左侧标签跳转，还有hexo部署的时候，避免把CNAME覆盖。<br>其他没了 下面是hexo的用法，需要的去主页docs里看就好了。<br><a href="https://hexo.io/docs" target="_blank" rel="noopener">hexo</a></p>
-<p>因为要上传到git，如果后期需要加域名话，要把CNAME文件放到source里面</p>
-<p>这样部署的时候该文件就不会被覆盖。提前在阿里云上解析域名 </p>
-<p>例：CNAME   里面内容–&gt;leib1368.cn</p>
-<h2 id="Quick-Start-快速搭建"><a href="#Quick-Start-快速搭建" class="headerlink" title="Quick Start 快速搭建"></a>Quick Start 快速搭建</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server 	//其实hexo s 效果也一样</span><br></pre></td></tr></table></figure>
-
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate		//同理hexo g</span><br></pre></td></tr></table></figure>
-
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy		//hexo d</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-	
-
-	
-	
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/FirstBlog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -2007,6 +2056,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">mockjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
             
             <div class="clearfix"></div>
