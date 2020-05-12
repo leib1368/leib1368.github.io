@@ -168,6 +168,335 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-0512动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/12/0512%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
+    </h1>
+  
+
+        
+         
+<a href="/2020/05/12/0512%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="archive-article-date">
+  	<time datetime="2020-05-12T14:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>话不多说 直接看例题 再归纳总结</p>
+<h4 id="322-零钱兑换"><a href="#322-零钱兑换" class="headerlink" title="322. 零钱兑换"></a><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="noopener">322. 零钱兑换</a></h4><p>给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 <code>-1</code>。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: coins &#x3D; [1, 2, 5], amount &#x3D; 11</span><br><span class="line">输出: 3 </span><br><span class="line">解释: 11 &#x3D; 5 + 5 + 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: coins &#x3D; [2], amount &#x3D; 3</span><br><span class="line">输出: -1</span><br></pre></td></tr></table></figure>
+
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="step1-确定状态"><a href="#step1-确定状态" class="headerlink" title="step1 确定状态"></a>step1 确定状态</h4><p>解动态规划都需要开一个数组，每个元素<strong>f [i]  或者 f [i] [j]</strong></p>
+<p>确定状态需要又分两步。 </p>
+<p>​    –确定最后一步</p>
+<p>​    –分析子问题</p>
+<p>举个典型的例子 [2，5，7]  这三枚硬币  —&gt; 去凑27<br>a1 + a2 +a3  … ak = 27</p>
+<p><img src="https://i.loli.net/2020/05/12/JeN7GwiOYZQK4ur.png" alt="image-20200512220312428"></p>
+<p>子问题</p>
+<p>最少用多少枚硬币拼出27- ak</p>
+<p>原问题</p>
+<p>最少用多少枚硬币拼出27</p>
+<p>f(x)  =  最少用多少枚硬币拼出x</p>
+<p>f(27) = min { f(27-2) + 1 ,f(27-5) + 1 ,f(27-7) + 1 }</p>
+<h3 id="step2-转移方程"><a href="#step2-转移方程" class="headerlink" title="step2 转移方程"></a>step2 转移方程</h3><p>f[27] = min { f(27-2) + 1 ,f(27-5) + 1 ,f(27-7) + 1 }</p>
+<h3 id="step3-初始条件和边界情况"><a href="#step3-初始条件和边界情况" class="headerlink" title="step3   初始条件和边界情况"></a>step3   初始条件和边界情况</h3><p>f[0] = 0 且 数组下标不能为负数<br>而且在电脑中，无线大+1 是超标的 会报错</p>
+<h3 id="step4-计算顺序"><a href="#step4-计算顺序" class="headerlink" title="step4 计算顺序"></a>step4 计算顺序</h3><p>初始条件 f[0]  -&gt;f[1] ….f[27]</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>算法时间复杂为（27*3）即 n平方</p>
+<p>ps 递归的话 无法保存之前的值 会重复运算 因此复杂度太高</p>
+<h3 id="上代码"><a href="#上代码" class="headerlink" title="上代码"></a>上代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minCoin</span><span class="params">(<span class="keyword">int</span> [] coins ,<span class="keyword">int</span> amount )</span></span>&#123;</span><br><span class="line">    <span class="comment">// dp(0) ---dp(n) 需要n+1个数</span></span><br><span class="line">    <span class="keyword">int</span> [] f = <span class="keyword">new</span> <span class="keyword">int</span> [amount+<span class="number">1</span>];</span><br><span class="line">    <span class="comment">// n为硬币数</span></span><br><span class="line">    <span class="keyword">int</span> n = coins.length;</span><br><span class="line">    <span class="comment">// 初始条件</span></span><br><span class="line">    f[<span class="number">0</span>] =  <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//f1、f2 ... f(count)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">        <span class="comment">//开始时先附上最大值 ps后续要防止最大值+1 报错</span></span><br><span class="line">    f[i] = Integer.MAX_VALUE;</span><br><span class="line">        <span class="comment">//动态规划处理</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="comment">//防止下标为负数以及最大值溢出</span></span><br><span class="line">            <span class="keyword">if</span>(i-coins[j] &gt;= <span class="number">0</span> &amp;&amp; f[i - coins[j] ]!=Integer.MAX_VALUE)&#123;</span><br><span class="line">                <span class="comment">//取最小值</span></span><br><span class="line">                f[i]=Math.min(f[i - coins[j] ] +<span class="number">1</span> ,f[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(f[amount] == Integer.MAX_VALUE )&#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f[amount];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="62-不同路径"><a href="#62-不同路径" class="headerlink" title="62. 不同路径"></a><a href="https://leetcode-cn.com/problems/unique-paths/" target="_blank" rel="noopener">62. 不同路径</a></h4><p>难度中等521收藏分享切换为英文关注反馈</p>
+<p>一个机器人位于一个 <em>m x n</em> 网格的左上角 （起始点在下图中标记为“Start” ）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。</p>
+<p>问总共有多少条不同的路径？</p>
+<p><img src="https://i.loli.net/2020/05/12/CAtQhnHpWYKZq7F.png" alt="img"></p>
+<p>例如，上图是一个7 x 3 的网格。有多少可能的路径？</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入: m &#x3D; 3, n &#x3D; 2</span><br><span class="line">输出: 3</span><br><span class="line">解释:</span><br><span class="line">从左上角开始，总共有 3 条路径可以到达右下角。</span><br><span class="line">1. 向右 -&gt; 向右 -&gt; 向下</span><br><span class="line">2. 向右 -&gt; 向下 -&gt; 向右</span><br><span class="line">3. 向下 -&gt; 向右 -&gt; 向右</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: m &#x3D; 7, n &#x3D; 3</span><br><span class="line">输出: 28</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="step1确定状态"><a href="#step1确定状态" class="headerlink" title="step1确定状态"></a>step1确定状态</h3><p>考虑最后一步 最后一步一定是向右或者向下<br>右下角的坐标设为（m-1,n-1 )<br>前一步则一定是 (m-2,n-1) 或(m-1,n-2)</p>
+<p>子问题</p>
+<p>那么如果有x种方式到  (m-2,n-1) ， 有y种方式到(m-1,n-2) , x+y 就是最后的答案</p>
+<h3 id="step2转移方程"><a href="#step2转移方程" class="headerlink" title="step2转移方程"></a>step2转移方程</h3><p>对于任意一个格子(i,j)<br>f [i] [j] = f [ i-1 ] [ j ] + f [ i ] [ j-1  ]</p>
+<h3 id="step3-初始条件和边界情况-1"><a href="#step3-初始条件和边界情况-1" class="headerlink" title="step3 初始条件和边界情况"></a>step3 初始条件和边界情况</h3><p>f[0] [0] = 1 </p>
+<p>i=0 或者 j=0  答案都是1</p>
+<h3 id="step4-计算顺序-1"><a href="#step4-计算顺序-1" class="headerlink" title="step4 计算顺序"></a>step4 计算顺序</h3><p>一般都是自小向大 </p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>时间复杂 mn 空间复杂mn</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">uniquePaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> [][] f = <span class="keyword">new</span> <span class="keyword">int</span> [m][n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (i==<span class="number">0</span>||j==<span class="number">0</span>)&#123;</span><br><span class="line">                f[i][j] = <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                f[i][j] =  f[i-<span class="number">1</span>][j]+ f[i][j-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>  f[m-<span class="number">1</span>][n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="55-跳跃游戏"><a href="#55-跳跃游戏" class="headerlink" title="55. 跳跃游戏"></a><a href="https://leetcode-cn.com/problems/jump-game/" target="_blank" rel="noopener">55. 跳跃游戏</a></h4><p>难度中等651收藏分享切换为英文关注反馈</p>
+<p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>判断你是否能够到达最后一个位置。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [2,3,1,1,4]</span><br><span class="line">输出: true</span><br><span class="line">解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,2,1,0,4]</span><br><span class="line">输出: false</span><br><span class="line">解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。</span><br></pre></td></tr></table></figure>
+
+<h3 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h3><p>假设是n块石头，跳跃距离为an</p>
+<p>考虑最后一跳</p>
+<p>从i跳到n-1    i&lt;n-1</p>
+<p>其次 能跳到石头i<br>跳跃的最大距离要比中间的距离大    ai &gt;= n-1 -i</p>
+<p><img src="https://i.loli.net/2020/05/12/uvahzKM3AJsgpDk.png" alt="image-20200512223844431"></p>
+<h3 id="step2-转移方程-1"><a href="#step2-转移方程-1" class="headerlink" title="step2 转移方程"></a>step2 转移方程</h3><p>f[j] = OR (o&lt;=i&lt;j)(f[i] AND i+a[i] &gt;= j  )</p>
+<h3 id="step3初始条件和边界"><a href="#step3初始条件和边界" class="headerlink" title="step3初始条件和边界"></a>step3初始条件和边界</h3><p>f[0] =true </p>
+<h3 id="step4-计算顺序-2"><a href="#step4-计算顺序-2" class="headerlink" title="step4 计算顺序"></a>step4 计算顺序</h3><p>自小向大 </p>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><p>时间复杂 n 平方 空间复杂n</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">boolean</span> [] f =<span class="keyword">new</span> <span class="keyword">boolean</span> [n] ;</span><br><span class="line">    f[<span class="number">0</span>]=<span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">        f[j] = <span class="keyword">false</span> ;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; j; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(f[i]&amp;&amp; i+nums[i]&gt;=j)&#123;</span><br><span class="line">                f[j] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> f[n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/12/0512%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-0512" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/0512/">vue打包相关</a>
+    </h1>
+  
+
+        
+         
+<a href="/2020/05/11/0512/" class="archive-article-date">
+  	<time datetime="2020-05-11T12:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="项目运行"><a href="#项目运行" class="headerlink" title="项目运行"></a>项目运行</h2><p>静态服务</p>
+<p>npm run build 打包项目至 dist目录<br>npm install -g serve 安装服务组件   ps 不是server<br>serve dist  |  cd到dist文件运行即可</p>
+<p>动态服务器：tomcat</p>
+<p>1.配置webpack.prod.conf.js<br>  output: {<br>    …<br>    publicPath: ‘/myvue/‘    –&gt;配置访问时的项目名</p>
+<p>2.打包成dist<br>3.将dist拷贝到tomcat/webapps中，并且<strong>再将dist修改成myvue</strong> | ps需要保持统一<br>4.启动tomcat,运行</p>
+<p><strong>npm run dev  触发了哪些文件？</strong></p>
+<p>1.dev -&gt;package.json -&gt;build/webpack.dev.conf.js -&gt;./webpack.base.conf<br>-&gt;./src/main.js引用时的名字叫app</p>
+<p><img src="https://i.loli.net/2020/05/12/Y4KnDICVyh8ruB5.png" alt="image-20200512161451499"></p>
+<p>ps: 这个app.js 和下面的app并非同一个</p>
+<p>2.根据web基础知识可知：<br><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 实际是访问<a href="http://localhost:8080/index.html" target="_blank" rel="noopener">http://localhost:8080/index.html</a><br> index.html:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  -&gt;会被src/App.vue中的<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>内容注入：</span><br><span class="line"><span class="tag">&lt;<span class="name">router-view</span>/&gt;</span> ：路由，映射关系  localhost:8080/b   -&gt; xxx 		</span><br><span class="line"> （路由到某个组件）</span><br><span class="line">本项目(vuecli的默认项目)的映射： localhost:8080/  -》HelloWorld.vue</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">router-view</span>/&gt;</span>: router/index.js</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>ps: 一个一键分享的工具<br><a href="https://blog.csdn.net/liwenfei123/article/details/78952337" target="_blank" rel="noopener">https://blog.csdn.net/liwenfei123/article/details/78952337</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/11/0512/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-0511ngrox" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/0511ngrox/">ngrok</a>
+    </h1>
+  
+
+        
+         
+<a href="/2020/05/11/0511ngrox/" class="archive-article-date">
+  	<time datetime="2020-05-11T06:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="ngrok-内网穿透"><a href="#ngrok-内网穿透" class="headerlink" title="ngrok 内网穿透"></a>ngrok 内网穿透</h3><p>内网项目让别人访问</p>
+<p>1）<a href="http://www.ngrok.cc/" target="_blank" rel="noopener">http://www.ngrok.cc/</a></p>
+<p>登录ngrox 购买隧道 下载客户端</p>
+<p><img src="https://i.loli.net/2020/05/11/jaHLKBOcIS8JvRm.png" alt="image-20200511143835889"></p>
+<p>2）复制隧道id 到客户端，等待连接即可 |  </p>
+<p>访问<a href="http://leib1368.free.idcfengye.com" target="_blank" rel="noopener">http://leib1368.free.idcfengye.com</a> 即 127.0.0.1:8100</p>
+<p><img src="https://i.loli.net/2020/05/11/EchFUe4mM27a9dp.png" alt="image-20200511143949807"><a href="http://leib1368.free.idcfengye.com" target="_blank" rel="noopener">http://leib1368.free.idcfengye.com</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">ngrok</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/11/0511ngrox/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-0511" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1489,412 +1818,6 @@
 
 
   
-    <article id="post-mockjs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/21/mockjs/">mockjs</a>
-    </h1>
-  
-
-        
-         
-<a href="/2020/04/21/mockjs/" class="archive-article-date">
-  	<time datetime="2020-04-21T13:58:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="mockjs"><a href="#mockjs" class="headerlink" title="mockjs"></a>mockjs</h1><p>安装<br>cnpm install mockjs</p>
-<p>Mock.js语法分两种：<br>一、DTD:数据模板定义规范<br>二、DPD：数据占位符定义规范</p>
-<p>一、DTD<br>    ‘属性名|规则’: 属性值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mymock = <span class="built_in">require</span>(<span class="string">'mockjs'</span>);</span><br><span class="line"><span class="keyword">let</span> pers  = mymock.mock(&#123;</span><br><span class="line"><span class="string">'persons|10'</span> :[&#123;</span><br><span class="line">		<span class="string">'id|+10'</span>:<span class="number">1</span>,</span><br><span class="line">		<span class="string">'name'</span>:<span class="string">'@cname'</span>,</span><br><span class="line">		<span class="string">'xing'</span>:<span class="string">'@cfirst'</span>,</span><br><span class="line">		<span class="string">'exing'</span>:<span class="string">'@Last'</span>,</span><br><span class="line">		<span class="string">'desc'</span> : <span class="string">'@string'</span>,</span><br><span class="line">		<span class="string">'stuno'</span>:<span class="string">'@integer'</span>,</span><br><span class="line">		<span class="string">'birthday'</span>:<span class="string">'@date'</span>,</span><br><span class="line">		<span class="string">'pic'</span>:<span class="string">'@image'</span>,</span><br><span class="line">		<span class="string">'age|18-60'</span>:<span class="number">0</span> ,</span><br><span class="line">		<span class="string">'brief'</span>: <span class="string">'@title'</span>,</span><br><span class="line">		<span class="string">'content'</span>: <span class="string">'@cword(100)'</span>,</span><br><span class="line">		<span class="string">'height|160-180.2'</span>:<span class="number">0</span> ,</span><br><span class="line">		<span class="string">'weight|50-100.2-4'</span>:<span class="number">0</span>,</span><br><span class="line">		<span class="string">'sex|2-3'</span>:<span class="literal">true</span> ,</span><br><span class="line">		<span class="string">'address|1-3'</span>:&#123;<span class="string">'homeaddress'</span>:<span class="string">'西安'</span>,<span class="string">'schooladdress'</span>:<span class="string">'北京'</span>,<span class="string">'workaddress'</span>:<span class="string">'泸州'</span>&#125;,</span><br><span class="line">		<span class="string">'url'</span>:<span class="string">'@url'</span> ,</span><br><span class="line">		<span class="string">'ip'</span>:<span class="string">"@ip"</span> ,</span><br><span class="line">		<span class="string">'email'</span>:<span class="string">'@email'</span>,</span><br><span class="line">		<span class="string">'area'</span>:<span class="string">'@region'</span>,</span><br><span class="line">		<span class="string">'address2'</span>:<span class="string">'@county(true)'</span></span><br><span class="line">	&#125;]</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	'persons|1-6' :[&#123;</span></span><br><span class="line"><span class="comment">		'id|+10':1,</span></span><br><span class="line"><span class="comment">		'name|2-5':'zs',</span></span><br><span class="line"><span class="comment">		'age|18-60':0 ,</span></span><br><span class="line"><span class="comment">		'height|160-180.2':0 ,</span></span><br><span class="line"><span class="comment">		'weight|50-100.2-4':0,</span></span><br><span class="line"><span class="comment">		'sex|2-3':true ,</span></span><br><span class="line"><span class="comment">		</span></span><br><span class="line"><span class="comment">		'address|1-3':&#123;'homeaddress':'西安','schooladdress':'北京','workaddress':'泸州'&#125;</span></span><br><span class="line"><span class="comment">	&#125;]</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="built_in">JSON</span>.stringify(pers ,<span class="literal">null</span>, <span class="number">2</span>)  );</span><br></pre></td></tr></table></figure>
-
-<p>规则：<br>a.属性值是字符串类型<br>(1)<br>    属性名|count: 字符串            count就是重复几次<br>(2)<br>    属性名|min-max: 字符串             –min-max代表次数</p>
-<p>b.属性值是数字类型</p>
-<p>（1）<br>    属性名|+1: 数字</p>
-<p>(2)<br>    属性名|min-max: 数字        –min-max代表范围</p>
-<p>c.属性值是布尔类型<br>（1）<br>    ‘sex|1’:true    代表true出现的次数 和false 的概率是 1:1<br>（2）<br>‘sex|2-4’:true      代表true出现的概率 是 2/2+4</p>
-<p>d.属性值是对象object类型</p>
-<pre><code>&apos;属性|count&apos;:{...}
-&apos;属性|min-max&apos;:{...}</code></pre><p>e.属性值是数组类型<br>‘persons|3’ :[{<br>        …}<br>    }]</p>
-<p>‘persons|1-6’ :[{<br>        …}<br>    }]</p>
-<p>二、DPD<br>    随机数据<br>@date<br>@string<br>…</p>
-<table>
-<thead>
-<tr>
-<th align="left"><strong>Type****</strong></th>
-<th><strong>Method****</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Basic</td>
-<td>boolean, natural, integer, float, character, string, range, date, time, datetime, now</td>
-</tr>
-<tr>
-<td align="left">Image</td>
-<td>image, dataImage</td>
-</tr>
-<tr>
-<td align="left">Color</td>
-<td>color</td>
-</tr>
-<tr>
-<td align="left">Text</td>
-<td>paragraph, sentence, word, title, cparagraph, csentence, cword, ctitle</td>
-</tr>
-<tr>
-<td align="left">Name</td>
-<td>first, last, name, cfirst, clast, cname</td>
-</tr>
-<tr>
-<td align="left">Web</td>
-<td>url, domain, email, ip, tld</td>
-</tr>
-<tr>
-<td align="left">Address</td>
-<td>area, region</td>
-</tr>
-<tr>
-<td align="left">Helper</td>
-<td>capitalize, upper, lower, pick, shuffle</td>
-</tr>
-<tr>
-<td align="left">Miscellaneous</td>
-<td>guid, id</td>
-</tr>
-</tbody></table>
-<p>easy mock<br>easy mock:在线Mock.js</p>
-<p> (1.内置了mock.js并且 暴露了url地址   2.同步swagger)<br>模拟数据：</p>
-<pre><code>    1.mock.js 模拟数据：  当请求url时，返回mock.js模拟的数据
-    2.swagger模拟数据：根据yml中的 请求url 设置url ,返回 response中定义的数据（类型是swagger定义的，而数据是easymock模拟出来的）
--》模拟数据，并且有查询此数据的url .   【 url -&gt;模拟数据】</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-	
-
-	
-	
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">mockjs</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/21/mockjs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/Linux/">linux</a>
-    </h1>
-  
-
-        
-         
-<a href="/2020/04/20/Linux/" class="archive-article-date">
-  	<time datetime="2020-04-20T12:00:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h1><p>1下载 今天使用的是linux6.8 vmware12（收费的）<br>linux:centos 6.8</p>
-<p>2.在windows上安装centos(linux)<br>    买电脑（硬件）：文件-新建虚拟机<br>    装系统：在“买电脑”里装centos:编辑虚拟机设置-CD/DVD中 指定 centos的文件位置 - 开启：<br>    如果报错：Intel vt-x禁用…，愿意是 真实物理机没有开发 虚拟化设置。<br>    解决：进入bios(如何进入，自己搜)，找到 intel VItural TEchnology ：Enable</p>
-<p>关于vmware中 计算机名字：<br>    虚拟机名：bigdata01<br>    计算机名：bigdata01<br>    网络中的名字：bigdata01<br>    用户名：root</p>
-<p>默认超级管理员：root/自己设置</p>
-<p>磁盘布局：<br>    /boot：系统启动时 需要的内存 200M<br>    /：系统的可用磁盘大小 10240M<br>    swap:交换内存 ，建议大小 和内存一致  2048M</p>
-<p>鼠标从虚拟机中释放：ctrl+alt</p>
-<p>查看计算机名：hostname<br>修改计算机名：/etc/sysconfig/network</p>
-<p>通过文本编辑器打开文件：vi  路径/文件名<br>            vi /etc/sysconfig/network<br>查看文件：cat /etc/sysconfig/network<br>编辑：a<br>保存： esc ,shift +z+z</p>
-<p>重启：reboot<br><strong>关机：halt</strong></p>
-<p>实现真实物理机  和 虚拟机之间的 复制粘贴操作：<br>虚拟机-安装vmware tools-讲VMwareTools-xxx.tar.gz赋值到桌面-解压缩-执行<br>vmware-install.pl -回车 -最后 reboot<br>设置共享文件夹：编辑虚拟机-选项-共享文件夹-指定 共享文件夹 ，该文件夹 在虚拟机中对应的目录：<strong>/mnt/hgfs</strong></p>
-<p>ps:该文件夹是固定的</p>
-<p>3.centos网络配置（约定配置）<br>    bigdata01:    192.168.2.128        192.168.2.1（网关）<br>    bigdata02    192.168.2.129        192.168.2.1（网关）<br>    bigdata03    192.168.2.130        192.168.2.1（网关）</p>
-<pre><code>a.编辑-虚拟机网络编辑器
-VMNet8 (NAT)    
-i.子网 192.168.2.0
-ii.更改设置-DHCP设置 ：
-    起始192.168.2.128    bigdata01
-    结束192.168.2.254  
-iii.NAT设置：网关 192.168.2.1
-
-b.配置windows访问虚拟机
-    网络连接-vmNet8-TCP/IP V4 - IP192.168.2.2 ， 192.168.2.1（网关）
-
-c.centos网卡
-修改网卡配置 vi /etc/sysconfig/network-scripts/ifcfg-eth0
-
-DEVICE=eth0
-HWADDR=00:0C:29:7A:D1:F2
-TYPE=Ethernet
-UUID=b129cd07-0a05-419e-a3a1-4d73d3f37917
-ONBOOT=yes
----修改以下配置----
-NM_CONTROLLED=yes
-BOOTPROTO=static
-IPADDR=192.168.2.128
-GATEWAY=192.168.2.1
-BROADCAST=192.168.2.255
-DNS2=8.8.8.8
-DNS1=114.114.114.114  
---如果域名无法解析，则加入dns设置（设置的内容：推荐是 当地的DNS）
-vi如果使用shift+z+z无法保存， 则使用 &quot;:wq!&quot;
-d.通过网络名访问虚拟机 (192.168.2.128 -&gt;bigdata01)
-    centos:
-        vi /etc/hosts,
-        追加：
-        192.168.2.128 bigdata01
-    windows:
-        C:\Windows\System32\drivers\etc\hosts
-        追加：
-        192.168.2.128 bigdata01
-
-e.配置网络服务
-    service NetworkManager stop
-    /etc/init.d/network restart
-    chkconfig NetworkManager off
-    vi /etc/resolv.conf  追加nameserver 192.168.2.1
-
-    重启网卡 service network restart</code></pre><p>4.防火墙：关闭<br>centos:<br>    service iptables stop关闭防火墙<br>    chkconfig iptables off禁止开机自启<br>    service iptables status查看防火墙状态<br>windows:<br>    网络-右键 属性-关闭防火墙</p>
-<p>5.自动同步时间<br>    安装用于同步时间的 ntp插件 ：<br>        yum -y install ntp ntpdate<br>    与该网站同步时间<br>        ntpdate cn.pool.ntp.org<br>    将系统时间写入硬盘时间<br>        hwclock –systohc</p>
-<p>6.windows真实机 通过SecureCRT 操作centos<br>    下载SecureCRT<br>    通过SecureCRT 对centos进行文件的上传下载：yum install lrzsz<br>        上传：切换到当前目录 cd /tmp， 直接用鼠标拖拽,Zmodem…</p>
-<p>linux:一切都是文件，一切都是命令</p>
-<p>7.下载安装jdk （rpm方式）<br>     exe  :   rpm<br>     rar  :  .tar.gz</p>
-<pre><code>下载rpm版jdk
-安装：  切到 rpm版jdk的文件夹中， rpm -ivh  jdk名字
-rpm版本的软件，安装的默认路径：/usr中，
-例如，/usr/java/jdk1.8.0_181-amd64
-
-配置环境变量：
-vi /etc/profile中的最后追加：</code></pre><p>export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64<br>export CLASSPATH=$JAVA_HOME$\lib:$CLASSPATH<br>export PATH=$JAVA_HOME$\bin:$PATH</p>
-<pre><code>让环境变量立刻生效： source /etc/profile</code></pre><p>8.集群（3台） ：完整克隆<br>bigdata01 -&gt; bigdata02/bigdata03<br>    克隆完毕后：<br>        a.将从计算机 的内存适当降低<br>        b.修改从计算中 唯一性 的配置（ip、uuid、hostname映射）<br>            在克隆后的bigdata02/bigdata03中<br>            vi /etc/sysconfig/network-scripts/ifcfg-eth0<br>            修改ip地址、删除uuid/hwaddr(在重启时，自动生成)<br>            删除文件 rm -r  /etc/udev/rules.d/70-persistent-net.rules 输入yes</p>
-<pre><code>    计算机名：vi /etc/sysconfig/network
-c.映射
-
-centos:
-    vi /etc/hosts,
-    追加：
-    192.168.2.128 bigdata01
-    192.168.2.129 bigdata02
-    192.168.2.130 bigdata03
-
-windows:
-    C:\Windows\System32\drivers\etc\hosts
-    追加：
-    192.168.2.128 bigdata01
-    192.168.2.129 bigdata02
-    192.168.2.130 bigdata03</code></pre><p>9.SSH免密钥登陆<br>    私钥：密钥留在本机<br>    公钥: 密钥发给本机<br>    bigdata01:<br>    生成密钥：ssh-keygen -t rsa   (密钥存放位置：/root/.ssh ，  id_rsa:私钥     id_rsa.pub)<br>    发送私钥（本机）： ssh-copy-id localhost    ， 需要输入bigdata01节点(root)的密码<br>    发送公钥（其他计算机）：ssh-copy-id bigdata02， 需要输入bigdata02节点(root)的密码<br>    测试免密钥登陆：<br>        ssh localhost<br>        ssh bigdata02</p>
-<pre><code>用上述方法，给每2台计算机 设置免密钥</code></pre><p>10.用户<br>    a.用户组<br>        groupadd bd</p>
-<pre><code>b.在用户组中增加用户
-    useradd -g bd yq
-    密码
-    passwd yq  回车
-
-c.提升用户的权限:  在/etc/sudoers文中设置yq的权限
-        因为/etc/sudoers文件本身是只读的，所以修改该文件前，需要 将 只读禁止。
-        chmod 777 /etc/sudoers      --设置sudoers 可读可写
-        编辑 vi /etc/sudoers:追加
-        yq     ALL=(ALL)       ALL
-        还原sudoers的权限为只读：chmod 440 /etc/sudoers
-
-d:切换用户 ： 
-    切换为普通用户： su 用户名    
-    切换为超级管理员root：  su
-
-d.删除用户：userdel  用户名
-    如果提示 正在使用，无法删除...重启后再删
-
-
-    查看进程        jps
-    结束进程        kill -9 进程编号</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-	
-
-	
-	
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/Linux/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-add foot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/add%20foot/">增加页尾访问人数</a>
-    </h1>
-  
-
-        
-         
-<a href="/2020/04/20/add%20foot/" class="archive-article-date">
-  	<time datetime="2020-04-20T11:58:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Nothing,只是做了点微小的工作</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-	
-
-	
-	
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/add%20foot/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -2060,6 +1983,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>
