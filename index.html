@@ -215,77 +215,9 @@
       
         <h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>话不多说 直接看例题 再归纳总结</p>
 <h4 id="322-零钱兑换"><a href="#322-零钱兑换" class="headerlink" title="322. 零钱兑换"></a><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="noopener">322. 零钱兑换</a></h4><p>给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 <code>-1</code>。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: coins &#x3D; [1, 2, 5], amount &#x3D; 11</span><br><span class="line">输出: 3 </span><br><span class="line">解释: 11 &#x3D; 5 + 5 + 1</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: coins &#x3D; [2], amount &#x3D; 3</span><br><span class="line">输出: -1</span><br></pre></td></tr></table></figure>
-
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="step1-确定状态"><a href="#step1-确定状态" class="headerlink" title="step1 确定状态"></a>step1 确定状态</h4><p>解动态规划都需要开一个数组，每个元素<strong>f [i]  或者 f [i] [j]</strong></p>
-<p>确定状态需要又分两步。 </p>
-<p>​    –确定最后一步</p>
-<p>​    –分析子问题</p>
-<p>举个典型的例子 [2，5，7]  这三枚硬币  —&gt; 去凑27<br>a1 + a2 +a3  … ak = 27</p>
-<p><img src="https://i.loli.net/2020/05/12/JeN7GwiOYZQK4ur.png" alt="image-20200512220312428"></p>
-<p>子问题</p>
-<p>最少用多少枚硬币拼出27- ak</p>
-<p>原问题</p>
-<p>最少用多少枚硬币拼出27</p>
-<p>f(x)  =  最少用多少枚硬币拼出x</p>
-<p>f(27) = min { f(27-2) + 1 ,f(27-5) + 1 ,f(27-7) + 1 }</p>
-<h3 id="step2-转移方程"><a href="#step2-转移方程" class="headerlink" title="step2 转移方程"></a>step2 转移方程</h3><p>f[27] = min { f(27-2) + 1 ,f(27-5) + 1 ,f(27-7) + 1 }</p>
-<h3 id="step3-初始条件和边界情况"><a href="#step3-初始条件和边界情况" class="headerlink" title="step3   初始条件和边界情况"></a>step3   初始条件和边界情况</h3><p>f[0] = 0 且 数组下标不能为负数<br>而且在电脑中，无线大+1 是超标的 会报错</p>
-<h3 id="step4-计算顺序"><a href="#step4-计算顺序" class="headerlink" title="step4 计算顺序"></a>step4 计算顺序</h3><p>初始条件 f[0]  -&gt;f[1] ….f[27]</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>算法时间复杂为（27*3）即 n平方</p>
-<p>ps 递归的话 无法保存之前的值 会重复运算 因此复杂度太高</p>
-<h3 id="上代码"><a href="#上代码" class="headerlink" title="上代码"></a>上代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">minCoin</span><span class="params">(<span class="keyword">int</span> [] coins ,<span class="keyword">int</span> amount )</span></span>&#123;</span><br><span class="line">    <span class="comment">// dp(0) ---dp(n) 需要n+1个数</span></span><br><span class="line">    <span class="keyword">int</span> [] f = <span class="keyword">new</span> <span class="keyword">int</span> [amount+<span class="number">1</span>];</span><br><span class="line">    <span class="comment">// n为硬币数</span></span><br><span class="line">    <span class="keyword">int</span> n = coins.length;</span><br><span class="line">    <span class="comment">// 初始条件</span></span><br><span class="line">    f[<span class="number">0</span>] =  <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//f1、f2 ... f(count)</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">        <span class="comment">//开始时先附上最大值 ps后续要防止最大值+1 报错</span></span><br><span class="line">    f[i] = Integer.MAX_VALUE;</span><br><span class="line">        <span class="comment">//动态规划处理</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="comment">//防止下标为负数以及最大值溢出</span></span><br><span class="line">            <span class="keyword">if</span>(i-coins[j] &gt;= <span class="number">0</span> &amp;&amp; f[i - coins[j] ]!=Integer.MAX_VALUE)&#123;</span><br><span class="line">                <span class="comment">//取最小值</span></span><br><span class="line">                f[i]=Math.min(f[i - coins[j] ] +<span class="number">1</span> ,f[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(f[amount] == Integer.MAX_VALUE )&#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f[amount];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="62-不同路径"><a href="#62-不同路径" class="headerlink" title="62. 不同路径"></a><a href="https://leetcode-cn.com/problems/unique-paths/" target="_blank" rel="noopener">62. 不同路径</a></h4><p>难度中等521收藏分享切换为英文关注反馈</p>
-<p>一个机器人位于一个 <em>m x n</em> 网格的左上角 （起始点在下图中标记为“Start” ）。</p>
-<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。</p>
-<p>问总共有多少条不同的路径？</p>
-<p><img src="https://i.loli.net/2020/05/12/CAtQhnHpWYKZq7F.png" alt="img"></p>
-<p>例如，上图是一个7 x 3 的网格。有多少可能的路径？</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入: m &#x3D; 3, n &#x3D; 2</span><br><span class="line">输出: 3</span><br><span class="line">解释:</span><br><span class="line">从左上角开始，总共有 3 条路径可以到达右下角。</span><br><span class="line">1. 向右 -&gt; 向右 -&gt; 向下</span><br><span class="line">2. 向右 -&gt; 向下 -&gt; 向右</span><br><span class="line">3. 向下 -&gt; 向右 -&gt; 向右</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: m &#x3D; 7, n &#x3D; 3</span><br><span class="line">输出: 28</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="step1确定状态"><a href="#step1确定状态" class="headerlink" title="step1确定状态"></a>step1确定状态</h3><p>考虑最后一步 最后一步一定是向右或者向下<br>右下角的坐标设为（m-1,n-1 )<br>前一步则一定是 (m-2,n-1) 或(m-1,n-2)</p>
-<p>子问题</p>
-<p>那么如果有x种方式到  (m-2,n-1) ， 有y种方式到(m-1,n-2) , x+y 就是最后的答案</p>
-<h3 id="step2转移方程"><a href="#step2转移方程" class="headerlink" title="step2转移方程"></a>step2转移方程</h3><p>对于任意一个格子(i,j)<br>f [i] [j] = f [ i-1 ] [ j ] + f [ i ] [ j-1  ]</p>
-<h3 id="step3-初始条件和边界情况-1"><a href="#step3-初始条件和边界情况-1" class="headerlink" title="step3 初始条件和边界情况"></a>step3 初始条件和边界情况</h3><p>f[0] [0] = 1 </p>
-<p>i=0 或者 j=0  答案都是1</p>
-<h3 id="step4-计算顺序-1"><a href="#step4-计算顺序-1" class="headerlink" title="step4 计算顺序"></a>step4 计算顺序</h3><p>一般都是自小向大 </p>
-<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>时间复杂 mn 空间复杂mn</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">uniquePaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> [][] f = <span class="keyword">new</span> <span class="keyword">int</span> [m][n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (i==<span class="number">0</span>||j==<span class="number">0</span>)&#123;</span><br><span class="line">                f[i][j] = <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                f[i][j] =  f[i-<span class="number">1</span>][j]+ f[i][j-<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>  f[m-<span class="number">1</span>][n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="55-跳跃游戏"><a href="#55-跳跃游戏" class="headerlink" title="55. 跳跃游戏"></a><a href="https://leetcode-cn.com/problems/jump-game/" target="_blank" rel="noopener">55. 跳跃游戏</a></h4><p>难度中等651收藏分享切换为英文关注反馈</p>
-<p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
-<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
-<p>判断你是否能够到达最后一个位置。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [2,3,1,1,4]</span><br><span class="line">输出: true</span><br><span class="line">解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,2,1,0,4]</span><br><span class="line">输出: false</span><br><span class="line">解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。</span><br></pre></td></tr></table></figure>
-
-<h3 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h3><p>假设是n块石头，跳跃距离为an</p>
-<p>考虑最后一跳</p>
-<p>从i跳到n-1    i&lt;n-1</p>
-<p>其次 能跳到石头i<br>跳跃的最大距离要比中间的距离大    ai &gt;= n-1 -i</p>
-<p><img src="https://i.loli.net/2020/05/12/uvahzKM3AJsgpDk.png" alt="image-20200512223844431"></p>
-<h3 id="step2-转移方程-1"><a href="#step2-转移方程-1" class="headerlink" title="step2 转移方程"></a>step2 转移方程</h3><p>f[j] = OR (o&lt;=i&lt;j)(f[i] AND i+a[i] &gt;= j  )</p>
-<h3 id="step3初始条件和边界"><a href="#step3初始条件和边界" class="headerlink" title="step3初始条件和边界"></a>step3初始条件和边界</h3><p>f[0] =true </p>
-<h3 id="step4-计算顺序-2"><a href="#step4-计算顺序-2" class="headerlink" title="step4 计算顺序"></a>step4 计算顺序</h3><p>自小向大 </p>
-<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><p>时间复杂 n 平方 空间复杂n</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">boolean</span> [] f =<span class="keyword">new</span> <span class="keyword">boolean</span> [n] ;</span><br><span class="line">    f[<span class="number">0</span>]=<span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">        f[j] = <span class="keyword">false</span> ;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; j; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(f[i]&amp;&amp; i+nums[i]&gt;=j)&#123;</span><br><span class="line">                f[j] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> f[n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/05/12/0512%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#more">more >></a>
+        
       
 
       
@@ -2241,19 +2173,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2261,11 +2181,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
