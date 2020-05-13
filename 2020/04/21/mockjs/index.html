@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>mockjs | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="mockjs安装cnpm install mockjs Mock.js语法分两种：一、DTD:数据模板定义规范二、DPD：数据占位符定义规范 一、DTD    ‘属性名|规则’: 属性值 12345678910111213141516171819202122232425262728293031323334353637let mymock &#x3D; require(&#39;mockjs&#39;);let pers">
+  <meta name="description" content="mockjs安装cnpm install mockjs Mock.js语法分两种：一、DTD:数据模板定义规范二、DPD：数据占位符定义规范">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mockjs">
 <meta property="og:url" content="http://yoursite.com/2020/04/21/mockjs/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="mockjs安装cnpm install mockjs Mock.js语法分两种：一、DTD:数据模板定义规范二、DPD：数据占位符定义规范 一、DTD    ‘属性名|规则’: 属性值 12345678910111213141516171819202122232425262728293031323334353637let mymock &#x3D; require(&#39;mockjs&#39;);let pers">
+<meta property="og:description" content="mockjs安装cnpm install mockjs Mock.js语法分两种：一、DTD:数据模板定义规范二、DPD：数据占位符定义规范">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-21T13:58:53.000Z">
-<meta property="article:modified_time" content="2020-04-21T13:39:07.600Z">
+<meta property="article:modified_time" content="2020-05-13T05:31:03.174Z">
 <meta property="article:author" content="Leib">
 <meta property="article:tag" content="mockjs">
 <meta name="twitter:card" content="summary">
@@ -213,6 +213,7 @@
       
         <h1 id="mockjs"><a href="#mockjs" class="headerlink" title="mockjs"></a>mockjs</h1><p>安装<br>cnpm install mockjs</p>
 <p>Mock.js语法分两种：<br>一、DTD:数据模板定义规范<br>二、DPD：数据占位符定义规范</p>
+<a id="more"></a>
 <p>一、DTD<br>    ‘属性名|规则’: 属性值</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mymock = <span class="built_in">require</span>(<span class="string">'mockjs'</span>);</span><br><span class="line"><span class="keyword">let</span> pers  = mymock.mock(&#123;</span><br><span class="line"><span class="string">'persons|10'</span> :[&#123;</span><br><span class="line">		<span class="string">'id|+10'</span>:<span class="number">1</span>,</span><br><span class="line">		<span class="string">'name'</span>:<span class="string">'@cname'</span>,</span><br><span class="line">		<span class="string">'xing'</span>:<span class="string">'@cfirst'</span>,</span><br><span class="line">		<span class="string">'exing'</span>:<span class="string">'@Last'</span>,</span><br><span class="line">		<span class="string">'desc'</span> : <span class="string">'@string'</span>,</span><br><span class="line">		<span class="string">'stuno'</span>:<span class="string">'@integer'</span>,</span><br><span class="line">		<span class="string">'birthday'</span>:<span class="string">'@date'</span>,</span><br><span class="line">		<span class="string">'pic'</span>:<span class="string">'@image'</span>,</span><br><span class="line">		<span class="string">'age|18-60'</span>:<span class="number">0</span> ,</span><br><span class="line">		<span class="string">'brief'</span>: <span class="string">'@title'</span>,</span><br><span class="line">		<span class="string">'content'</span>: <span class="string">'@cword(100)'</span>,</span><br><span class="line">		<span class="string">'height|160-180.2'</span>:<span class="number">0</span> ,</span><br><span class="line">		<span class="string">'weight|50-100.2-4'</span>:<span class="number">0</span>,</span><br><span class="line">		<span class="string">'sex|2-3'</span>:<span class="literal">true</span> ,</span><br><span class="line">		<span class="string">'address|1-3'</span>:&#123;<span class="string">'homeaddress'</span>:<span class="string">'西安'</span>,<span class="string">'schooladdress'</span>:<span class="string">'北京'</span>,<span class="string">'workaddress'</span>:<span class="string">'泸州'</span>&#125;,</span><br><span class="line">		<span class="string">'url'</span>:<span class="string">'@url'</span> ,</span><br><span class="line">		<span class="string">'ip'</span>:<span class="string">"@ip"</span> ,</span><br><span class="line">		<span class="string">'email'</span>:<span class="string">'@email'</span>,</span><br><span class="line">		<span class="string">'area'</span>:<span class="string">'@region'</span>,</span><br><span class="line">		<span class="string">'address2'</span>:<span class="string">'@county(true)'</span></span><br><span class="line">	&#125;]</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	'persons|1-6' :[&#123;</span></span><br><span class="line"><span class="comment">		'id|+10':1,</span></span><br><span class="line"><span class="comment">		'name|2-5':'zs',</span></span><br><span class="line"><span class="comment">		'age|18-60':0 ,</span></span><br><span class="line"><span class="comment">		'height|160-180.2':0 ,</span></span><br><span class="line"><span class="comment">		'weight|50-100.2-4':0,</span></span><br><span class="line"><span class="comment">		'sex|2-3':true ,</span></span><br><span class="line"><span class="comment">		</span></span><br><span class="line"><span class="comment">		'address|1-3':&#123;'homeaddress':'西安','schooladdress':'北京','workaddress':'泸州'&#125;</span></span><br><span class="line"><span class="comment">	&#125;]</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"><span class="built_in">console</span>.log( <span class="built_in">JSON</span>.stringify(pers ,<span class="literal">null</span>, <span class="number">2</span>)  );</span><br></pre></td></tr></table></figure>
 
@@ -624,11 +625,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -636,11 +637,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -648,7 +645,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,7 +657,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
             
             <div class="clearfix"></div>

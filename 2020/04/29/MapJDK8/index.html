@@ -16,7 +16,7 @@
 <meta property="og:description" content="Map  jdk8中的新方法 12345678910Map&lt;String, List&lt;String&gt;&gt; map &#x3D; new HashMap&lt;&gt;();&#x2F;&#x2F;老方法List&lt;String&gt; list &#x3D; map.get(&quot;list1&quot;);if (list &#x3D;&#x3D; null) &amp;#123;  list &#x3D; new ArrayList&lt;&gt;();  m">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-29T12:49:24.000Z">
-<meta property="article:modified_time" content="2020-04-29T12:49:38.765Z">
+<meta property="article:modified_time" content="2020-05-13T05:31:17.639Z">
 <meta property="article:author" content="Leib">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -213,7 +213,7 @@
       
         <p>Map  jdk8中的新方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="comment">//老方法</span></span><br><span class="line">List&lt;String&gt; list = map.get(<span class="string">"list1"</span>);</span><br><span class="line"><span class="keyword">if</span> (list == <span class="keyword">null</span>) &#123;</span><br><span class="line">  list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  map.put(<span class="string">"list1"</span>, list);</span><br><span class="line">&#125;</span><br><span class="line">list.add(<span class="string">"A"</span>);</span><br><span class="line"><span class="comment">//和上面等效</span></span><br><span class="line">map.computeIfAbsent(<span class="string">"list1"</span>, k -&gt; <span class="keyword">new</span> ArrayList&lt;&gt;()).add(<span class="string">"A"</span>);</span><br></pre></td></tr></table></figure>
-
+<a id="more"></a>
 <p>不过感觉可能用到比较少，下面几个比较常用</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> Map&lt;Integer,String&gt; map = <span class="keyword">new</span> HashMap&lt;Integer,String&gt;();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">6</span>; i++)&#123;</span><br><span class="line">    map.put(i,<span class="string">"val_"</span>+i);</span><br><span class="line">&#125;</span><br><span class="line">map.put(<span class="number">10</span>,<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1:遍历</span></span><br><span class="line">map.forEach((key,value) -&gt; System.out.println(key+<span class="string">":"</span>+value));</span><br><span class="line"></span><br><span class="line"><span class="comment">//2: getOrDefault(key,defaultValue):</span></span><br><span class="line"><span class="comment">//取V值,如果key不存在则用defaultValue</span></span><br><span class="line">System.out.println(<span class="string">"3--&gt;"</span>+map.getOrDefault(<span class="number">3</span>,<span class="string">"val_66"</span>));<span class="comment">//3--&gt;val_3</span></span><br><span class="line">System.out.println(<span class="string">"10--&gt;"</span>+map.getOrDefault(<span class="number">10</span>,<span class="string">"val_66"</span>));<span class="comment">//10--&gt;null</span></span><br><span class="line">System.out.println(<span class="string">"11--&gt;"</span>+map.getOrDefault(<span class="number">11</span>,<span class="string">"val_66"</span>));<span class="comment">//11--&gt;val_66</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3： putIfAbsent(K key, V value):</span></span><br><span class="line"><span class="comment">//放入kv，如果没有v值，则覆盖掉。对原有kv不影响</span></span><br><span class="line">System.out.println(map.putIfAbsent(<span class="number">3</span>,<span class="string">"val_66"</span>));<span class="comment">//val_3</span></span><br><span class="line">System.out.println(map.putIfAbsent(<span class="number">10</span>,<span class="string">"val_66"</span>));<span class="comment">//null</span></span><br><span class="line">System.out.println(map.putIfAbsent(<span class="number">11</span>,<span class="string">"val_66"</span>));<span class="comment">//null</span></span><br><span class="line">System.out.println(map.get(<span class="number">3</span>)+<span class="string">"--"</span>+map.get(<span class="number">10</span>)+<span class="string">"--"</span>+map.get(<span class="number">11</span>));</span><br><span class="line"><span class="comment">//val_3--val_66--val_66</span></span><br></pre></td></tr></table></figure>
       
@@ -565,11 +565,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -577,11 +577,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -589,7 +585,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -597,7 +597,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
             
             <div class="clearfix"></div>

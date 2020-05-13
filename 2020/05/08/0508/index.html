@@ -16,7 +16,7 @@
 <meta property="og:description" content="Java中子类是否可以继承父类的static变量和方法而呈现多态特性 静态方法通常，在一个类中定义一个方法为static，那就是说，无需本类的对象即可调用此方法，关于static方法，声明为static的方法有以下几条限制： 它们仅能调用其他的static 方法。它们只能访问static数据。它们不能以任何方式引用this 或super。无论是static修饰的变量，还是static修饰的方法，">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-08T12:45:00.000Z">
-<meta property="article:modified_time" content="2020-05-08T12:46:19.431Z">
+<meta property="article:modified_time" content="2020-05-13T05:32:01.980Z">
 <meta property="article:author" content="Leib">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -214,6 +214,8 @@
         <p> Java中子类是否可以继承父类的static变量和方法而呈现多态特性</p>
 <p><strong>静态方法</strong><br>通常，在一个类中定义一个方法为static，那就是说，无需本类的对象即可调用此方法，关于static方法，声明为static的方法有以下几条限制：</p>
 <p>它们仅能调用其他的static 方法。<br>它们只能访问static数据。<br>它们不能以任何方式引用this 或super。<br>无论是static修饰的变量，还是static修饰的方法，我们都知道他们是属于类本身的，不是属于某一个对象的，当声明一个对象时，并不产生static变量和方法的拷贝。也就是说，用static修饰的变量和方法在类加载的时候，只分配一块存储空间，所有此类的对象都可以操控此块存储空间；</p>
+<a id="more"></a>
+
 <p><strong>注：这里要说明的时，当子类没有与之同名的static变量（或方法时），子类的对象也可以操控这块内存空间。但是子类并没有继承父类中static修饰的变量和方法。因为static修饰的变量和方法是属于父类本身的。</strong></p>
 <p>//————————以上我相信我们每个人都比较清楚。</p>
 <p>但是，不知道你有没有注意到这种情况，当存在继承关系时，父类中有一个static修饰的变量（或方法），而子类中也存在一个同名的static修饰的变量（或方法）时，他们到底是否满足“重写”，而最终体现出多态的效果呢？？</p>
@@ -601,11 +603,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,11 +615,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,7 +623,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,7 +635,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
             
             <div class="clearfix"></div>
