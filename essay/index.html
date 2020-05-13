@@ -368,6 +368,31 @@
 <!-- City版安装代码已完成 -->
   
 
+  
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TkaOsLUB4HWqGxgFvAWlS1Ml-gzGzoHsz',
+      app_key: '3LKy8g3cmiIcA54iXXd7f0GO',
+      placeholder: 'anything want to say ?'
+    });
+</script>
+
+  
+
+
 
   
 
@@ -538,7 +563,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,15 +571,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">ngrok</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,10 +596,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">mockjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">RabbitMQ</a>
               </li>
             
             <div class="clearfix"></div>
