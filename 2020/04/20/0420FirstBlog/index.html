@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>子类继承父类的static变量与方法 | Leib&#39;s Blog</title>
+  <title>First Blog (keep calm and do it) | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java中子类是否可以继承父类的static变量和方法而呈现多态特性 静态方法通常，在一个类中定义一个方法为static，那就是说，无需本类的对象即可调用此方法，关于static方法，声明为static的方法有以下几条限制：">
+  <meta name="description" content="用的yilia模板，有空需要行尾加个浏览量统计。以及左侧标签跳转，还有hexo部署的时候，避免把CNAME覆盖。其他没了 下面是hexo的用法，需要的去主页docs里看就好了。hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="子类继承父类的static变量与方法">
-<meta property="og:url" content="http://yoursite.com/2020/05/08/0508/index.html">
+<meta property="og:title" content="First Blog (keep calm and do it)">
+<meta property="og:url" content="http://yoursite.com/2020/04/20/0420FirstBlog/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="Java中子类是否可以继承父类的static变量和方法而呈现多态特性 静态方法通常，在一个类中定义一个方法为static，那就是说，无需本类的对象即可调用此方法，关于static方法，声明为static的方法有以下几条限制：">
+<meta property="og:description" content="用的yilia模板，有空需要行尾加个浏览量统计。以及左侧标签跳转，还有hexo部署的时候，避免把CNAME覆盖。其他没了 下面是hexo的用法，需要的去主页docs里看就好了。hexo">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-08T12:45:00.000Z">
-<meta property="article:modified_time" content="2020-05-13T05:36:50.418Z">
+<meta property="article:published_time" content="2020-04-20T14:44:00.000Z">
+<meta property="article:modified_time" content="2020-05-13T09:39:21.336Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
@@ -172,14 +172,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-0508" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-0420FirstBlog" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      子类继承父类的static变量与方法
+      First Blog (keep calm and do it)
     </h1>
   
 
@@ -190,7 +190,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.3k字</span>
+        <span class="post-count">171字</span>
       </span>
     </span>
 
@@ -199,7 +199,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
+        <span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -214,55 +214,26 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/05/08/0508/" class="archive-article-date">
-  	<time datetime="2020-05-08T12:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+<a href="/2020/04/20/0420FirstBlog/" class="archive-article-date">
+  	<time datetime="2020-04-20T14:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> Java中子类是否可以继承父类的static变量和方法而呈现多态特性</p>
-<p><strong>静态方法</strong><br>通常，在一个类中定义一个方法为static，那就是说，无需本类的对象即可调用此方法，关于static方法，声明为static的方法有以下几条限制：</p>
+        <p>用的yilia模板，有空需要行尾加个浏览量统计。<br>以及左侧标签跳转，还有hexo部署的时候，避免把CNAME覆盖。<br>其他没了 下面是hexo的用法，需要的去主页docs里看就好了。<br><a href="https://hexo.io/docs" target="_blank" rel="noopener">hexo</a></p>
 <a id="more"></a>
-<p>它们仅能调用其他的static 方法。<br>它们只能访问static数据。<br>它们不能以任何方式引用this 或super。<br>无论是static修饰的变量，还是static修饰的方法，我们都知道他们是属于类本身的，不是属于某一个对象的，当声明一个对象时，并不产生static变量和方法的拷贝。也就是说，用static修饰的变量和方法在类加载的时候，只分配一块存储空间，所有此类的对象都可以操控此块存储空间；</p>
-<p><strong>注：这里要说明的时，当子类没有与之同名的static变量（或方法时），子类的对象也可以操控这块内存空间。但是子类并没有继承父类中static修饰的变量和方法。因为static修饰的变量和方法是属于父类本身的。</strong></p>
-<p>//————————以上我相信我们每个人都比较清楚。</p>
-<p>但是，不知道你有没有注意到这种情况，当存在继承关系时，父类中有一个static修饰的变量（或方法），而子类中也存在一个同名的static修饰的变量（或方法）时，他们到底是否满足“重写”，而最终体现出多态的效果呢？？</p>
-<p>下面来看一个例子。<br>父类中有一个static修饰的方法和一个普通的方法，子类中也有一个同名的static方法和一个普通的方法。如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">staticMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Parent staticMethod run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Parent method run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为要上传到git，如果后期需要加域名话，要把CNAME文件放到source里面</p>
+<p>这样部署的时候该文件就不会被覆盖。提前在阿里云上解析域名 </p>
+<p>例：CNAME   里面内容–&gt;leib1368.cn</p>
+<h2 id="Quick-Start-快速搭建"><a href="#Quick-Start-快速搭建" class="headerlink" title="Quick Start 快速搭建"></a>Quick Start 快速搭建</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server 	//其实hexo s 效果也一样</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">staticMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Son staticMethod run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Son method run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate		//同理hexo g</span><br></pre></td></tr></table></figure>
 
-
-<p>测试类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent child=<span class="keyword">new</span> Son();</span><br><span class="line">        child.staticMethod();<span class="comment">//输出：Parent staticMethod run</span></span><br><span class="line">        <span class="comment">//不应该通过类实例访问静态成员</span></span><br><span class="line"></span><br><span class="line">        Son s=<span class="keyword">new</span> Son();</span><br><span class="line">        s.staticMethod();</span><br><span class="line">        child.method();<span class="comment">//这样才存在多态        </span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">运行后的结果如下：</span><br></pre></td></tr></table></figure>
-
-<p>Parent staticMethod run<br>Son staticMethod run<br>Son method run</p>
-<p>从结果可以看出：对于静态方法在子类中是不存在“重写”这一说的，就像前面我们提到的，用static关键字修饰的方法和变量都是属于类自己本身的，即使存在继承关系，子类并没有继承父类的static修饰的变量和方法，所以说即使子类和父类中都有同样的static方法和变量，他们是没有任何关系的，他们是相互独立的，他们是属于各自类本身的。因此也是不存在多态特性的。而对于普通方法的调用是存在“重写”而最终呈现出多态特性的。</p>
-<p>同样的道理：对于static修饰的变量，当子类与父类中存在相同的static变量时，也是根据“静态引用”而不是根据“动态引用”来调用相应的变量的。</p>
-<p>而在父类和子类中对于非static变量和方法，是根据“动态引用”来调用相应的变量和方法。</p>
-<p>然而，接着会有这样的问题存在：java中 子类会不会继承父类的static变量和static方法</p>
-<p>1）先说static方法：子类会不会继承父类的static方法呢？？答案是：不会的，但是是可以访问的。</p>
-<p>看如下的代码 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">staticMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Parent staticMethod run"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent child=<span class="keyword">new</span> Son();</span><br><span class="line">        child.staticMethod();<span class="comment">//输出：Parent staticMethod run   </span></span><br><span class="line">        Son s=<span class="keyword">new</span> Son();</span><br><span class="line">        s.staticMethod();<span class="comment">//输出：Parent staticMethod run   </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>运行结果如下</p>
-<p>Parent staticMethod run<br>Parent staticMethod run</p>
-<p>从上面的运行结果可以看出，static方法是可以被子类访问的。</p>
-<p>2）接着来看父类的static修饰的变量，是否能够被子类继承呢？？<br>答案：也是不可以的。但是也是可以被子类访问的。</p>
-<p>小结<br>1）子类是不继承父类的static变量和方法的。因为这是属于类本身的。但是子类是可以访问的。 </p>
-<p>2）子类和父类中同名的static变量和方法都是相互独立的，并不存在任何的重写的关系。</p>
-<p><strong>3)     不应该通过类实例访问静态成员</strong></p>
-<p>ps 小知识↓</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> min_depth = Integer.MAX_VALUE;</span><br></pre></td></tr></table></figure>
-
-<p>最大值为Integer.MAX_VALUE，即2147483647，最小值为Integer.MIN_VALUE -2147483648。<br>对整形最大值加1，2147483648（越界了），那么此时值为多少呢？结果是-2147483648，即是Integer.MIN_VALUE。<br>类似的，对Integer.MIN_VALUE取反或者取绝对值呢？仍为Integer.MIN_VALUE，因为值为-2147483648，绝对值2147483648超过Integer.MAX_VALUE 2147483647。<br>所以就有以下结果<br>Integer.MAX_VALUE + 1 = Integer.MIN_VALUE<br>Math.abs(Integer.MIN_VALUE) =  Integer.MIN_VALUE<br>Long，short，byte的结论是相同的。</p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy		//hexo d</span><br></pre></td></tr></table></figure>
 
       
 
@@ -311,7 +282,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
         		</li>
       		
 		</ul>
@@ -367,7 +338,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/08/0508/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/20/0420FirstBlog/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -381,18 +352,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/11/0511/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/21/0421mockjs/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          SpringCloud
+          mockjs虚拟数据
         
       </div>
     </a>
   
   
-    <a href="/2020/05/04/Vue%E5%AE%9E%E6%88%98/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vue</div>
+    <a href="/2020/04/20/0420Linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">linux配置</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -513,7 +484,7 @@
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：23.5k</span>
+<span class="post-count">字数统计：24.1k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
@@ -665,10 +636,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">

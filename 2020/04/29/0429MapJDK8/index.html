@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>linux | Leib&#39;s Blog</title>
+  <title>Map  jdk8中的新方法 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Linux系统1下载 今天使用的是linux6.8 vmware12（收费的）linux:centos 6.8 2.在windows上安装centos(linux)    买电脑（硬件）：文件-新建虚拟机    装系统：在“买电脑”里装centos:编辑虚拟机设置-CD&#x2F;DVD中 指定 centos的文件位置 - 开启：    如果报错：Intel vt-x禁用…，愿意是 真实物理机没有开发 虚拟">
+  <meta name="description" content="Map  jdk8中的新方法 12345678910Map&lt;String, List&lt;String&gt;&gt; map &#x3D; new HashMap&lt;&gt;();&#x2F;&#x2F;老方法List&lt;String&gt; list &#x3D; map.get(&quot;list1&quot;);if (list &#x3D;&#x3D; null) &amp;#123;  list &#x3D; new ArrayList&lt;&gt;();  m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux">
-<meta property="og:url" content="http://yoursite.com/2020/04/20/Linux/index.html">
+<meta property="og:title" content="Map  jdk8中的新方法">
+<meta property="og:url" content="http://yoursite.com/2020/04/29/0429MapJDK8/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="Linux系统1下载 今天使用的是linux6.8 vmware12（收费的）linux:centos 6.8 2.在windows上安装centos(linux)    买电脑（硬件）：文件-新建虚拟机    装系统：在“买电脑”里装centos:编辑虚拟机设置-CD&#x2F;DVD中 指定 centos的文件位置 - 开启：    如果报错：Intel vt-x禁用…，愿意是 真实物理机没有开发 虚拟">
+<meta property="og:description" content="Map  jdk8中的新方法 12345678910Map&lt;String, List&lt;String&gt;&gt; map &#x3D; new HashMap&lt;&gt;();&#x2F;&#x2F;老方法List&lt;String&gt; list &#x3D; map.get(&quot;list1&quot;);if (list &#x3D;&#x3D; null) &amp;#123;  list &#x3D; new ArrayList&lt;&gt;();  m">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-20T12:00:24.000Z">
-<meta property="article:modified_time" content="2020-05-13T05:31:21.419Z">
+<meta property="article:published_time" content="2020-04-29T12:49:24.000Z">
+<meta property="article:modified_time" content="2020-05-13T09:40:35.874Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
@@ -172,14 +172,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Linux" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-0429MapJDK8" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      linux
+      Map  jdk8中的新方法
     </h1>
   
 
@@ -190,7 +190,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.4k字</span>
+        <span class="post-count">469字</span>
       </span>
     </span>
 
@@ -199,7 +199,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -214,124 +214,21 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/04/20/Linux/" class="archive-article-date">
-  	<time datetime="2020-04-20T12:00:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+<a href="/2020/04/29/0429MapJDK8/" class="archive-article-date">
+  	<time datetime="2020-04-29T12:49:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h1><p>1下载 今天使用的是linux6.8 vmware12（收费的）<br>linux:centos 6.8</p>
-<p>2.在windows上安装centos(linux)<br>    买电脑（硬件）：文件-新建虚拟机<br>    装系统：在“买电脑”里装centos:编辑虚拟机设置-CD/DVD中 指定 centos的文件位置 - 开启：<br>    如果报错：Intel vt-x禁用…，愿意是 真实物理机没有开发 虚拟化设置。<br>    解决：进入bios(如何进入，自己搜)，找到 intel VItural TEchnology ：Enable</p>
-<p>关于vmware中 计算机名字：<br>    虚拟机名：bigdata01<br>    计算机名：bigdata01<br>    网络中的名字：bigdata01<br>    用户名：root</p>
+        <p>Map  jdk8中的新方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, List&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"><span class="comment">//老方法</span></span><br><span class="line">List&lt;String&gt; list = map.get(<span class="string">"list1"</span>);</span><br><span class="line"><span class="keyword">if</span> (list == <span class="keyword">null</span>) &#123;</span><br><span class="line">  list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  map.put(<span class="string">"list1"</span>, list);</span><br><span class="line">&#125;</span><br><span class="line">list.add(<span class="string">"A"</span>);</span><br><span class="line"><span class="comment">//和上面等效</span></span><br><span class="line">map.computeIfAbsent(<span class="string">"list1"</span>, k -&gt; <span class="keyword">new</span> ArrayList&lt;&gt;()).add(<span class="string">"A"</span>);</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>默认超级管理员：root/自己设置</p>
-<p>磁盘布局：<br>    /boot：系统启动时 需要的内存 200M<br>    /：系统的可用磁盘大小 10240M<br>    swap:交换内存 ，建议大小 和内存一致  2048M</p>
-<p>鼠标从虚拟机中释放：ctrl+alt</p>
-<p>查看计算机名：hostname<br>修改计算机名：/etc/sysconfig/network</p>
-<p>通过文本编辑器打开文件：vi  路径/文件名<br>            vi /etc/sysconfig/network<br>查看文件：cat /etc/sysconfig/network<br>编辑：a<br>保存： esc ,shift +z+z</p>
-<p>重启：reboot<br><strong>关机：halt</strong></p>
-<p>实现真实物理机  和 虚拟机之间的 复制粘贴操作：<br>虚拟机-安装vmware tools-讲VMwareTools-xxx.tar.gz赋值到桌面-解压缩-执行<br>vmware-install.pl -回车 -最后 reboot<br>设置共享文件夹：编辑虚拟机-选项-共享文件夹-指定 共享文件夹 ，该文件夹 在虚拟机中对应的目录：<strong>/mnt/hgfs</strong></p>
-<p>ps:该文件夹是固定的</p>
-<p>3.centos网络配置（约定配置）<br>    bigdata01:    192.168.2.128        192.168.2.1（网关）<br>    bigdata02    192.168.2.129        192.168.2.1（网关）<br>    bigdata03    192.168.2.130        192.168.2.1（网关）</p>
-<pre><code>a.编辑-虚拟机网络编辑器
-VMNet8 (NAT)    
-i.子网 192.168.2.0
-ii.更改设置-DHCP设置 ：
-    起始192.168.2.128    bigdata01
-    结束192.168.2.254  
-iii.NAT设置：网关 192.168.2.1
-
-b.配置windows访问虚拟机
-    网络连接-vmNet8-TCP/IP V4 - IP192.168.2.2 ， 192.168.2.1（网关）
-
-c.centos网卡
-修改网卡配置 vi /etc/sysconfig/network-scripts/ifcfg-eth0
-
-DEVICE=eth0
-HWADDR=00:0C:29:7A:D1:F2
-TYPE=Ethernet
-UUID=b129cd07-0a05-419e-a3a1-4d73d3f37917
-ONBOOT=yes
----修改以下配置----
-NM_CONTROLLED=yes
-BOOTPROTO=static
-IPADDR=192.168.2.128
-GATEWAY=192.168.2.1
-BROADCAST=192.168.2.255
-DNS2=8.8.8.8
-DNS1=114.114.114.114  
---如果域名无法解析，则加入dns设置（设置的内容：推荐是 当地的DNS）
-vi如果使用shift+z+z无法保存， 则使用 &quot;:wq!&quot;
-d.通过网络名访问虚拟机 (192.168.2.128 -&gt;bigdata01)
-    centos:
-        vi /etc/hosts,
-        追加：
-        192.168.2.128 bigdata01
-    windows:
-        C:\Windows\System32\drivers\etc\hosts
-        追加：
-        192.168.2.128 bigdata01
-
-e.配置网络服务
-    service NetworkManager stop
-    /etc/init.d/network restart
-    chkconfig NetworkManager off
-    vi /etc/resolv.conf  追加nameserver 192.168.2.1
-
-    重启网卡 service network restart</code></pre><p>4.防火墙：关闭<br>centos:<br>    service iptables stop关闭防火墙<br>    chkconfig iptables off禁止开机自启<br>    service iptables status查看防火墙状态<br>windows:<br>    网络-右键 属性-关闭防火墙</p>
-<p>5.自动同步时间<br>    安装用于同步时间的 ntp插件 ：<br>        yum -y install ntp ntpdate<br>    与该网站同步时间<br>        ntpdate cn.pool.ntp.org<br>    将系统时间写入硬盘时间<br>        hwclock –systohc</p>
-<p>6.windows真实机 通过SecureCRT 操作centos<br>    下载SecureCRT<br>    通过SecureCRT 对centos进行文件的上传下载：yum install lrzsz<br>        上传：切换到当前目录 cd /tmp， 直接用鼠标拖拽,Zmodem…</p>
-<p>linux:一切都是文件，一切都是命令</p>
-<p>7.下载安装jdk （rpm方式）<br>     exe  :   rpm<br>     rar  :  .tar.gz</p>
-<pre><code>下载rpm版jdk
-安装：  切到 rpm版jdk的文件夹中， rpm -ivh  jdk名字
-rpm版本的软件，安装的默认路径：/usr中，
-例如，/usr/java/jdk1.8.0_181-amd64
-
-配置环境变量：
-vi /etc/profile中的最后追加：</code></pre><p>export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64<br>export CLASSPATH=$JAVA_HOME$\lib:$CLASSPATH<br>export PATH=$JAVA_HOME$\bin:$PATH</p>
-<pre><code>让环境变量立刻生效： source /etc/profile</code></pre><p>8.集群（3台） ：完整克隆<br>bigdata01 -&gt; bigdata02/bigdata03<br>    克隆完毕后：<br>        a.将从计算机 的内存适当降低<br>        b.修改从计算中 唯一性 的配置（ip、uuid、hostname映射）<br>            在克隆后的bigdata02/bigdata03中<br>            vi /etc/sysconfig/network-scripts/ifcfg-eth0<br>            修改ip地址、删除uuid/hwaddr(在重启时，自动生成)<br>            删除文件 rm -r  /etc/udev/rules.d/70-persistent-net.rules 输入yes</p>
-<pre><code>    计算机名：vi /etc/sysconfig/network
-c.映射
-
-centos:
-    vi /etc/hosts,
-    追加：
-    192.168.2.128 bigdata01
-    192.168.2.129 bigdata02
-    192.168.2.130 bigdata03
-
-windows:
-    C:\Windows\System32\drivers\etc\hosts
-    追加：
-    192.168.2.128 bigdata01
-    192.168.2.129 bigdata02
-    192.168.2.130 bigdata03</code></pre><p>9.SSH免密钥登陆<br>    私钥：密钥留在本机<br>    公钥: 密钥发给本机<br>    bigdata01:<br>    生成密钥：ssh-keygen -t rsa   (密钥存放位置：/root/.ssh ，  id_rsa:私钥     id_rsa.pub)<br>    发送私钥（本机）： ssh-copy-id localhost    ， 需要输入bigdata01节点(root)的密码<br>    发送公钥（其他计算机）：ssh-copy-id bigdata02， 需要输入bigdata02节点(root)的密码<br>    测试免密钥登陆：<br>        ssh localhost<br>        ssh bigdata02</p>
-<pre><code>用上述方法，给每2台计算机 设置免密钥</code></pre><p>10.用户<br>    a.用户组<br>        groupadd bd</p>
-<pre><code>b.在用户组中增加用户
-    useradd -g bd yq
-    密码
-    passwd yq  回车
-
-c.提升用户的权限:  在/etc/sudoers文中设置yq的权限
-        因为/etc/sudoers文件本身是只读的，所以修改该文件前，需要 将 只读禁止。
-        chmod 777 /etc/sudoers      --设置sudoers 可读可写
-        编辑 vi /etc/sudoers:追加
-        yq     ALL=(ALL)       ALL
-        还原sudoers的权限为只读：chmod 440 /etc/sudoers
-
-d:切换用户 ： 
-    切换为普通用户： su 用户名    
-    切换为超级管理员root：  su
-
-d.删除用户：userdel  用户名
-    如果提示 正在使用，无法删除...重启后再删
+<p>不过感觉可能用到比较少，下面几个比较常用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"> Map&lt;Integer,String&gt; map = <span class="keyword">new</span> HashMap&lt;Integer,String&gt;();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">6</span>; i++)&#123;</span><br><span class="line">    map.put(i,<span class="string">"val_"</span>+i);</span><br><span class="line">&#125;</span><br><span class="line">map.put(<span class="number">10</span>,<span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//1:遍历</span></span><br><span class="line">map.forEach((key,value) -&gt; System.out.println(key+<span class="string">":"</span>+value));</span><br><span class="line"></span><br><span class="line"><span class="comment">//2: getOrDefault(key,defaultValue):</span></span><br><span class="line"><span class="comment">//取V值,如果key不存在则用defaultValue</span></span><br><span class="line">System.out.println(<span class="string">"3--&gt;"</span>+map.getOrDefault(<span class="number">3</span>,<span class="string">"val_66"</span>));<span class="comment">//3--&gt;val_3</span></span><br><span class="line">System.out.println(<span class="string">"10--&gt;"</span>+map.getOrDefault(<span class="number">10</span>,<span class="string">"val_66"</span>));<span class="comment">//10--&gt;null</span></span><br><span class="line">System.out.println(<span class="string">"11--&gt;"</span>+map.getOrDefault(<span class="number">11</span>,<span class="string">"val_66"</span>));<span class="comment">//11--&gt;val_66</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3： putIfAbsent(K key, V value):</span></span><br><span class="line"><span class="comment">//放入kv，如果没有v值，则覆盖掉。对原有kv不影响</span></span><br><span class="line">System.out.println(map.putIfAbsent(<span class="number">3</span>,<span class="string">"val_66"</span>));<span class="comment">//val_3</span></span><br><span class="line">System.out.println(map.putIfAbsent(<span class="number">10</span>,<span class="string">"val_66"</span>));<span class="comment">//null</span></span><br><span class="line">System.out.println(map.putIfAbsent(<span class="number">11</span>,<span class="string">"val_66"</span>));<span class="comment">//null</span></span><br><span class="line">System.out.println(map.get(<span class="number">3</span>)+<span class="string">"--"</span>+map.get(<span class="number">10</span>)+<span class="string">"--"</span>+map.get(<span class="number">11</span>));</span><br><span class="line"><span class="comment">//val_3--val_66--val_66</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//============Java8之前的方式==========</span></span><br><span class="line">Map&lt;String, Integer&gt; items = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">items.put(<span class="string">"A"</span>, <span class="number">10</span>);</span><br><span class="line">items.put(<span class="string">"B"</span>, <span class="number">20</span>);</span><br><span class="line">items.put(<span class="string">"C"</span>, <span class="number">30</span>);</span><br><span class="line">items.put(<span class="string">"D"</span>, <span class="number">40</span>);</span><br><span class="line">items.put(<span class="string">"E"</span>, <span class="number">50</span>);</span><br><span class="line">items.put(<span class="string">"F"</span>, <span class="number">60</span>);</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : items.entrySet()) &#123;</span><br><span class="line">    System.out.println(<span class="string">"Item : "</span> + entry.getKey() + <span class="string">" Count : "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//============forEach + Lambda表达式==========</span></span><br><span class="line">Map&lt;String, Integer&gt; items = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">items.put(<span class="string">"A"</span>, <span class="number">10</span>);</span><br><span class="line">items.put(<span class="string">"B"</span>, <span class="number">20</span>);</span><br><span class="line">items.put(<span class="string">"C"</span>, <span class="number">30</span>);</span><br><span class="line">items.put(<span class="string">"D"</span>, <span class="number">40</span>);</span><br><span class="line">items.put(<span class="string">"E"</span>, <span class="number">50</span>);</span><br><span class="line">items.put(<span class="string">"F"</span>, <span class="number">60</span>);</span><br><span class="line">items.forEach((k,v)-&gt;System.out.println(<span class="string">"Item : "</span> + k + <span class="string">" Count : "</span> + v));</span><br><span class="line">items.forEach((k,v)-&gt;&#123;</span><br><span class="line">    System.out.println(<span class="string">"Item : "</span> + k + <span class="string">" Count : "</span> + v);</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"E"</span>.equals(k))&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello E"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">List&lt;String&gt; items = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">items.add(<span class="string">"A"</span>);</span><br><span class="line">items.add(<span class="string">"B"</span>);</span><br><span class="line">items.add(<span class="string">"C"</span>);</span><br><span class="line">items.add(<span class="string">"D"</span>);</span><br><span class="line">items.add(<span class="string">"E"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(String item : items)&#123;</span><br><span class="line">    System.out.println(item);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//============forEach + Lambda表达式==========</span></span><br><span class="line">List&lt;String&gt; items = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">items.add(<span class="string">"A"</span>);</span><br><span class="line">items.add(<span class="string">"B"</span>);</span><br><span class="line">items.add(<span class="string">"C"</span>);</span><br><span class="line">items.add(<span class="string">"D"</span>);</span><br><span class="line">items.add(<span class="string">"E"</span>);</span><br><span class="line"><span class="comment">//输出：A,B,C,D,E</span></span><br><span class="line">items.forEach(item-&gt;System.out.println(item));</span><br><span class="line"><span class="comment">//输出 : C</span></span><br><span class="line">items.forEach(item-&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"C"</span>.equals(item))&#123;</span><br><span class="line">        System.out.println(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
-    查看进程        jps
-    结束进程        kill -9 进程编号</code></pre>
       
 
       
@@ -379,7 +276,7 @@ d.删除用户：userdel  用户名
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -435,7 +332,7 @@ d.删除用户：userdel  用户名
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/20/Linux/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/29/0429MapJDK8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -449,18 +346,18 @@ d.删除用户：userdel  用户名
   
 <nav id="article-nav">
   
-    <a href="/2020/04/21/mockjs/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/30/0430%E8%BF%AD%E4%BB%A3%E9%80%92%E5%BD%92/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          mockjs
+          迭代与递归
         
       </div>
     </a>
   
   
-    <a href="/2020/04/20/add%20foot/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">增加页尾访问人数</div>
+    <a href="/2020/04/25/0425%E5%A4%9A%E6%80%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多态</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -581,7 +478,7 @@ d.删除用户：userdel  用户名
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：23.5k</span>
+<span class="post-count">字数统计：24.1k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
@@ -733,10 +630,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">

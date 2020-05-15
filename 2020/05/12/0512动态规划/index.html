@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/05/12/CAtQhnHpWYKZq7F.png">
 <meta property="og:image" content="https://i.loli.net/2020/05/12/uvahzKM3AJsgpDk.png">
 <meta property="article:published_time" content="2020-05-12T14:44:00.000Z">
-<meta property="article:modified_time" content="2020-05-13T05:22:17.308Z">
+<meta property="article:modified_time" content="2020-05-13T09:37:44.697Z">
 <meta property="article:author" content="Leib">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -301,6 +301,13 @@
 <h3 id="step4-计算顺序-2"><a href="#step4-计算顺序-2" class="headerlink" title="step4 计算顺序"></a>step4 计算顺序</h3><p>自小向大 </p>
 <h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><p>时间复杂 n 平方 空间复杂n</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">boolean</span> [] f =<span class="keyword">new</span> <span class="keyword">boolean</span> [n] ;</span><br><span class="line">    f[<span class="number">0</span>]=<span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">        f[j] = <span class="keyword">false</span> ;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; j; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(f[i]&amp;&amp; i+nums[i]&gt;=j)&#123;</span><br><span class="line">                f[j] = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> f[n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>参考视频<a href="https://www.bilibili.com/video/BV1xb411e7ww" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xb411e7ww</a></p>
+
       
 
       
@@ -418,8 +425,17 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/05/14/0514%E5%A4%9A%E7%BA%BF%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          多线程相关
+        
+      </div>
+    </a>
   
-    <a href="/2020/05/11/0512/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2020/05/11/0512%E6%89%93%E5%8C%85/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">vue打包相关</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -541,7 +557,7 @@
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：23.5k</span>
+<span class="post-count">字数统计：24.1k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
@@ -693,10 +709,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">

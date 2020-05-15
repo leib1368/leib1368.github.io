@@ -6,24 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: hexo | Leib&#39;s Blog</title>
+  <title>子类继承父类的static变量与方法 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随便记录一下 菜鸟学习中">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leib&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/hexo/index.html">
+  <meta name="description" content="Java中子类是否可以继承父类的static变量和方法而呈现多态特性 静态方法通常，在一个类中定义一个方法为static，那就是说，无需本类的对象即可调用此方法，关于static方法，声明为static的方法有以下几条限制：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="子类继承父类的static变量与方法">
+<meta property="og:url" content="http://yoursite.com/2020/05/08/0508%E5%AD%90%E7%B1%BB%E7%BB%A7%E6%89%BFstatic%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="随便记录一下 菜鸟学习中">
+<meta property="og:description" content="Java中子类是否可以继承父类的static变量和方法而呈现多态特性 静态方法通常，在一个类中定义一个方法为static，那就是说，无需本类的对象即可调用此方法，关于static方法，声明为static的方法有以下几条限制：">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-08T12:45:00.000Z">
+<meta property="article:modified_time" content="2020-05-13T09:33:18.789Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="后端">
 <meta property="article:tag" content="java">
-<meta property="article:tag" content="C&#x2F;C++">
-<meta property="article:tag" content="SpringBoot">
-<meta property="article:tag" content="mybatis">
-<meta property="article:tag" content="Dota2">
-<meta property="article:tag" content="NBA">
-<meta property="article:tag" content="Cristiano Ronaldo">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
@@ -177,72 +172,311 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-0508子类继承static方法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/04/20/FirstBlog/" class="archive-article-date">
-  	<time datetime="2020-04-20T08:48:19.390Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/20/FirstBlog/">First Blog (keep calm and do it)</a>
+    <h1 class="article-title" itemprop="name">
+      子类继承父类的static变量与方法
     </h1>
   
 
-        <div class="article-info info-on-right">
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
           
+
+
+
+        
+         
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/05/08/0508%E5%AD%90%E7%B1%BB%E7%BB%A7%E6%89%BFstatic%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-05-08T12:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> Java中子类是否可以继承父类的static变量和方法而呈现多态特性</p>
+<p><strong>静态方法</strong><br>通常，在一个类中定义一个方法为static，那就是说，无需本类的对象即可调用此方法，关于static方法，声明为static的方法有以下几条限制：</p>
+<a id="more"></a>
+<p>它们仅能调用其他的static 方法。<br>它们只能访问static数据。<br>它们不能以任何方式引用this 或super。<br>无论是static修饰的变量，还是static修饰的方法，我们都知道他们是属于类本身的，不是属于某一个对象的，当声明一个对象时，并不产生static变量和方法的拷贝。也就是说，用static修饰的变量和方法在类加载的时候，只分配一块存储空间，所有此类的对象都可以操控此块存储空间；</p>
+<p><strong>注：这里要说明的时，当子类没有与之同名的static变量（或方法时），子类的对象也可以操控这块内存空间。但是子类并没有继承父类中static修饰的变量和方法。因为static修饰的变量和方法是属于父类本身的。</strong></p>
+<p>//————————以上我相信我们每个人都比较清楚。</p>
+<p>但是，不知道你有没有注意到这种情况，当存在继承关系时，父类中有一个static修饰的变量（或方法），而子类中也存在一个同名的static修饰的变量（或方法）时，他们到底是否满足“重写”，而最终体现出多态的效果呢？？</p>
+<p>下面来看一个例子。<br>父类中有一个static修饰的方法和一个普通的方法，子类中也有一个同名的static方法和一个普通的方法。如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">staticMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Parent staticMethod run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Parent method run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">staticMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Son staticMethod run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Son method run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent child=<span class="keyword">new</span> Son();</span><br><span class="line">        child.staticMethod();<span class="comment">//输出：Parent staticMethod run</span></span><br><span class="line">        <span class="comment">//不应该通过类实例访问静态成员</span></span><br><span class="line"></span><br><span class="line">        Son s=<span class="keyword">new</span> Son();</span><br><span class="line">        s.staticMethod();</span><br><span class="line">        child.method();<span class="comment">//这样才存在多态        </span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">运行后的结果如下：</span><br></pre></td></tr></table></figure>
+
+<p>Parent staticMethod run<br>Son staticMethod run<br>Son method run</p>
+<p>从结果可以看出：对于静态方法在子类中是不存在“重写”这一说的，就像前面我们提到的，用static关键字修饰的方法和变量都是属于类自己本身的，即使存在继承关系，子类并没有继承父类的static修饰的变量和方法，所以说即使子类和父类中都有同样的static方法和变量，他们是没有任何关系的，他们是相互独立的，他们是属于各自类本身的。因此也是不存在多态特性的。而对于普通方法的调用是存在“重写”而最终呈现出多态特性的。</p>
+<p>同样的道理：对于static修饰的变量，当子类与父类中存在相同的static变量时，也是根据“静态引用”而不是根据“动态引用”来调用相应的变量的。</p>
+<p>而在父类和子类中对于非static变量和方法，是根据“动态引用”来调用相应的变量和方法。</p>
+<p>然而，接着会有这样的问题存在：java中 子类会不会继承父类的static变量和static方法</p>
+<p>1）先说static方法：子类会不会继承父类的static方法呢？？答案是：不会的，但是是可以访问的。</p>
+<p>看如下的代码 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">staticMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Parent staticMethod run"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Parent child=<span class="keyword">new</span> Son();</span><br><span class="line">        child.staticMethod();<span class="comment">//输出：Parent staticMethod run   </span></span><br><span class="line">        Son s=<span class="keyword">new</span> Son();</span><br><span class="line">        s.staticMethod();<span class="comment">//输出：Parent staticMethod run   </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>运行结果如下</p>
+<p>Parent staticMethod run<br>Parent staticMethod run</p>
+<p>从上面的运行结果可以看出，static方法是可以被<strong>子类</strong>访问的。</p>
+<p>2）接着来看父类的static修饰的变量，是否能够被子类继承呢？？<br>答案：也是不可以的。但是也是可以被子类访问的。</p>
+<p>小结<br>1）子类是不继承父类的static变量和方法的。因为这是属于类本身的。<strong>但是子类是可以访问的。</strong> </p>
+<p>2）子类和父类中同名的static变量和方法都是相互独立的，并不存在任何的重写的关系。</p>
+<p>3）子类通过继承使用父类的方法是会报错的。即 子类无法继承父类static方法</p>
+<p>4)     不应该通过类实例访问静态成员</p>
+<p>ps 小知识↓</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> min_depth = Integer.MAX_VALUE;</span><br></pre></td></tr></table></figure>
+
+<p>最大值为Integer.MAX_VALUE，即2147483647，最小值为Integer.MIN_VALUE -2147483648。<br>对整形最大值加1，2147483648（越界了），那么此时值为多少呢？结果是-2147483648，即是Integer.MIN_VALUE。<br>类似的，对Integer.MIN_VALUE取反或者取绝对值呢？仍为Integer.MIN_VALUE，因为值为-2147483648，绝对值2147483648超过Integer.MAX_VALUE 2147483647。<br>所以就有以下结果<br>Integer.MAX_VALUE + 1 = Integer.MIN_VALUE<br>Math.abs(Integer.MIN_VALUE) =  Integer.MIN_VALUE<br>Long，short，byte的结论是相同的。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.JPG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/08/0508%E5%AD%90%E7%B1%BB%E7%BB%A7%E6%89%BFstatic%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/11/0511springcloud/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SpringCloud基础入门
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/05/04/0504vue%E5%AE%9E%E6%88%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue基础</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
+    
+  
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDA5MS8yNjU4MQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
 
-    
+  
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TkaOsLUB4HWqGxgFvAWlS1Ml-gzGzoHsz',
+      app_key: '3LKy8g3cmiIcA54iXXd7f0GO',
+      placeholder: 'anything want to say ?'
+    });
+</script>
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -280,7 +514,7 @@
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：23.5k</span>
+<span class="post-count">字数统计：24.1k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
@@ -312,10 +546,10 @@ setInterval("createtime()",250);
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
@@ -432,10 +666,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
