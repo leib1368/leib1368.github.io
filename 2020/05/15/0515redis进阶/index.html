@@ -6,31 +6,48 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>redis | Leib&#39;s Blog</title>
+  <title>redis进阶 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="REDISNoSQL的四大分类kv键值对KV键值对：  ​    redis  文档型数据库  ​    MongoDB ​    ConthDB  列存储数据库  ​    HBase 分布式文件系统">
+  <meta name="description" content="Redis进阶悲观锁（什么时候都会出问题，无论做什么都会加锁，十分影响性能） 乐观锁（什么时候都不会出问题，所有不会上锁。更新数据的时候判断，此期间是否有人修改过这个数据。sql增加version字段去判断）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis">
-<meta property="og:url" content="http://yoursite.com/2020/05/15/0515redis%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="redis进阶">
+<meta property="og:url" content="http://yoursite.com/2020/05/15/0515redis%E8%BF%9B%E9%98%B6/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="REDISNoSQL的四大分类kv键值对KV键值对：  ​    redis  文档型数据库  ​    MongoDB ​    ConthDB  列存储数据库  ​    HBase 分布式文件系统">
+<meta property="og:description" content="Redis进阶悲观锁（什么时候都会出问题，无论做什么都会加锁，十分影响性能） 乐观锁（什么时候都不会出问题，所有不会上锁。更新数据的时候判断，此期间是否有人修改过这个数据。sql增加version字段去判断）">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/VfjiIWHYkt41xKg.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/SvAryHD91YlCBjs.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/ItW6EP5c8ghBmos.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/yLh53Pcj6JwFxWH.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/rRkfbZtOqBAhjmG.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/GM4eDKRWadOlBqm.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/Ws6QN2BDLjV8cqb.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/KezaDpgXPNFi9Gj.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/gbv8APVM2ExRNcy.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/WpxXutgD3kZ4TIq.png">
-<meta property="article:published_time" content="2020-05-15T07:42:00.000Z">
-<meta property="article:modified_time" content="2020-05-15T09:49:51.813Z">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/Vs1UuS69FAQokKH.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/DEACPRq3lmHX54Y.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/QsWw9xU5Id2N7b8.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/FcqQMTPuX18ds2x.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/ihBD9fR3qULVNyx.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/Ni4tZdrwU2xbF53.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/QdM7I59oW6XZjte.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/YMACdzKfTRicEID.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/aYmjO4Il6cPZCEL.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/6iAUGEQzbL2kxse.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/VUNG6fyPa1Icj9J.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/NCDVpGv1EeU6LPF.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/TNxOrjhAfHXegFS.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/hZCnH8AiW34m6jz.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/Nyk6ZGxJQW2KivC.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/R7eNLCJDwjlB59b.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/xre3faylFwq2THo.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/yJCPpcRHdl4kIWU.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/BGxy2TzrufoEiY7.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/CA1rX5PSJ8uOL9g.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/5C69axgcwXhtDk1.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/BSrE2Xdv39cRpOo.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/iZH1mKgAhktWvdE.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/chgX5ykaLVlHv6o.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/AzHrWlDvcsRp5oE.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/YGrc4LAVZMDCx9B.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/16/HDxE1OlR9aZWmJ6.png">
+<meta property="article:published_time" content="2020-05-15T12:41:00.000Z">
+<meta property="article:modified_time" content="2020-05-16T07:15:24.301Z">
 <meta property="article:author" content="Leib">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2020/05/15/VfjiIWHYkt41xKg.png">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/16/Vs1UuS69FAQokKH.png">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -183,14 +200,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-0515redis基础" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-0515redis进阶" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      redis
+      redis进阶
     </h1>
   
 
@@ -201,7 +218,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.3k字</span>
+        <span class="post-count">1.4k字</span>
       </span>
     </span>
 
@@ -210,7 +227,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">10分</span>
+        <span class="post-count">5分</span>
       </span>
     </span>
 </div>
@@ -225,153 +242,166 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/05/15/0515redis%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2020-05-15T07:42:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
+<a href="/2020/05/15/0515redis%E8%BF%9B%E9%98%B6/" class="archive-article-date">
+  	<time datetime="2020-05-15T12:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="REDIS"><a href="#REDIS" class="headerlink" title="REDIS"></a>REDIS</h2><h3 id="NoSQL的四大分类"><a href="#NoSQL的四大分类" class="headerlink" title="NoSQL的四大分类"></a>NoSQL的四大分类</h3><h4 id="kv键值对"><a href="#kv键值对" class="headerlink" title="kv键值对"></a>kv键值对</h4><p><strong>KV键值对：</strong></p>
-<ul>
-<li>​    <strong>redis</strong></li>
-</ul>
-<p><strong>文档型数据库</strong></p>
-<ul>
-<li>​    MongoDB</li>
-<li>​    ConthDB</li>
-</ul>
-<p><strong>列存储数据库</strong></p>
-<ul>
-<li>​    HBase</li>
-<li>分布式文件系统</li>
-</ul>
+        <h2 id="Redis进阶"><a href="#Redis进阶" class="headerlink" title="Redis进阶"></a>Redis进阶</h2><h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>（什么时候都会出问题，无论做什么都会加锁，十分影响性能）</p>
+<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>（什么时候都不会出问题，所有不会上锁。更新数据的时候判断，此期间是否有人修改过这个数据。sql增加version字段去判断）</p>
 <a id="more"></a>
 
-<p><strong>图关系数据库</strong></p>
-<p><img src="https://i.loli.net/2020/05/15/VfjiIWHYkt41xKg.png" alt="image-20200515110631465"></p>
-<hr>
-<h2 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
-<p>REmote DIctionary Server(<em>Redis</em>) 远程字典服务</p>
+<blockquote>
+<p>redis测监视测试</p>
 </blockquote>
-<p>Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。</p>
-<hr>
-<h3 id="Redis使用"><a href="#Redis使用" class="headerlink" title="Redis使用"></a>Redis使用</h3><p><img src="https://i.loli.net/2020/05/15/SvAryHD91YlCBjs.png" alt="image-20200515111341434"></p>
-<h3 id="redis性能测试"><a href="#redis性能测试" class="headerlink" title="redis性能测试"></a>redis性能测试</h3><blockquote>
-<p><strong>redis-benchmark</strong></p>
-</blockquote>
-<p><img src="https://i.loli.net/2020/05/15/ItW6EP5c8ghBmos.png" alt="image-20200515111718127"></p>
-<hr>
-<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p>redis默认有16个数据库 使用select切换数据库 （默认使用数据库0</p>
-<p><img src="https://i.loli.net/2020/05/15/yLh53Pcj6JwFxWH.png" alt="image-20200515112339301"></p>
-<p><img src="https://i.loli.net/2020/05/15/rRkfbZtOqBAhjmG.png" alt="image-20200515112445219"></p>
-<p><strong>flusbdb 清除数据库</strong></p>
-<p><strong>flushall 清除全部数据库内容</strong></p>
-<hr>
-<h2 id="Redis-单线程-却这么快？"><a href="#Redis-单线程-却这么快？" class="headerlink" title="Redis 单线程 却这么快？"></a>Redis 单线程 却这么快？</h2><p>参考</p>
-<p><a href="https://juejin.im/post/5caae9876fb9a05e1530288b" target="_blank" rel="noopener">https://juejin.im/post/5caae9876fb9a05e1530288b</a></p>
-<p><strong>核心概况</strong></p>
-<p>redis 将所有数据全部放在内存中，所以使用单线程操作销量是最快的，多线程(上下文切换 ，耗时的操作)，对于内存系统来说，如果没有上下文切换效率就是最高的。多次读写都是在一个cpu上，在内存情况下，这个就是最佳的方案。</p>
-<hr>
-<h2 id="五大数据类型"><a href="#五大数据类型" class="headerlink" title="五大数据类型"></a>五大数据类型</h2><p><strong>redis - key</strong></p>
-<p><strong>String List Set Hash Zet</strong> </p>
-<h2 id="三种特殊数据类型"><a href="#三种特殊数据类型" class="headerlink" title="三种特殊数据类型"></a>三种特殊数据类型</h2><p><strong>geospatial hyperloglog bitmaps</strong></p>
-<hr>
-<h3 id="String（字符串）"><a href="#String（字符串）" class="headerlink" title="String（字符串）"></a>String（字符串）</h3><h5 id="无敌常用"><a href="#无敌常用" class="headerlink" title="无敌常用"></a>无敌常用</h5><p>基本操作</p>
-<p><img src="https://i.loli.net/2020/05/15/GM4eDKRWadOlBqm.png" alt="image-20200515125709619"></p>
-<h3 id="类似-java-中-i"><a href="#类似-java-中-i" class="headerlink" title="类似 java 中 i++"></a>类似 java 中 i++</h3><p><img src="https://i.loli.net/2020/05/15/Ws6QN2BDLjV8cqb.png" alt="image-20200515130826526"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">getrange key 0 5  <span class="comment">#截取字符段</span></span><br><span class="line">setrange key 1 x  <span class="comment">#替换字符段</span></span><br><span class="line">setex	<span class="comment">#设置过期时间</span></span><br><span class="line">setnx	<span class="comment">#如果不存在的话，设置  if(null)-&gt;set</span></span><br><span class="line">mset	<span class="comment">#设置多个值 </span></span><br><span class="line">mget	<span class="comment">#获取多个值</span></span><br><span class="line">msetnx	<span class="comment">#原子性操作，要么一起成功要么一起失败</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#对象</span></span><br><span class="line"><span class="comment">#user:&#123;id&#125;:&#123;filed&#125;</span></span><br><span class="line">127.0.0.1:6379[1]&gt; mset user:1:name zhangsan user:1:age 23</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[1]&gt; mget user:1:name user:1:age</span><br><span class="line">1) <span class="string">"zhangsan"</span></span><br><span class="line">2) <span class="string">"23"</span></span><br><span class="line">127.0.0.1:6379[1]&gt;</span><br><span class="line"></span><br><span class="line">getset <span class="comment"># 先get再set</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[1]&gt; getset db redis	<span class="comment">#不存在返回nil</span></span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379[1]&gt; get db</span><br><span class="line"><span class="string">"redis"</span></span><br><span class="line">127.0.0.1:6379[1]&gt; getset db mongodb <span class="comment">#存在放回之前的值 并赋值</span></span><br><span class="line"><span class="string">"redis"</span></span><br><span class="line">127.0.0.1:6379[1]&gt; get db</span><br><span class="line"><span class="string">"mongodb"</span></span><br><span class="line">127.0.0.1:6379[1]&gt;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p><img src="https://i.loli.net/2020/05/15/KezaDpgXPNFi9Gj.png" alt="image-20200515144249973"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush list one	<span class="comment">#往左边（头部）插入</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; lpush list two</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; lpush list three</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1   <span class="comment">#获取所有</span></span><br><span class="line">1) <span class="string">"three"</span></span><br><span class="line">2) <span class="string">"two"</span></span><br><span class="line">3) <span class="string">"one"</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 1	   <span class="comment">#获取0到1 倒叙</span></span><br><span class="line">1) <span class="string">"three"</span></span><br><span class="line">2) <span class="string">"two"</span></span><br><span class="line">127.0.0.1:6379&gt; rpush list right	<span class="comment">#往右边(尾部)插入</span></span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) <span class="string">"three"</span></span><br><span class="line">2) <span class="string">"two"</span></span><br><span class="line">3) <span class="string">"one"</span></span><br><span class="line">4) <span class="string">"right"</span></span><br><span class="line">127.0.0.1:6379&gt;</span><br><span class="line"><span class="comment">######################################################### </span></span><br><span class="line"><span class="comment">#移除pop</span></span><br><span class="line"><span class="comment">#lpop / rpop</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) <span class="string">"three"</span></span><br><span class="line">2) <span class="string">"two"</span></span><br><span class="line">3) <span class="string">"one"</span></span><br><span class="line">4) <span class="string">"right"</span></span><br><span class="line">127.0.0.1:6379&gt; lpop list</span><br><span class="line"><span class="string">"three"</span></span><br><span class="line">127.0.0.1:6379&gt; rpop list</span><br><span class="line"><span class="string">"right"</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) <span class="string">"two"</span></span><br><span class="line">2) <span class="string">"one"</span></span><br><span class="line">127.0.0.1:6379&gt; lindex list 1	<span class="comment">#index 也是从0开始</span></span><br><span class="line"><span class="string">"one"</span></span><br><span class="line"><span class="comment">######################################################### </span></span><br><span class="line"><span class="comment">#获取长度 	llen </span></span><br><span class="line"><span class="comment">#移除指定值	lrem </span></span><br><span class="line">127.0.0.1:6379&gt; lrem list 1 one</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) <span class="string">"two"</span></span><br><span class="line"><span class="comment">#通过下标截断指定长度 	ltrim</span></span><br><span class="line"><span class="comment">#移除列表最后一个元素（右边的） 并移到新列表中</span></span><br><span class="line"><span class="comment">#rpoplpush</span></span><br><span class="line"><span class="comment">#exists list 	是否存在</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#lset 将列表指定下标的值 替换为另一个值 | 更新操作</span></span><br><span class="line"><span class="comment">#linsert | linsert list before "value1" "value2"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> money 100</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> out 0</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; watch money	<span class="comment">#监视money对象</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi	<span class="comment"># 事务正常结束 数据期间未变动</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; decrby money 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incrby out 20</span><br><span class="line">QUEUED</span><br><span class="line"><span class="comment">##############################################如果此时别的线程对数据发生变动 将会失败</span></span><br><span class="line"><span class="comment">#此时需要重新解锁</span></span><br><span class="line">unwatch			<span class="comment">#解锁</span></span><br><span class="line">watch money		<span class="comment">#获取最新值</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span>	<span class="comment">#比对监视的值是否发生了变化，如果没有变化就成功 </span></span><br><span class="line">1) (<span class="built_in">integer</span>) 80</span><br><span class="line">2) (<span class="built_in">integer</span>) 20</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>小结</p>
+<p>小结 redis实现乐观锁</p>
+</blockquote>
+<hr>
+<h2 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h2><blockquote>
+<p>使用java来操作redis<br>redis官方推荐的java连接开发工具。</p>
+</blockquote>
+<p>1.导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.62<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="常用api-key"><a href="#常用api-key" class="headerlink" title="常用api-key"></a>常用api-key</h4><p><img src="https://i.loli.net/2020/05/16/Vs1UuS69FAQokKH.png" alt="image-20200516113000270"></p>
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><p><img src="https://i.loli.net/2020/05/16/DEACPRq3lmHX54Y.png" alt="image-20200516113308611"></p>
+<p><img src="https://i.loli.net/2020/05/16/QsWw9xU5Id2N7b8.png" alt="image-20200516113336385"></p>
+<hr>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1 new 对象</span></span><br><span class="line">    Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>);</span><br><span class="line"></span><br><span class="line">    jedis.flushDB();</span><br><span class="line"></span><br><span class="line">    JSONObject jsonObject = <span class="keyword">new</span> JSONObject();</span><br><span class="line">    jsonObject.put(<span class="string">"hello"</span>,<span class="string">"world"</span>);</span><br><span class="line">    jsonObject.put(<span class="string">"name"</span>,<span class="string">"leib"</span>);</span><br><span class="line"></span><br><span class="line">    String result = jsonObject.toJSONString();</span><br><span class="line"></span><br><span class="line">    jedis.watch(result);</span><br><span class="line">    <span class="comment">//开启事务</span></span><br><span class="line">    Transaction multi = jedis.multi();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        multi.set(<span class="string">"user1"</span>,result);</span><br><span class="line">        multi.set(<span class="string">"user2"</span>,result);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行事务</span></span><br><span class="line">        multi.exec();</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="comment">//取消事务</span></span><br><span class="line">        multi.discard();</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        System.out.println(jedis.get(<span class="string">"user1"</span>));</span><br><span class="line">        System.out.println(jedis.get(<span class="string">"user2"</span>));</span><br><span class="line">        <span class="comment">//关闭连接</span></span><br><span class="line">        jedis.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="springboot整合"><a href="#springboot整合" class="headerlink" title="springboot整合"></a>springboot整合</h2><p>代码部分转redis-springboot，笔记只记录重点部分<br><a href="https://github.com/leib1368/myDemo" target="_blank" rel="noopener">https://github.com/leib1368/myDemo</a></p>
+<p>1）导入依赖</p>
+<p>2）进行配置</p>
+<p>3）调用对象</p>
+<h2 id="Redis-conf-详解"><a href="#Redis-conf-详解" class="headerlink" title="Redis conf 详解"></a>Redis conf 详解</h2><hr>
+<blockquote>
+<p>网络</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bind</span> 127.0.0.1 <span class="comment">#绑定ip</span></span><br><span class="line">protected-mode yes <span class="comment">#保护模式</span></span><br><span class="line">port 6379 <span class="comment">#端口设置</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通用设置GENERAL</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes <span class="comment">#以守护进程的方式运行</span></span><br><span class="line">pidfile /var/run/redis_6379.pid <span class="comment">#如果以后台的方式运行，我们需要一个pid文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#日志级别</span></span><br><span class="line"><span class="comment"># Specify the server verbosity level.</span></span><br><span class="line"><span class="comment"># This can be one of:</span></span><br><span class="line"><span class="comment"># debug (a lot of information, useful for development/testing)</span></span><br><span class="line"><span class="comment"># verbose (many rarely useful info, but not a mess like the debug level)</span></span><br><span class="line"><span class="comment"># notice (moderately verbose, what you want in production probably)</span></span><br><span class="line"><span class="comment"># warning (only very important / critical messages are logged)</span></span><br><span class="line">loglevel notice</span><br><span class="line">logfile <span class="string">""</span> <span class="comment">#日志的文件位置名</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h2><hr>
+<p>重点<br>Redis是内存数据库，如果不将内存中的数据库状态保存到磁盘，那么一旦服务器进程退出，服务器中的数据库状态也会消失。所以redis提供了持久化功能。</p>
+<h4 id="RDB（redis-database）"><a href="#RDB（redis-database）" class="headerlink" title="RDB（redis database）"></a>RDB（redis database）</h4><p><img src="https://i.loli.net/2020/05/16/FcqQMTPuX18ds2x.png" alt="image-20200516131048981"></p>
+<p><strong>rdb保存的文件是dump.rdb</strong></p>
+<blockquote>
+<p>触发机制</p>
 </blockquote>
 <ul>
-<li>list其实是一个链表，before node after ，left right 都可以插入</li>
-<li>如果key不存在，则创建新的链表</li>
-<li>如果key存在，新增内容</li>
-<li>如果移除了key，空链表 | 即不存在</li>
-<li>在两边插入效率最高</li>
+<li>save的规则满足的情况下，会自动出发rdb规则</li>
+<li>执行flushall命令，也会出发我们的rdb规则</li>
+<li>退出redis，也会产生rdb文件</li>
 </ul>
-<hr>
-<h2 id="Set-（集合）"><a href="#Set-（集合）" class="headerlink" title="Set （集合）"></a>Set （集合）</h2><h4 id="set中不能重复-redis-中都以s开头"><a href="#set中不能重复-redis-中都以s开头" class="headerlink" title="set中不能重复 redis 中都以s开头"></a>set中不能重复 redis 中都以s开头</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sadd myset <span class="string">"hello"</span>		<span class="comment">#set集合中添加</span></span><br><span class="line">smembers myset			<span class="comment">#查看指定set所有值</span></span><br><span class="line">sismember myset hello	<span class="comment">#判断某个值是否在set集合中</span></span><br><span class="line">scard myset				<span class="comment">#获取元素值</span></span><br><span class="line">srem myset hello		<span class="comment">#移除set 指定元素</span></span><br><span class="line">srandmember				<span class="comment">#随机抽选（指定个数）元素</span></span><br><span class="line">spop myset 				<span class="comment">#随机删除</span></span><br><span class="line">smove myset myset2 <span class="string">"value"</span>	<span class="comment">#移动元素到另一个set</span></span><br><span class="line"><span class="comment">#####################################################</span></span><br><span class="line">↓共同关注功能实现↓</span><br><span class="line">sdiff key1 key2  <span class="comment">#不同对比 以key1为比较对象 输出的是key1</span></span><br><span class="line">sinter key1 key2 <span class="comment">#取交集</span></span><br><span class="line">sunion key1 key2 <span class="comment">#取并集</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="Hash-哈希"><a href="#Hash-哈希" class="headerlink" title="Hash(哈希)"></a>Hash(哈希)</h2><p>map集合，key-map    –》 key -  <key-value> 本质和String 类型差不多<br>同理redis中 都以h开头</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">hset myhash field1 leib 	<span class="comment">#设置</span></span><br><span class="line">hget myhash field1			<span class="comment">#取值</span></span><br><span class="line">hmset myhash field1 hello field2 world <span class="comment">#hmset 设置多个</span></span><br><span class="line">hmget myhash field1 field2			<span class="comment">#hmget 取多个</span></span><br><span class="line">hgetall myhash					<span class="comment">#取所有</span></span><br><span class="line">hdel myhash field1			<span class="comment">#删除hash指定key字段 ，对应的value也就消失了</span></span><br><span class="line"><span class="comment">########################################3</span></span><br><span class="line">hlen		<span class="comment">#获取长度</span></span><br><span class="line">hexists myhash field1 	<span class="comment">#判断hash中指定字段是否存在</span></span><br><span class="line">hkeys myhash	<span class="comment">#获得所有key</span></span><br><span class="line">hvals myhash	<span class="comment">#获得所有val</span></span><br><span class="line">incr decr</span><br><span class="line">hincrby myhash fileld3 1 <span class="comment">#指定增量</span></span><br><span class="line">hsetnx myhash fileld3 hello <span class="comment">#不存在设置 存在即不行</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>hash变更的数据 user age name 用户信息 经常变动的信息</strong><br><strong>用hash存储对象 更适合 string 更适合字符串</strong></p>
-<hr>
-<h2 id="Zset-有序集合"><a href="#Zset-有序集合" class="headerlink" title="Zset(有序集合)"></a>Zset(有序集合)</h2><p>在set基础上，增加了一个值 </p>
+<blockquote>
+<p>恢复rdb文件</p>
+</blockquote>
 <ul>
-<li>set k v</li>
-<li>zset k socre v</li>
+<li>将rdb文件放在我们redis启动目录就可以，redis启动时候就会自动检查rdb文件，并恢复其数据</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">zadd myset 1 one <span class="comment">#添加</span></span><br><span class="line">zrange myset 0 -1 </span><br><span class="line"><span class="comment">##############################</span></span><br><span class="line">zadd salary 2500 a</span><br><span class="line">zadd salary 5000 b</span><br><span class="line">zadd salary 500 c</span><br><span class="line">zrangebysocre salary -inf +inf  <span class="comment">#正序 </span></span><br><span class="line">zrange salary 0 -1</span><br><span class="line">zrem salary c	<span class="comment">#移除</span></span><br><span class="line">zcard salary 	<span class="comment">#获取有序集合个数</span></span><br><span class="line">zrevrange salary 0 -1     <span class="comment"># 降序</span></span><br><span class="line">zcount myset 1 3 <span class="comment">#获取指定区间的个数</span></span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ol>
+<li>适合大规模的数据恢复</li>
+<li>如果对数据完成性要求不高</li>
+</ol>
+<p>缺点</p>
+<ol>
+<li>需要一定的时间间隔进程操作！如果redis意外宕机，最后一次数据就没了。</li>
+<li>fork进程的时候，会占用一定内容空间。</li>
+</ol>
+<h4 id="AOF（append-of-file）"><a href="#AOF（append-of-file）" class="headerlink" title="AOF（append of file）"></a>AOF（append of file）</h4><blockquote>
+<p>将我们所有的命令都记录下来，history，恢复的时候将这个文件重新在执行一遍</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/05/16/ihBD9fR3qULVNyx.png" alt="image-20200516132140031"></p>
+<p><strong>aof保存文件是appendonly.aof 文件</strong></p>
+<p>如果aof有错误是无法启动的，redis是无法启动。<br>redis提供了一个工具，redis-check-aof –fix 去修复</p>
+<p><img src="https://i.loli.net/2020/05/16/Ni4tZdrwU2xbF53.png" alt="image-20200516133452375"></p>
+<blockquote>
+<p>优点与缺点</p>
+</blockquote>
+<p>优点</p>
+<ol>
+<li>每一次修改都同步，文件的完整会更好</li>
+<li>每秒同步一次，可能会丢失一秒的数据</li>
+<li>从不同步，效率最高</li>
+</ol>
+<p>缺点</p>
+<ol>
+<li>相当于数据文件来说，aof大于rdb ，修复的速度也是比rdb慢</li>
+<li>aof运行效率也要比rdb慢，所以redis 默认的配置是rdb持久化</li>
+</ol>
+<h2 id="Redis发布订阅"><a href="#Redis发布订阅" class="headerlink" title="Redis发布订阅"></a>Redis发布订阅</h2><hr>
+<p>redis 发布订阅 pub/sub 是一种消息通信模式 pub 发送 sub 接受<br>redis 客户端可以订阅任意数量的频道</p>
+<p><img src="https://i.loli.net/2020/05/16/QdM7I59oW6XZjte.png" alt="image-20200516134012337"></p>
+<p>下图展示了频道 channel1 ，以及订阅这个频道的三个客户端 之间的关系</p>
+<p><img src="https://i.loli.net/2020/05/16/YMACdzKfTRicEID.png" alt="image-20200516134435105"></p>
+<p>当有新消息通过publish命令发送到频道channel1 时，这个消息就会被发送它的三个客户端</p>
+<p><img src="https://i.loli.net/2020/05/16/aYmjO4Il6cPZCEL.png" alt="image-20200516134551128"></p>
+<blockquote>
+<p>命令</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/05/16/6iAUGEQzbL2kxse.png" alt="image-20200516134630414"></p>
+<blockquote>
+<p>原理</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/05/16/VUNG6fyPa1Icj9J.png" alt="image-20200516140213001"></p>
+<p><img src="https://i.loli.net/2020/05/16/NCDVpGv1EeU6LPF.png" alt="image-20200516140015905"></p>
+<h2 id="Redis主从复制"><a href="#Redis主从复制" class="headerlink" title="Redis主从复制"></a>Redis主从复制</h2><hr>
+<p><img src="https://i.loli.net/2020/05/16/TNxOrjhAfHXegFS.png" alt="image-20200516140449736"></p>
+<p><img src="https://i.loli.net/2020/05/16/hZCnH8AiW34m6jz.png" alt="image-20200516140435834"></p>
+<p><img src="https://i.loli.net/2020/05/16/Nyk6ZGxJQW2KivC.png" alt="image-20200516140410393"></p>
+<p><strong>主从复制读写分离。因为80%的情况下都是在进行读操作，需要减缓服务器的压力，架构中经常使用。</strong></p>
+<p>info replication 查看配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; info replication</span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master</span><br><span class="line">connected_slaves:0</span><br><span class="line">master_repl_offset:0</span><br><span class="line">repl_backlog_active:0</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:0</span><br><span class="line">repl_backlog_histlen:0</span><br><span class="line"></span><br><span class="line">salaveof 127.0.0.1 6379	<span class="comment">#配置好config文件后，一条命令即可| 如果写在配置文件 那就是永久的</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>set排序 存储班级成绩表，b站排行榜 工资表等等</p>
+<h2 id="Redis-哨兵模式"><a href="#Redis-哨兵模式" class="headerlink" title="Redis 哨兵模式"></a>Redis 哨兵模式</h2><hr>
+<p>（自动选老大模式）</p>
+<blockquote>
+<p>概述</p>
+</blockquote>
+<p><img src="https://i.loli.net/2020/05/16/R7eNLCJDwjlB59b.png" alt="image-20200516142217550"></p>
+<p><img src="https://i.loli.net/2020/05/16/xre3faylFwq2THo.png" alt="image-20200516142251838"></p>
+<p><img src="https://i.loli.net/2020/05/16/yJCPpcRHdl4kIWU.png" alt="image-20200516142442491"></p>
+<p><img src="https://i.loli.net/2020/05/16/BGxy2TzrufoEiY7.png" alt="image-20200516142457453"></p>
+<p>如果master节点断开 这个时候就会从从机中随机选择一个服务器（内部有自己的算法）</p>
+<p>如果主机此时回来了，只能归并到新的主机下。当作从机这就是哨兵模式的规则。</p>
+<blockquote>
+<p>哨兵模式</p>
+</blockquote>
+<p>优点</p>
+<ol>
+<li>哨兵模式，基于主从复制 ，所以主从配置优点都有</li>
+<li>主从可以切换，故障可以转移，系统的可用性就会更好</li>
+<li>哨兵模式就是主从模式的升级，手动到自动，更加健壮</li>
+</ol>
+<p>缺点</p>
+<ol>
+<li>redis 不好在线扩容，集群容量一旦达到上线，在线扩容就十分麻烦</li>
+<li>实现哨兵模式的配置十分麻烦</li>
+</ol>
+<h2 id="Redis缓存穿透和雪崩"><a href="#Redis缓存穿透和雪崩" class="headerlink" title="Redis缓存穿透和雪崩"></a>Redis缓存穿透和雪崩</h2><hr>
+<h4 id="缓存穿透（查不到）"><a href="#缓存穿透（查不到）" class="headerlink" title="缓存穿透（查不到）"></a>缓存穿透（查不到）</h4><p><img src="https://i.loli.net/2020/05/16/CA1rX5PSJ8uOL9g.png" alt="image-20200516150828863"></p>
+<p><img src="https://i.loli.net/2020/05/16/5C69axgcwXhtDk1.png" alt="image-20200516150712766"></p>
+<p><img src="https://i.loli.net/2020/05/16/BSrE2Xdv39cRpOo.png" alt="image-20200516150727858"></p>
+<p><img src="https://i.loli.net/2020/05/16/iZH1mKgAhktWvdE.png" alt="image-20200516150740180"></p>
+<h4 id="缓存击穿（量太大，缓存过期）"><a href="#缓存击穿（量太大，缓存过期）" class="headerlink" title="缓存击穿（量太大，缓存过期）"></a>缓存击穿（量太大，缓存过期）</h4><p><img src="https://i.loli.net/2020/05/16/chgX5ykaLVlHv6o.png" alt="image-20200516150922390"></p>
+<p><img src="https://i.loli.net/2020/05/16/AzHrWlDvcsRp5oE.png" alt="image-20200516151047456"></p>
+<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p><img src="https://i.loli.net/2020/05/16/YGrc4LAVZMDCx9B.png" alt="image-20200516151234623"></p>
+<p><img src="https://i.loli.net/2020/05/16/HDxE1OlR9aZWmJ6.png" alt="image-20200516151433549"></p>
 <hr>
-<h2 id="三种特殊数据类型-1"><a href="#三种特殊数据类型-1" class="headerlink" title="三种特殊数据类型"></a>三种特殊数据类型</h2><h2 id="geospatial"><a href="#geospatial" class="headerlink" title="geospatial"></a><strong>geospatial</strong></h2><h3 id="地理位置-redis的geo"><a href="#地理位置-redis的geo" class="headerlink" title="地理位置 redis的geo"></a>地理位置 redis的geo</h3><p>朋友定位 附近的人 打车距离 （距离计算 </p>
-<p><strong>只有6个命令</strong></p>
-<p><img src="https://i.loli.net/2020/05/15/gbv8APVM2ExRNcy.png" alt="image-20200515162545893"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#geoadd</span></span><br><span class="line"><span class="comment">#添加地理位置</span></span><br><span class="line"><span class="comment">#一般会下载城市数据一次性导入by java</span></span><br><span class="line">参数key (纬度 经度 名称)</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 120.70 28.00 wenzhou</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 120.68 28.15 yongjia</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 120.16 30.24 hangzhou</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"><span class="comment">#geopos</span></span><br><span class="line">127.0.0.1:6379&gt; geopos china:city wenzhou</span><br><span class="line">1) 1) <span class="string">"120.69999843835831"</span></span><br><span class="line">   2) <span class="string">"27.999998796969891"</span></span><br><span class="line"><span class="comment">#geodist</span></span><br><span class="line">127.0.0.1:6379&gt; geodist china:city wenzhou yongjia</span><br><span class="line"><span class="string">"16799.2360"</span></span><br><span class="line">127.0.0.1:6379&gt; geodist china:city wenzhou yongjia km</span><br><span class="line"><span class="string">"16.7992"</span> <span class="comment">#16km</span></span><br><span class="line"><span class="comment">#georadius</span></span><br><span class="line">根据给定经纬度为中心，搜索一定距离半径的元素</span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 1000 km</span><br><span class="line">1) <span class="string">"hangzhou"</span></span><br><span class="line"><span class="comment">#georadiusbymember </span></span><br><span class="line">127.0.0.1:6379&gt; georadiusbymember china:city hangzhou 1000 km</span><br><span class="line">1) <span class="string">"wenzhou"</span></span><br><span class="line">2) <span class="string">"yongjia"</span></span><br><span class="line">3) <span class="string">"hangzhou"</span></span><br><span class="line"><span class="comment">#geohash没什么用</span></span><br><span class="line">该命令返回11个字符的geohash字符串</span><br><span class="line">127.0.0.1:6379&gt; geohash china:city wenzhou yongjia</span><br><span class="line">1) <span class="string">"wsvz695pcf0"</span></span><br><span class="line">2) <span class="string">"wtjb4hs3xu0"</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>GEO 底层即是Zset 我们也可以用zset去使用</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrange china:city 0 -1 	<span class="comment">#查看所有元素</span></span><br><span class="line">1) <span class="string">"wenzhou"</span></span><br><span class="line">2) <span class="string">"yongjia"</span></span><br><span class="line">3) <span class="string">"hangzhou"</span></span><br><span class="line">zrem china:city wenzhou <span class="comment">#移除指定元素</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="hyperloglog"><a href="#hyperloglog" class="headerlink" title="hyperloglog"></a>hyperloglog</h2><p>优点：占用的内存是固定的，2^64 不同元素的技术，需要12kb内存。错误率低。</p>
-<blockquote>
-<p>什么是基数</p>
-</blockquote>
-<p>A{1,3,5,7,8,7}<br>B{1   ,5,7,8,7}</p>
-<p>基数：不重复的元素的个数 =5 <strong>可以接受误差</strong></p>
-<p><strong>应用： 网页的UV (一个人访问一个网站多次，但是还是算作一个人)</strong></p>
-<p>传统方法，set保存用户的id，然后就可以统计set中的元素数量作为标准判断。</p>
-<p>保存大量id，就会比较麻烦~</p>
-<p>目的是为了计数而不是保存用户id；</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; pfadd mykey a b c d e f g h i j</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; pfcount mykey</span><br><span class="line">(<span class="built_in">integer</span>) 10</span><br><span class="line">127.0.0.1:6379&gt; pfadd mykey2 i j p u q w</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; pfmerge mykey3 mykey2 mykey</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; pfcount mykey3</span><br><span class="line">(<span class="built_in">integer</span>) 14</span><br><span class="line"><span class="comment">#merge会消除重复元素 即并集</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h2><blockquote>
-<p>位存储</p>
-</blockquote>
-<p>统计疫情感染人数： 0 1 0 1 0<br>统计用户信息，活跃|不活跃    登录|未登录   打卡|未打卡</p>
-<p><img src="https://i.loli.net/2020/05/15/WpxXutgD3kZ4TIq.png" alt="image-20200515171739128"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; setbit sign 0 1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 1 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 2 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"><span class="comment">#0123456 分别代表周一~周日</span></span><br><span class="line"><span class="comment">#01分别代表是否打卡</span></span><br><span class="line">getbit sign 3 <span class="comment">#查看某一天是否打卡</span></span><br><span class="line">bitcount sign  <span class="comment">#统计</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="事务操作"><a href="#事务操作" class="headerlink" title="事务操作"></a>事务操作</h2><p>redis 事务本质：一组命令的集合！一个事务中的所有命令都会被序列化，在事务执行中，会按照顺序执行。一次性，顺序性，排他性！执行一些列的命令！</p>
-<p>—队列 set set set 执行—</p>
-<p>redis事务没有<strong>隔离级别</strong>的概念</p>
-<p>所有的命令在事务中，并没有直接被执行！<strong>只有发起执行命令的时候才会执行。</strong></p>
-<p>要么同时成功 要么同时失败 原子性<br>redis 单条命令式保存原子性的，但是事务不保证原子性。</p>
-<p>redis 事务</p>
-<ul>
-<li>开启事务    multi</li>
-<li>命令事务</li>
-<li>执行事务    exec</li>
-</ul>
-<blockquote>
-<p>正常执行事务</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; get k2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">3) <span class="string">"v2"</span></span><br><span class="line">4) OK</span><br><span class="line"></span><br><span class="line">discart  <span class="comment">#取消事务 队列中所有都不会被执行</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>编译型异常（代码有问题！命令有错！） 事务中所有的命令都不会被执行</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; getset k3</span><br><span class="line">(error) ERR wrong number of arguments <span class="keyword">for</span> <span class="string">'getset'</span> <span class="built_in">command</span></span><br><span class="line">127.0.0.1:6379&gt; get k3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span>	<span class="comment">#执行事务报错 以上所有命令都不会被执行</span></span><br><span class="line">(error) EXECABORT Transaction discarded because of previous errors.</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>运行时异常（1/0） 如果事务队列中存在余发星错误，那么执行命令的时候，其他命令是可以正常被执行的</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 <span class="string">"v1"</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; incr k1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) (error) ERR value is not an <span class="built_in">integer</span> or out of range</span><br><span class="line">2) OK</span><br><span class="line">127.0.0.1:6379&gt; get k2</span><br><span class="line"><span class="string">"v2"</span></span><br></pre></td></tr></table></figure>
-
-<p>以上行为在sql中是不存在的  就好比银行汇款，回滚。</p>
+<p>结束<del>~</del></p>
 
       
 
@@ -476,7 +506,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/15/0515redis%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/15/0515redis%E8%BF%9B%E9%98%B6/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -490,18 +520,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/15/0515redis%E8%BF%9B%E9%98%B6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          redis进阶
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/14/0514%E5%A4%9A%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">多线程相关</div>
+    <a href="/2020/05/15/0515redis%E5%9F%BA%E7%A1%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis</div>
       <i class="icon-circle-right"></i>
     </a>
   
