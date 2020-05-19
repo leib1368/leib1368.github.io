@@ -6,25 +6,36 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: hexo | Leib&#39;s Blog</title>
+  <title>Docker基础 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随便记录一下 菜鸟学习中">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leib&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/hexo/index.html">
+  <meta name="description" content="Docker 今天买了阿里云服务器破费了 &#x2F;doge和VMware操作还是不太一样哦Xshell+Xftp操作起来还是挺方便的  运行原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker基础">
+<meta property="og:url" content="http://yoursite.com/2020/05/18/0518Docker/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="随便记录一下 菜鸟学习中">
+<meta property="og:description" content="Docker 今天买了阿里云服务器破费了 &#x2F;doge和VMware操作还是不太一样哦Xshell+Xftp操作起来还是挺方便的  运行原理">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/fiMzoXVeBYKsyZp.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/kSspwVrWNvZIGn6.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/eKupbkI6z8nAf9U.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/n6JapdDVtWr5E1M.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/87jgLeyvxAhaNOR.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/lPkmjvFit4weoHG.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/fvK7xnIM1D8yeAp.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/Z7lghmSYqvptneo.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/4ljUC3ewsMZiXoL.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/zxyrNYlhBRi62oT.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/hXeGEoYv2uA93si.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/aK6xd39s1fHMn8u.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/HExbJsa2gyeuToz.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/IwqUeSXnpMVAtNl.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/18/DhNlfWr7Uzsan2i.png">
+<meta property="article:published_time" content="2020-05-18T06:41:00.000Z">
+<meta property="article:modified_time" content="2020-05-18T08:24:50.742Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="后端">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="C&#x2F;C++">
-<meta property="article:tag" content="SpringBoot">
-<meta property="article:tag" content="mybatis">
-<meta property="article:tag" content="Dota2">
-<meta property="article:tag" content="NBA">
-<meta property="article:tag" content="Cristiano Ronaldo">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/18/fiMzoXVeBYKsyZp.png">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -177,61 +188,345 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-0518Docker" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/04/20/0420FirstBlog/" class="archive-article-date">
-  	<time datetime="2020-04-20T14:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/20/0420FirstBlog/">First Blog (keep calm and do it)</a>
+    <h1 class="article-title" itemprop="name">
+      Docker基础
     </h1>
   
 
-        <div class="article-info info-on-right">
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">9分</span>
+      </span>
+    </span>
+</div>
           
+
+
+
+        
+         
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/05/18/0518Docker/" class="archive-article-date">
+  	<time datetime="2020-05-18T06:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><blockquote>
+<p>今天买了阿里云服务器破费了 /doge<br>和VMware操作还是不太一样哦<br>Xshell+Xftp操作起来还是挺方便的</p>
+</blockquote>
+<h4 id="运行原理"><a href="#运行原理" class="headerlink" title="运行原理"></a>运行原理</h4><p><img src="https://i.loli.net/2020/05/18/fiMzoXVeBYKsyZp.png" alt="image-20200518095933304"></p>
+<a id="more"></a>
+
+<h4 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h4><hr>
+<p>Docker是一个Client-Server结构的系统，Docker的守护进程运行在主机上，通过socket从客户端访问。<br>DockerServer接收到DockerClient指令，就会执行这命令。</p>
+<p><img src="https://i.loli.net/2020/05/18/kSspwVrWNvZIGn6.png" alt="image-20200518100323119"></p>
+<p>docker为什么比vm快</p>
+<ol>
+<li>docker抽象层比vm更少</li>
+<li>docker利用的是宿主机的内核，vm需要的是guestOS</li>
+</ol>
+<p><img src="https://i.loli.net/2020/05/18/eKupbkI6z8nAf9U.png" alt="image-20200518100551817"></p>
+<p>docker不需要像虚拟机一样重新加载一个操作系统内核，避免引导。<br>虚拟机是加载GuestOS，分钟级别，而docker是利用宿主机的操作系统，省略了这个过程。</p>
+<p><img src="https://i.loli.net/2020/05/18/n6JapdDVtWr5E1M.png" alt="image-20200518100738933"></p>
+<h2 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h2><hr>
+<h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker version #版本</span><br><span class="line">docker info		#镜像和容器等信息</span><br><span class="line">docker --help	#帮助</span><br><span class="line"><span class="meta">#</span><span class="bash">docker docs帮助文档</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@leib ~]# docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">hello-world         latest              bf756fb1ae65        4 months ago        13.3kB</span><br><span class="line"> </span><br><span class="line">[root@leib ~]# docker images --help</span><br><span class="line"></span><br><span class="line">Usage:	docker images [OPTIONS] [REPOSITORY[:TAG]]</span><br><span class="line"></span><br><span class="line">List images</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -a, --all             Show all images (default hides intermediate images)</span><br><span class="line">      --digests         Show digests</span><br><span class="line">  -f, --filter filter   Filter output based on conditions provided</span><br><span class="line">      --format string   Pretty-print images using a Go template</span><br><span class="line">      --no-trunc        Don't truncate output</span><br><span class="line">  -q, --quiet           Only show numeric IDs</span><br></pre></td></tr></table></figure>
+
+<p>docker 搜索镜像</p>
+<hr>
+<p>1、官网搜索<br>2、命令行搜索</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@leib ~]# docker search mysql --filter=STARS=3000</span><br><span class="line">NAME                DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">mysql               MySQL is a widely used, open-source relation…   9510                [OK]                </span><br><span class="line">mariadb             MariaDB is a community-developed fork of MyS…   3448                [OK]</span><br></pre></td></tr></table></figure>
+
+<p>docker下载</p>
+<hr>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载镜像 docker pull 镜像名[:tag]</span></span><br><span class="line">[root@leib ~]# docker pull mysql</span><br><span class="line">Using default tag: latest		#如果不写tag 默认则是latest</span><br><span class="line">latest: Pulling from library/mysql</span><br><span class="line">afb6ec6fdc1c: Pull complete 	#分层下载	docker image的核心 联合文件系统</span><br><span class="line">0bdc5971ba40: Pull complete </span><br><span class="line">97ae94a2c729: Pull complete </span><br><span class="line">f777521d340e: Pull complete </span><br><span class="line">1393ff7fc871: Pull complete </span><br><span class="line">a499b89994d9: Pull complete </span><br><span class="line">7ebe8eefbafe: Pull complete </span><br><span class="line">597069368ef1: Pull complete </span><br><span class="line">ce39a5501878: Pull complete </span><br><span class="line">7d545bca14bf: Pull complete </span><br><span class="line">0f5f78cccacb: Pull complete </span><br><span class="line">623a5dae2b42: Pull complete </span><br><span class="line">Digest: sha256:beba993cc5720da07129078d13441745c02560a2a0181071143e599ad9c497fa	#签名</span><br><span class="line">Status: Downloaded newer image for mysql:latest</span><br><span class="line">docker.io/library/mysql:latest		#真实地址  ==docker pull mysql</span><br><span class="line">---------------------------------------------------</span><br><span class="line">[root@leib ~]# docker pull mysql:5.7	#指定版本</span><br><span class="line">5.7: Pulling from library/mysql</span><br><span class="line">afb6ec6fdc1c: Already exists </span><br><span class="line">0bdc5971ba40: Already exists </span><br><span class="line">97ae94a2c729: Already exists </span><br><span class="line">f777521d340e: Already exists </span><br><span class="line">1393ff7fc871: Already exists </span><br><span class="line">a499b89994d9: Already exists </span><br><span class="line">7ebe8eefbafe: Already exists </span><br><span class="line">4eec965ae405: Pull complete </span><br><span class="line">a531a782d709: Pull complete </span><br><span class="line">10e94c02b508: Pull complete </span><br><span class="line">799a94b968ef: Pull complete </span><br><span class="line">Digest: sha256:5c9fd7949bc0f076429fa2c40d0e7406e095bdb5216a923257b31972a6f3ae4f</span><br><span class="line">Status: Downloaded newer image for mysql:5.7</span><br><span class="line">docker.io/library/mysql:5.7</span><br></pre></td></tr></table></figure>
+
+<p>docker移除</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">docker rmi <span class="keyword">if</span> [id]  <span class="comment">#rm即remove  i即images</span></span></span><br><span class="line"></span><br><span class="line">[root@leib ~]# docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">mysql               5.7                 b84d68d0a7db        2 days ago          448MB</span><br><span class="line">mysql               latest              94dff5fab37f        2 days ago          541MB</span><br><span class="line">hello-world         latest              bf756fb1ae65        4 months ago        13.3kB</span><br><span class="line">[root@leib ~]# docker rmi -f b84d68d0a7db</span><br><span class="line">Untagged: mysql:5.7</span><br><span class="line">Untagged: mysql@sha256:5c9fd7949bc0f076429fa2c40d0e7406e095bdb5216a923257b31972a6f3ae4f</span><br><span class="line">Deleted: sha256:b84d68d0a7db79194091fae58b71afb6a56ae25cb297e91f68db2a8e404a4ecb</span><br><span class="line">Deleted: sha256:94e95e9df0df22878f59564132685bcef12c08e0c4b390827ba321829be6e7b6</span><br><span class="line">Deleted: sha256:6a618a3ef5f57ced96e11f6c01eb9760bdd225fccb98365f696fbc7298129fec</span><br><span class="line">Deleted: sha256:7d0236d50948d993a686c69889c6f016a8da89b8557c5e0eaf6af145ea5877cb</span><br><span class="line">Deleted: sha256:a6219b1270405f43892a7a12895ae1e0ccff307d162cf0025df3ed87f511754b</span><br><span class="line">[root@leib ~]# docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">mysql               latest              94dff5fab37f        2 days ago          541MB</span><br><span class="line">hello-world         latest              bf756fb1ae65        4 months ago        13.3kB</span><br><span class="line">[root@leib ~]# docker rmi -f $(docker images -aq)   #删除所有</span><br><span class="line">[root@leib ~]#  docker rmi -f $(docker images -aq) </span><br><span class="line">Untagged: mysql:latest</span><br><span class="line">Untagged: mysql@sha256:beba993cc5720da07129078d13441745c02560a2a0181071143e599ad9c497fa</span><br><span class="line">Deleted: sha256:94dff5fab37f18946165632a45d8ff738ee97dc7a9dfde945b0862d52ecc5b08</span><br><span class="line">Deleted: sha256:dc323e8164e71563f2a380b4767d5b47fc380d64a33241e98e4b225285ebac4a</span><br><span class="line">Deleted: sha256:0804fa49ae95ec657e06ebe69d016d82e67f413b2db5d480adf5d8d1b28d84d5</span><br><span class="line">Deleted: sha256:430365c8e22a9207dca4638c523dc82163bca3ab8a335a71147af41d1551561f</span><br><span class="line">Deleted: sha256:1ede41b1dbec1a5e4385200b62283ffb25c425275530ea9e9cc36b921186cd08</span><br><span class="line">Deleted: sha256:2f6badb9fd9965261d3463591f8af4afddf5f141456de83dc994690ae64b34eb</span><br><span class="line">Deleted: sha256:37803884320881cd931c77dea2ee4d8a7231dfed5a02dc595e6046ffacfa6e1b</span><br><span class="line">Deleted: sha256:cefc9066dc1aa84f6cddead1bb5a8c590e8368d56fb65694e8783d70791bec20</span><br><span class="line">Deleted: sha256:3bfbd2dd4507386ce56fd731b3c97d10bc058e6aa478f901466da69108db50e1</span><br><span class="line">Deleted: sha256:9652363dd4c1146b3f9a519800a9f379adf0b6c4f9aece1ffe965dce5f52a8ca</span><br><span class="line">Deleted: sha256:0ed190016efa0f19bcc5f1d66ffffc7b09716f3c57bcc5de74a4ce217af92278</span><br><span class="line">Deleted: sha256:8399fb13d72603fdc8781075672ee25fedf8384f6721639a70dd3533250ed9e4</span><br><span class="line">Deleted: sha256:ffc9b21953f4cd7956cdf532a5db04ff0a2daa7475ad796f1bad58cfbaf77a07</span><br><span class="line">Untagged: hello-world:latest</span><br><span class="line">Untagged: hello-world@sha256:6a65f928fb91fcfbc963f7aa6d57c8eeb426ad9a20c7ee045538ef34847f44f1</span><br><span class="line">Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b</span><br><span class="line">[root@leib ~]# docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br></pre></td></tr></table></figure>
+
+<h4 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h4><p>有了镜像才能创造容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos</span><br></pre></td></tr></table></figure>
+
+<p>新建容器并启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">docker run[可选参数] image</span><br><span class="line"><span class="meta">#</span><span class="bash">参数说明</span></span><br><span class="line">--name="Name"	容器名字</span><br><span class="line">-d				后台方式运行</span><br><span class="line">-it				使用交互方式运行 进入容器查看内容</span><br><span class="line">-p				小写p 指定容器的端口 -p 8080:8080</span><br><span class="line">	-p ip:主机端口：容器端口</span><br><span class="line">	-p 主机端口：容器端口 常用</span><br><span class="line">	-p 容器端口</span><br><span class="line">-P				随机指定端口</span><br><span class="line"><span class="meta">#</span><span class="bash">测试</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line">[root@leib ~]# docker run -it centos /bin/bash</span><br><span class="line">[root@605be3c3aebd /]# ls</span><br><span class="line">bin  etc   lib	  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media       opt  root  sbin  sys  usr</span><br><span class="line"><span class="meta">#</span><span class="bash">退出</span></span><br><span class="line">[root@605be3c3aebd /]# exit</span><br><span class="line">exit</span><br><span class="line">[root@leib /]# ls</span><br><span class="line">bin   dev  home  lib64       media  opt    proc  run   srv  tmp  var</span><br><span class="line">boot  etc  lib   lost+found  mnt    patch  root  sbin  sys  usr  www</span><br><span class="line"><span class="meta">#</span><span class="bash">查看运行中的容器</span></span><br><span class="line">[root@leib /]# docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</span><br><span class="line"><span class="meta">#</span><span class="bash">列出正在运行并查看历史记录</span></span><br><span class="line">[root@leib /]# docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES</span><br><span class="line">605be3c3aebd        centos              "/bin/bash"         3 minutes ago       Exited (0) 3 minutes ago                       laughing_driscoll</span><br><span class="line">351c0fd961aa        bf756fb1ae65        "/hello"            15 hours ago        Exited (0) 15 hours ago                        eager_turing</span><br></pre></td></tr></table></figure>
+
+<p>退出容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span> <span class="comment">#直接容器停止退出</span></span><br><span class="line">ctrl+p+q <span class="comment">#不停止退出</span></span><br></pre></td></tr></table></figure>
+
+<p>删除容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rm id <span class="comment">#删除指定容器 -f强制删除</span></span><br><span class="line">docker rm -f $(docker ps -aq)<span class="comment">#删除所有容器 先查询在删除</span></span><br></pre></td></tr></table></figure>
+
+<p>启动和停止</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker start id</span><br><span class="line">docker stop id</span><br><span class="line">docker restart id</span><br><span class="line">docker kill id #强制停止容器</span><br></pre></td></tr></table></figure>
+
+<h4 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">后台启动容器</span></span><br><span class="line">docker run -d centos</span><br><span class="line"><span class="meta">#</span><span class="bash">常见问题，启动发现centos停止了</span></span><br><span class="line"><span class="meta">#</span><span class="bash">解释 容器使用后台运行，必须要有一个前台进程，docker发现木有应用就会自动停止</span></span><br><span class="line"><span class="meta">#</span><span class="bash">nginx 容器启动后 发现自己没有提供服务 就会立刻停止 就是没有程序了</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看日志</span></span><br><span class="line">docker logs -tf --tail [10(显示10条)] 470671670cac  #最后加上容器id </span><br><span class="line"></span><br><span class="line">[root@leib /]# docker logs --help</span><br><span class="line"></span><br><span class="line">Usage:	docker logs [OPTIONS] CONTAINER</span><br><span class="line"></span><br><span class="line">Fetch the logs of a container</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">      --details        Show extra details provided to logs</span><br><span class="line">  -f, --follow         Follow log output</span><br><span class="line">      --since string   Show logs since timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)</span><br><span class="line">      --tail string    Number of lines to show from the end of the logs (default "all")</span><br><span class="line">  -t, --timestamps     Show timestamps</span><br><span class="line">      --until string   Show logs before a timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42</span><br><span class="line">                       minutes)</span><br><span class="line">                       </span><br><span class="line">                       </span><br><span class="line"><span class="meta">#</span><span class="bash">查看容器中进程的信息 ps        </span></span><br><span class="line">docker top 容器id</span><br><span class="line"><span class="meta">#</span><span class="bash">查看镜像的元数据</span></span><br><span class="line">docker inspect 容器id</span><br><span class="line"><span class="meta">#</span><span class="bash">进入当前正在运行的命令 方式1</span></span><br><span class="line">docker exec -it 容器id bashshell</span><br><span class="line"><span class="meta">#</span><span class="bash">方式2</span></span><br><span class="line">docker attach 容器id </span><br><span class="line">正在执行代码</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">exec</span> 进入容器后开启新终端，可以在里面操作 （常用</span></span><br><span class="line"><span class="meta">#</span><span class="bash">attach 进入容器正在执行的终端，不会启动新的进程</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">从容器内拷贝文件到主机</span></span><br><span class="line">docker cp id：/home/test.java /home</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/05/18/87jgLeyvxAhaNOR.png" alt="image-20200518125628127"></p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><hr>
+<h4 id="练习一-部署nginx"><a href="#练习一-部署nginx" class="headerlink" title="练习一 部署nginx"></a>练习一 部署nginx</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">Welcome to Alibaba Cloud Elastic Compute Service !</span><br><span class="line"></span><br><span class="line">[root@leib ~]# docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">nginx               latest              9beeba249f3e        2 days ago          127MB</span><br><span class="line">centos              latest              470671670cac        4 months ago        237MB</span><br><span class="line">[root@leib ~]# docker run -d --name nginx01 -p 3344:80 nginx</span><br><span class="line">78b65f2fb6c10706a2b1919eb80b13b1368a292d3d5328e12a8bc37b3b67a56b</span><br><span class="line">[root@leib ~]# docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES</span><br><span class="line">78b65f2fb6c1        nginx               "nginx -g 'daemon of…"   6 seconds ago       Up 6 seconds        0.0.0.0:3344-&gt;80/tcp   nginx01</span><br><span class="line">[root@leib ~]# curl localhost:3344</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: 35em;</span><br><span class="line">        margin: 0 auto;</span><br><span class="line">        font-family: Tahoma, Verdana, Arial, sans-serif;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;If you see this page, the nginx web server is successfully installed and</span><br><span class="line">working. Further configuration is required.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;For online documentation and support please refer to</span><br><span class="line">&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;</span><br><span class="line">Commercial support is available at</span><br><span class="line">&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">进入容器nginx</span></span><br><span class="line">[root@leib ~]# docker exec -it nginx01 /bin/bash</span><br><span class="line">root@78b65f2fb6c1:/# whereis nginx</span><br><span class="line">nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginx</span><br><span class="line">root@78b65f2fb6c1:/# cd /etc/nginx</span><br><span class="line">root@78b65f2fb6c1:/etc/nginx# ls</span><br><span class="line">conf.d	fastcgi_params	koi-utf  koi-win  mime.types  modules  nginx.conf  scgi_params	uwsgi_params  win-utf</span><br><span class="line">root@78b65f2fb6c1:/etc/nginx#</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/05/18/lPkmjvFit4weoHG.png" alt="image-20200518130653426"></p>
+<h4 id="练习二-部署tomcat"><a href="#练习二-部署tomcat" class="headerlink" title="练习二 部署tomcat"></a>练习二 部署tomcat</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">官方使用</span></span><br><span class="line">docker run -it --rm tomcat:9.0</span><br><span class="line"><span class="meta">#</span><span class="bash">用后即删 不推荐</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">下载启动</span></span><br><span class="line">docker pull tomcat</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">启动运行</span></span><br><span class="line">docker run -d -p 8080:8080 --name tomcat01 tomcat</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">测试访问</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">进入容器</span></span><br><span class="line">docker exec it tomcat01 /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">把tomcat 项目拷进webapp里的</span></span><br><span class="line">cp -r webapps.dist/* webapps</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">访问公网+暴露端口即可访问</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="练习三-部署elasticsearch"><a href="#练习三-部署elasticsearch" class="headerlink" title="练习三 部署elasticsearch"></a>练习三 部署elasticsearch</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">启动elasticsearch</span></span><br><span class="line">docker run -d --name elasticsearch   -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.2</span><br><span class="line"><span class="meta">#</span><span class="bash">谨慎运行 内存占用太大</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看内存占比</span></span><br><span class="line">docker stats</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">增加运行限制</span></span><br><span class="line"> docker run -d --name elasticsearch01   -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx512m" elasticsearch:7.6.2</span><br><span class="line"> </span><br><span class="line"><span class="meta"> #</span><span class="bash">访问</span></span><br><span class="line"> curl localhost:9200</span><br></pre></td></tr></table></figure>
+
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>docker内部容器无法相互访问 需要通过linux内网技术</p>
+<p><img src="https://i.loli.net/2020/05/18/fvK7xnIM1D8yeAp.png" alt="image-20200518142503727"></p>
+<h4 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9000:9000 \</span><br><span class="line">    --restart=always \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    --name prtainer-test \</span><br><span class="line">    docker.io/portainer/portainer</span><br></pre></td></tr></table></figure>
+
+<p>访问测试 公网+端口就好    </p>
+<hr>
+<h2 id="Docker镜像"><a href="#Docker镜像" class="headerlink" title="Docker镜像"></a>Docker镜像</h2><h4 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h4><p><img src="https://i.loli.net/2020/05/18/Z7lghmSYqvptneo.png" alt="image-20200518145248384"></p>
+<p><img src="https://i.loli.net/2020/05/18/4ljUC3ewsMZiXoL.png" alt="image-20200518145316810"></p>
+<p><img src="https://i.loli.net/2020/05/18/zxyrNYlhBRi62oT.png" alt="image-20200518145337371"></p>
+<p><img src="https://i.loli.net/2020/05/18/hXeGEoYv2uA93si.png" alt="image-20200518145353347"></p>
+<h4 id="分层理解"><a href="#分层理解" class="headerlink" title="分层理解"></a>分层理解</h4><p><img src="https://i.loli.net/2020/05/18/aK6xd39s1fHMn8u.png" alt="image-20200518150105745"></p>
+<p><img src="https://i.loli.net/2020/05/18/HExbJsa2gyeuToz.png" alt="image-20200518150127498"></p>
+<p><img src="https://i.loli.net/2020/05/18/IwqUeSXnpMVAtNl.png" alt="image-20200518150156831"></p>
+<p><img src="https://i.loli.net/2020/05/18/DhNlfWr7Uzsan2i.png" alt="image-20200518150221559"></p>
+<h4 id="commit镜像"><a href="#commit镜像" class="headerlink" title="commit镜像"></a>commit镜像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -m="提交信息" -a="作者" 容器id 目标镜像名:[tag版本号]</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.JPG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/18/0518Docker/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/19/0518Docker%E8%BF%9B%E9%98%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Docker进阶
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/05/15/0515redis%E8%BF%9B%E9%98%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis进阶</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
+    
+  
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDA5MS8yNjU4MQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
 
-    
+  
+    <div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TkaOsLUB4HWqGxgFvAWlS1Ml-gzGzoHsz',
+      app_key: '3LKy8g3cmiIcA54iXXd7f0GO',
+      placeholder: 'anything want to say ?'
+    });
+</script>
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -301,9 +596,9 @@ setInterval("createtime()",250);
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
