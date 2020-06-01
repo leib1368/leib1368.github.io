@@ -179,6 +179,139 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-0530config" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/30/0530config/">Full / lite config</a>
+    </h1>
+  
+
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">552字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+          
+
+
+
+        
+         
+<a href="/2020/05/30/0530config/" class="archive-article-date">
+  	<time datetime="2020-05-30T15:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Full-Configuration-vs-lite-Bean-mode"><a href="#Full-Configuration-vs-lite-Bean-mode" class="headerlink" title="Full @Configuration             vs           lite @Bean mode"></a>Full @Configuration             vs           lite @Bean mode</h2><p>Spring Java Config  </p>
+<h2 id="相关定义"><a href="#相关定义" class="headerlink" title="相关定义"></a>相关定义</h2><ul>
+<li><code>lite @Bean mode</code> ：当<code>@Bean</code>方法在没有使用<code>@Configuration</code>注解的类中声明时称之为<code>lite @Bean mode</code></li>
+<li><code>Full @Configuration</code>：如果<code>@Bean</code>方法在使用<code>@Configuration</code>注解的类中声明时称之为<code>Full @Configuration</code></li>
+</ul>
+<h2 id="有何区别"><a href="#有何区别" class="headerlink" title="有何区别"></a>有何区别</h2><p>总结一句话，<code>Full @Configuration</code>中的<code>@Bean</code>方法会被CGLIB所代理，而 <code>lite @Bean mode</code>中的<code>@Bean</code>方法不会被CGLIB代理。</p>
+<p>有一普通Java类，现在分别使用<code>Full @Configuration</code>和 <code>lite @Bean mode</code>这两种模式注册到Spring容器中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"user create... hashCode :"</span> + <span class="keyword">this</span>.hashCode());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Full-Configuration"><a href="#Full-Configuration" class="headerlink" title="Full @Configuration"></a>Full @Configuration</h3><p>配置类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> User <span class="title">user</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> User();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">		System.out.println(user.hashCode());</span><br><span class="line">		System.out.println(user().hashCode());</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"123"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FullMain</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		AnnotationConfigApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(AppConfig<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		User user = context.getBean(User<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		System.out.println(user.hashCode());</span><br><span class="line">		context.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">user create... hashCode :<span class="number">1709537756</span></span><br><span class="line"><span class="number">1709537756</span></span><br><span class="line"><span class="number">1709537756</span></span><br><span class="line"><span class="number">1709537756</span></span><br></pre></td></tr></table></figure>
+
+<p>分析：<code>@Bean</code>是在使用了<code>@Configuration</code>注解的类上被声明的，属于<code>Full @Configuration</code>。<code>@Configuration</code>类中的<code>@Bean</code>地方会被CGLIB进行代理。Spring会拦截该方法的执行，在默认单例情况下，容器中只有一个Bean，所以我们多次调用<code>user()</code>方法，获取的都是同一个对象。</p>
+<p><strong>注意：被CGLIB的方法是不能被声明为<code>private</code>和<code>final</code>，因为CGLIB是通过生成子类来实现代理的，<code>private</code>和<code>final</code>方法是不能被子类Override的，也就是说，Full @Configuration模式下，<code>@Bean</code>的方法是不能不能被声明为<code>private</code>和<code>final</code>，不然在启动时Spring会直接报错。</strong></p>
+<h3 id="lite-Bean-mode"><a href="#lite-Bean-mode" class="headerlink" title="lite @Bean mode"></a>lite @Bean mode</h3><p>配置类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LiteAppConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> User <span class="title">user</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"user() 方法执行"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> User();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"name(User user) 方法执行"</span>);</span><br><span class="line">		System.out.println(user.hashCode());</span><br><span class="line">		System.out.println(<span class="string">"再次调用user()方法: "</span> + user().hashCode());</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"123"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主程序：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LiteMain</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		AnnotationConfigApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(LiteAppConfig<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		User user = context.getBean(User<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		System.out.println(user.hashCode());</span><br><span class="line">		context.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">user() 方法执行</span><br><span class="line">user create... hashCode :<span class="number">254413710</span></span><br><span class="line">name(User user) 方法执行</span><br><span class="line"><span class="number">254413710</span></span><br><span class="line">user() 方法执行</span><br><span class="line">user create... hashCode :<span class="number">1793329556</span></span><br><span class="line">再次调用user()方法: <span class="number">1793329556</span></span><br><span class="line"><span class="number">254413710</span></span><br></pre></td></tr></table></figure>
+
+<p>分析：在<code>lite @Bean mode</code>模式下， <code>@Bean</code>方法不会被CGLIB代理，所以多次调用<code>user()</code>会生成多个user对象。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/30/0530config/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-0527nginx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1202,115 +1335,6 @@
 
 
   
-    <article id="post-0518Docker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/18/0518Docker/">Docker基础</a>
-    </h1>
-  
-
-
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.8k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">9分</span>
-      </span>
-    </span>
-</div>
-          
-
-
-
-        
-         
-<a href="/2020/05/18/0518Docker/" class="archive-article-date">
-  	<time datetime="2020-05-18T06:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><blockquote>
-<p>今天买了阿里云服务器破费了 /doge<br>和VMware操作还是不太一样哦<br>Xshell+Xftp操作起来还是挺方便的</p>
-</blockquote>
-<h4 id="运行原理"><a href="#运行原理" class="headerlink" title="运行原理"></a>运行原理</h4><p><img src="https://i.loli.net/2020/05/18/fiMzoXVeBYKsyZp.png" alt="image-20200518095933304"></p>
-        
-          <a class="article-more-a" href="/2020/05/18/0518Docker/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-	
-
-	
-	
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/18/0518Docker/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1353,7 +1377,7 @@
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：41.2k</span>
+<span class="post-count">字数统计：41.8k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
@@ -1526,6 +1550,10 @@ MathJax.Hub.Queue(function() {
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">服务器</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -1583,6 +1611,10 @@ MathJax.Hub.Queue(function() {
               <a href="https://www.douban.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>刷刷豆瓣</a>
             </li>
           
+            <li class="search-li">
+              <a href="https://leetcode-cn.com/u/leib/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>乖乖刷题</a>
+            </li>
+          
         </ul>
   		
     	</section>
@@ -1591,7 +1623,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">日常分享&lt;br&gt;谢谢大家&lt;br&gt;&lt;br&gt;</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">寻找工作中&lt;br&gt;ToT&lt;br&gt;&lt;br&gt;</div>
   	  	
     	</section>
     
