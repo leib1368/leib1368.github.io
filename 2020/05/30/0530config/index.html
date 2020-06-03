@@ -16,7 +16,7 @@
 <meta property="og:description" content="Full @Configuration             vs           lite @Bean modeSpring Java Config   相关定义 lite @Bean mode ：当@Bean方法在没有使用@Configuration注解的类中声明时称之为lite @Bean mode Full @Configuration：如果@Bean方法在使用@Configurat">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-30T15:55:00.000Z">
-<meta property="article:modified_time" content="2020-06-01T01:44:35.490Z">
+<meta property="article:modified_time" content="2020-06-01T03:43:39.017Z">
 <meta property="article:author" content="Leib">
 <meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
@@ -227,6 +227,8 @@
 <li><code>lite @Bean mode</code> ：当<code>@Bean</code>方法在没有使用<code>@Configuration</code>注解的类中声明时称之为<code>lite @Bean mode</code></li>
 <li><code>Full @Configuration</code>：如果<code>@Bean</code>方法在使用<code>@Configuration</code>注解的类中声明时称之为<code>Full @Configuration</code></li>
 </ul>
+<a id="more"></a>
+
 <h2 id="有何区别"><a href="#有何区别" class="headerlink" title="有何区别"></a>有何区别</h2><p>总结一句话，<code>Full @Configuration</code>中的<code>@Bean</code>方法会被CGLIB所代理，而 <code>lite @Bean mode</code>中的<code>@Bean</code>方法不会被CGLIB代理。</p>
 <p>有一普通Java类，现在分别使用<code>Full @Configuration</code>和 <code>lite @Bean mode</code>这两种模式注册到Spring容器中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"user create... hashCode :"</span> + <span class="keyword">this</span>.hashCode());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -370,6 +372,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/06/03/0603%E6%8C%87%E9%92%88part1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          c语言 指针相关 part1
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/05/27/0527nginx/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">nginx</div>
@@ -493,7 +504,7 @@
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：41.8k</span>
+<span class="post-count">字数统计：41.9k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
@@ -669,6 +680,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">c</a>
               </li>
             
             <div class="clearfix"></div>
