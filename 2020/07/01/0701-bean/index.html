@@ -6,27 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>文章分类 | Leib&#39;s Blog</title>
+  <title>Bean | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随便记录一下 菜鸟学习中">
-<meta property="og:type" content="website">
-<meta property="og:title" content="文章分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="Bean IOC与DI Spring的3种编程风格与2种注入方式 1️⃣XML配置开发：描述依赖关系 自动装配：让职责单一化 2️⃣XML+注解：XML+context:component-scan+@Component @Autowired的小秘密 2️⃣JavaConfig+注解：@Configuration+@ComponentScan+@Component 3️⃣JavaConfig方式：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bean">
+<meta property="og:url" content="http://yoursite.com/2020/07/01/0701-bean/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="随便记录一下 菜鸟学习中">
+<meta property="og:description" content="Bean IOC与DI Spring的3种编程风格与2种注入方式 1️⃣XML配置开发：描述依赖关系 自动装配：让职责单一化 2️⃣XML+注解：XML+context:component-scan+@Component @Autowired的小秘密 2️⃣JavaConfig+注解：@Configuration+@ComponentScan+@Component 3️⃣JavaConfig方式：">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-20T11:32:03.000Z">
-<meta property="article:modified_time" content="2020-04-20T11:47:06.735Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-d1894656e55d9db98345b7f75c1c4260_720w.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-4e403a8b86914ee63164159976f1ae7b_720w.jpg">
+<meta property="article:published_time" content="2020-07-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-01T07:07:44.405Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="后端">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="C&#x2F;C++">
-<meta property="article:tag" content="SpringBoot">
-<meta property="article:tag" content="mybatis">
-<meta property="article:tag" content="Dota2">
-<meta property="article:tag" content="NBA">
-<meta property="article:tag" content="Cristiano Ronaldo">
+<meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-d1894656e55d9db98345b7f75c1c4260_720w.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -179,14 +175,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-0701-bean" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      文章分类
+      Bean
     </h1>
   
 
@@ -197,7 +193,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">0字</span>
+        <span class="post-count">355字</span>
       </span>
     </span>
 
@@ -221,15 +217,77 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/categories/index.html" class="archive-article-date">
-  	<time datetime="2020-04-20T11:32:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+<a href="/2020/07/01/0701-bean/" class="archive-article-date">
+  	<time datetime="2020-07-01T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="Bean"><a href="#Bean" class="headerlink" title="Bean"></a>Bean</h2><ul>
+<li>IOC与DI</li>
+<li>Spring的3种编程风格与2种注入方式</li>
+<li>1️⃣XML配置开发：<bean>描述依赖关系</li>
+<li>自动装配：让<bean>职责单一化</li>
+<li>2️⃣XML+注解：XML+<a href="context:component-scan">context:component-scan</a>+@Component</li>
+<li>@Autowired的小秘密</li>
+<li>2️⃣JavaConfig+注解：@Configuration+@ComponentScan+@Component</li>
+<li>3️⃣JavaConfig方式：@Configuration+@Bean</li>
+<li>大乱斗：@ImportResource、@Component、@Bean</li>
+</ul>
+<h3 id="Spring的3种编程风格与2种注入方式"><a href="#Spring的3种编程风格与2种注入方式" class="headerlink" title="Spring的3种编程风格与2种注入方式"></a>Spring的3种编程风格与2种注入方式</h3><ul>
+<li>Schema-based Container Configuration（XML配置）</li>
+<li>Annotation-based Container Configuration（注解）</li>
+<li>Java-based Container Configuration（@Configuration配置类）</li>
+</ul>
+<p>Spring支持的2种注入方式：</p>
+<ul>
+<li>构造方法注入</li>
+<li>setter方法注入</li>
+</ul>
+<a id="more"></a>
+
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-d1894656e55d9db98345b7f75c1c4260_720w.jpg" alt="img"></p>
+<h4 id="XML配置"><a href="#XML配置" class="headerlink" title="XML配置"></a>XML配置</h4><ul>
+<li>XML配置<property> + 对象提供对应的setter方法</li>
+<li>XML配置<constructor-arg> + 对象提供对应的构造方法</li>
+</ul>
+<p>改变XML配置的同时，需要对象提供对应的方法支持。如果你用了<property>，却没有在类中提供setter方法，则会报错。</p>
+<h5 id="自动装配：让职责单一化"><a href="#自动装配：让职责单一化" class="headerlink" title="自动装配：让职责单一化"></a>自动装配：让<bean>职责单一化</h5><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-4e403a8b86914ee63164159976f1ae7b_720w.jpg" alt="img"></p>
+<h4 id="XML-注解："><a href="#XML-注解：" class="headerlink" title="XML+注解："></a>XML+注解：</h4><p>XML+<a href="context:component-scan">context:component-scan</a>+@Component</p>
+<h4 id="JavaConfig-注解："><a href="#JavaConfig-注解：" class="headerlink" title="JavaConfig+注解："></a>JavaConfig+注解：</h4><p>@Configuration+@ComponentScan+@Component</p>
+<h4 id="JavaConfig方式："><a href="#JavaConfig方式：" class="headerlink" title="JavaConfig方式："></a>JavaConfig方式：</h4><p>@Configuration+@Bean</p>
+<hr>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><p>纯XML配置开发：没有注解，全部<bean>标签，但也可以配置自动装配</p>
+</li>
+<li><p>注解开发不能单独存在，需要<strong>开启扫描</strong>。自动装配一般用@Autowired</p>
+</li>
+<li><ul>
+<li>XML+注解：XML+<strong><a href="context:component-scan">context:component-scan</a></strong>+@Component</li>
+</ul>
+</li>
+<li><ul>
+<li>JavaConfig+注解：@Configuration+<strong>@ComponentScan</strong>+@Component</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>JavaConfig方式：@Configuration+@Bean</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>通常我们都会两两混用，比如XML+注解，或者JavaConfig+注解，但很少三种一起用。</p>
+<hr>
+<ul>
+<li>3种编程风格：XML、注解、JavaConfig</li>
+<li>2种注入方式：setter方法、构造方法</li>
+<li>4种装配模式：byType、byName、constructor、no</li>
+</ul>
+
       
 
       
@@ -272,6 +330,17 @@
 	
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -322,7 +391,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/categories/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/01/0701-bean/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -334,6 +403,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2020/07/07/0707JVM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JVM
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/13/0613%E6%B3%9B%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">泛型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -481,7 +569,7 @@ setInterval("createtime()",250);
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
