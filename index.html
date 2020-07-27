@@ -179,6 +179,194 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-0722JavaScript Web APIs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/22/0722JavaScript%20Web%20APIs/">JavaScript Web APIs</a>
+    </h1>
+  
+
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">415字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+          
+
+
+
+        
+         
+<a href="/2020/07/22/0722JavaScript%20Web%20APIs/" class="archive-article-date">
+  	<time datetime="2020-07-22T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722110405982.png" alt="image-20200722110405982"></p>
+<h2 id="1-API-和-Web-API"><a href="#1-API-和-Web-API" class="headerlink" title="1)   API  和 Web API"></a>1)   API  和 Web API</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722110629049.png" alt="image-20200722110629049"></p>
+<p>Web API 是浏览器提供的一套操作浏览器的功能和页面元素的API (BOM DOM)</p>
+<h2 id="2）DOM"><a href="#2）DOM" class="headerlink" title="2）DOM"></a>2）DOM</h2><p>简单理解为处理html和xml的编程接口</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722111111468.png" alt="image-20200722111111468"></p>
+<p>console.dir();  //打印返回的元素对象 更好的查看里面的属性和方法</p>
+<h3 id="获取元素方法"><a href="#获取元素方法" class="headerlink" title="获取元素方法"></a>获取元素方法</h3><p>getElementById<br>getElementsByTagName</p>
+<p>html5新增的方法获取</p>
+<p>getElementsByClassName<br>querySelector                                //返回指定选择器的第一个元素对象<br>类加点，id加井号，标签不需要<br>querySelectorAll    </p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722112537948.png" alt="image-20200722112537948"></p>
+<h3 id="获取body-html"><a href="#获取body-html" class="headerlink" title="获取body html"></a>获取body html</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722114018408.png" alt="image-20200722114018408"></p>
+<h2 id="3）事件"><a href="#3）事件" class="headerlink" title="3）事件"></a>3）事件</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722114736527.png" alt="image-20200722114736527"></p>
+<p>事件有三部分组成。 事件源、事件类型、事件处理程序 。</p>
+<p>​                                    btn      、 onclick 、  function    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">'aaa'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4）-操作元素"><a href="#4）-操作元素" class="headerlink" title="4） 操作元素"></a>4） 操作元素</h2><p>element.innerText   /   element.innerHtml</p>
+<p>innerText   是不识别html标签的<br>innerHtml  可以在内部文本加粗 加红 等操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722115729900.png" alt="image-20200722115729900"></p>
+<p>element.style<br>element.className</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722154944403.png" alt="image-20200722154944403"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722155257991.png" alt="image-20200722155257991"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722191230127.png" alt="image-20200722191230127"></p>
+<hr>
+<h2 id="5-操作属性"><a href="#5-操作属性" class="headerlink" title="5)   操作属性"></a>5)   操作属性</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723134601907.png" alt="image-20200723134601907"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723134615945.png" alt="image-20200723134615945"></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723134759992.png" alt="image-20200723134759992"></p>
+<hr>
+<h2 id="ps-h5自定义属性"><a href="#ps-h5自定义属性" class="headerlink" title="ps h5自定义属性"></a>ps h5自定义属性</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723150113475.png" alt="image-20200723150113475"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723150312254.png" alt="image-20200723150312254"></p>
+<hr>
+<h2 id="–-–-–-–-–-–-–-–"><a href="#–-–-–-–-–-–-–-–" class="headerlink" title="– – –  –  – – –  –"></a>– – –  –  – – –  –</h2><h2 id="6）节点操作"><a href="#6）节点操作" class="headerlink" title="6）节点操作"></a>6）节点操作</h2><h3 id="父子节点"><a href="#父子节点" class="headerlink" title="父子节点"></a>父子节点</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724125517416.png" alt="image-20200724125517416"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724125659862.png" alt="image-20200724125659862"></p>
+<blockquote>
+<p>节点至少拥有 节点类型、节点名称、节点值    </p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724125912516.png" alt="image-20200724125912516"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130156915.png" alt="image-20200724130156915"></p>
+<p><strong>获取子节点，但是该方法较麻烦。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130354831.png" alt="image-20200724130354831"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130446645.png" alt="image-20200724130446645"></p>
+<hr>
+<p>但是此时如果含有文本节点的话 会返回文本节点。因此还有下面第二种方式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130631952.png" alt="image-20200724130631952"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130844596.png" alt="image-20200724130844596"></p>
+<img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131022092.png" alt="image-20200724131022092" style="zoom:67%;" />
+
+<hr>
+<h3 id="兄弟节点"><a href="#兄弟节点" class="headerlink" title="兄弟节点"></a>兄弟节点</h3><p>此方法同样会获得文本节点(不建议使用哦~)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131500498.png" alt="image-20200724131500498"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131557625.png" alt="image-20200724131557625"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131539556.png" alt="image-20200724131539556"></p>
+<hr>
+<h3 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131749787.png" alt="image-20200724131749787"></p>
+<p>创建后需要添加</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724133323187.png" alt="image-20200724133323187"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724133408875.png" alt="image-20200724133408875"></p>
+<h3 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724133821358.png" alt="image-20200724133821358"></p>
+<h3 id="复制节点"><a href="#复制节点" class="headerlink" title="复制节点"></a>复制节点</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724135601237.png" alt="image-20200724135601237"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724140951041.png" alt="image-20200724140951041"></p>
+<h3 id="ps-补充"><a href="#ps-补充" class="headerlink" title="ps 补充"></a>ps 补充</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724151514733.png" alt="image-20200724151514733"></p>
+<hr>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="注册事件"><a href="#注册事件" class="headerlink" title="注册事件"></a>注册事件</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724152108352.png" alt="image-20200724152108352"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724152116778.png" alt="image-20200724152116778"></p>
+<p>删除等同理 就不重复了</p>
+<h2 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724154438064.png" alt="image-20200724154438064"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724154535563.png" alt="image-20200724154535563"></p>
+<hr>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125055017.png" alt="image-20200727125055017">)<img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125132006.png" alt="image-20200727125132006"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125206624.png" alt="image-20200727125206624"></h3><h3 id="事件对象常用方法"><a href="#事件对象常用方法" class="headerlink" title="事件对象常用方法"></a>事件对象常用方法</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125242393.png" alt="image-20200727125242393"></p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125759814.png" alt="image-20200727125759814"></p>
+<hr>
+<h2 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727131940024.png" alt="image-20200727131940024"></p>
+<h2 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727132301086.png" alt="image-20200727132301086"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727132512417.png" alt="image-20200727132512417"></p>
+<h3 id="ps-常见鼠标事件"><a href="#ps-常见鼠标事件" class="headerlink" title="ps 常见鼠标事件"></a>ps 常见鼠标事件</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727133043669.png" alt="image-20200727133043669"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727133321527.png" alt="image-20200727133321527"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727134250017.png" alt="image-20200727134250017"></p>
+<hr>
+<h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727145456330.png" alt="image-20200727145456330"></p>
+<h2 id="窗口加载事件"><a href="#窗口加载事件" class="headerlink" title="窗口加载事件"></a>窗口加载事件</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727150655430.png" alt="image-20200727150655430"></p>
+<h2 id="ps-回调函数"><a href="#ps-回调函数" class="headerlink" title="ps 回调函数"></a>ps 回调函数</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727152804091.png" alt="image-20200727152804091"></p>
+<h2 id="location"><a href="#location" class="headerlink" title="location"></a>location</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727164716804.png" alt="image-20200727164716804"></p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><h2 id="navigator对象与history对象"><a href="#navigator对象与history对象" class="headerlink" title="navigator对象与history对象"></a><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727165256345.png" alt="image-20200727165256345">navigator对象与history对象</h2><p>navigator可以判断用户端是手机还是pc;<br>history记录历史浏览</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/22/0722JavaScript%20Web%20APIs/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-0707JVM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -246,7 +434,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -1184,112 +1372,6 @@
 
 
   
-    <article id="post-0527nginx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/27/0527nginx/">nginx</a>
-    </h1>
-  
-
-
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">543字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-
-
-
-        
-         
-<a href="/2020/05/27/0527nginx/" class="archive-article-date">
-  	<time datetime="2020-05-27T15:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>Nginx (engine x) 是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。<br>其将源代码以类BSD许可证的形式发布，因它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名。2011年6月1日，nginx 1.0.4发布。<br>Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，在BSD-like 协议下发行。其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、京东、新浪、网易、腾讯、淘宝等。</p>
-        
-          <a class="article-more-a" href="/2020/05/27/0527nginx/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-	
-
-	
-	
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">服务器</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/27/0527nginx/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1332,7 +1414,7 @@
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：49.9k</span>
+<span class="post-count">字数统计：50.4k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
@@ -1512,6 +1594,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">c</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,22 +6,75 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>linux后台部署 | Leib&#39;s Blog</title>
+  <title>JavaScript Web APIs | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在云服务器上部署的项目一直运行 使用 screen 执行  1. 安装（命令行执行任务）CentOS 系列系统： yum install screen Ubuntu 系列系统： sudo apt-get install screen 2. 创建 screen 窗口1234screen -S  name# name可以设置为ssh、ftp，用于标注该 screen 窗口用途# 示例：screen -">
+  <meta name="description" content="JavaScript 1)   API  和 Web API Web API 是浏览器提供的一套操作浏览器的功能和页面元素的API (BOM DOM) 2）DOM简单理解为处理html和xml的编程接口  console.dir();  &#x2F;&#x2F;打印返回的元素对象 更好的查看里面的属性和方法 获取元素方法getElementByIdgetElementsByTagName html5新增的方法获取 g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux后台部署">
-<meta property="og:url" content="http://yoursite.com/2020/06/08/0608linux%E5%90%8E%E5%8F%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:title" content="JavaScript Web APIs">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/0722JavaScript%20Web%20APIs/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="在云服务器上部署的项目一直运行 使用 screen 执行  1. 安装（命令行执行任务）CentOS 系列系统： yum install screen Ubuntu 系列系统： sudo apt-get install screen 2. 创建 screen 窗口1234screen -S  name# name可以设置为ssh、ftp，用于标注该 screen 窗口用途# 示例：screen -">
+<meta property="og:description" content="JavaScript 1)   API  和 Web API Web API 是浏览器提供的一套操作浏览器的功能和页面元素的API (BOM DOM) 2）DOM简单理解为处理html和xml的编程接口  console.dir();  &#x2F;&#x2F;打印返回的元素对象 更好的查看里面的属性和方法 获取元素方法getElementByIdgetElementsByTagName html5新增的方法获取 g">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190707215018997.png">
-<meta property="article:published_time" content="2020-06-08T04:00:00.000Z">
-<meta property="article:modified_time" content="2020-06-08T07:09:10.401Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722110405982.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722110629049.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722111111468.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722112537948.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722114018408.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722114736527.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722115729900.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722154944403.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722155257991.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722191230127.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723134601907.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723134615945.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723134759992.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723150113475.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723150312254.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724125517416.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724125659862.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724125912516.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130156915.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130354831.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130446645.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130631952.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130844596.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131022092.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131500498.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131557625.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131539556.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131749787.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724133323187.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724133408875.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724133821358.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724135601237.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724140951041.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724151514733.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724152108352.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724152116778.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724154438064.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724154535563.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125055017.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125132006.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125206624.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125242393.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125759814.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727131940024.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727132301086.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727132512417.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727133043669.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727133321527.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727134250017.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727145456330.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727150655430.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727152804091.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727164716804.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727165256345.png">
+<meta property="article:published_time" content="2020-07-22T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-27T10:36:32.647Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190707215018997.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722110405982.png">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -174,14 +227,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-0608linux后台部署项目" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-0722JavaScript Web APIs" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      linux后台部署
+      JavaScript Web APIs
     </h1>
   
 
@@ -192,7 +245,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">275字</span>
+        <span class="post-count">415字</span>
       </span>
     </span>
 
@@ -216,36 +269,99 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/06/08/0608linux%E5%90%8E%E5%8F%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/" class="archive-article-date">
-  	<time datetime="2020-06-08T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
+<a href="/2020/07/22/0722JavaScript%20Web%20APIs/" class="archive-article-date">
+  	<time datetime="2020-07-22T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="在云服务器上部署的项目一直运行"><a href="#在云服务器上部署的项目一直运行" class="headerlink" title="在云服务器上部署的项目一直运行"></a>在云服务器上部署的项目一直运行</h2><blockquote>
-<p>使用 screen 执行</p>
+        <h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722110405982.png" alt="image-20200722110405982"></p>
+<h2 id="1-API-和-Web-API"><a href="#1-API-和-Web-API" class="headerlink" title="1)   API  和 Web API"></a>1)   API  和 Web API</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722110629049.png" alt="image-20200722110629049"></p>
+<p>Web API 是浏览器提供的一套操作浏览器的功能和页面元素的API (BOM DOM)</p>
+<h2 id="2）DOM"><a href="#2）DOM" class="headerlink" title="2）DOM"></a>2）DOM</h2><p>简单理解为处理html和xml的编程接口</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722111111468.png" alt="image-20200722111111468"></p>
+<p>console.dir();  //打印返回的元素对象 更好的查看里面的属性和方法</p>
+<h3 id="获取元素方法"><a href="#获取元素方法" class="headerlink" title="获取元素方法"></a>获取元素方法</h3><p>getElementById<br>getElementsByTagName</p>
+<p>html5新增的方法获取</p>
+<p>getElementsByClassName<br>querySelector                                //返回指定选择器的第一个元素对象<br>类加点，id加井号，标签不需要<br>querySelectorAll    </p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722112537948.png" alt="image-20200722112537948"></p>
+<h3 id="获取body-html"><a href="#获取body-html" class="headerlink" title="获取body html"></a>获取body html</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722114018408.png" alt="image-20200722114018408"></p>
+<h2 id="3）事件"><a href="#3）事件" class="headerlink" title="3）事件"></a>3）事件</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722114736527.png" alt="image-20200722114736527"></p>
+<p>事件有三部分组成。 事件源、事件类型、事件处理程序 。</p>
+<p>​                                    btn      、 onclick 、  function    </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</span><br><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">'aaa'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4）-操作元素"><a href="#4）-操作元素" class="headerlink" title="4） 操作元素"></a>4） 操作元素</h2><p>element.innerText   /   element.innerHtml</p>
+<p>innerText   是不识别html标签的<br>innerHtml  可以在内部文本加粗 加红 等操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722115729900.png" alt="image-20200722115729900"></p>
+<p>element.style<br>element.className</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722154944403.png" alt="image-20200722154944403"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722155257991.png" alt="image-20200722155257991"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200722191230127.png" alt="image-20200722191230127"></p>
+<hr>
+<h2 id="5-操作属性"><a href="#5-操作属性" class="headerlink" title="5)   操作属性"></a>5)   操作属性</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723134601907.png" alt="image-20200723134601907"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723134615945.png" alt="image-20200723134615945"></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723134759992.png" alt="image-20200723134759992"></p>
+<hr>
+<h2 id="ps-h5自定义属性"><a href="#ps-h5自定义属性" class="headerlink" title="ps h5自定义属性"></a>ps h5自定义属性</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723150113475.png" alt="image-20200723150113475"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200723150312254.png" alt="image-20200723150312254"></p>
+<hr>
+<h2 id="–-–-–-–-–-–-–-–"><a href="#–-–-–-–-–-–-–-–" class="headerlink" title="– – –  –  – – –  –"></a>– – –  –  – – –  –</h2><h2 id="6）节点操作"><a href="#6）节点操作" class="headerlink" title="6）节点操作"></a>6）节点操作</h2><h3 id="父子节点"><a href="#父子节点" class="headerlink" title="父子节点"></a>父子节点</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724125517416.png" alt="image-20200724125517416"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724125659862.png" alt="image-20200724125659862"></p>
+<blockquote>
+<p>节点至少拥有 节点类型、节点名称、节点值    </p>
 </blockquote>
-<h4 id="1-安装（命令行执行任务）"><a href="#1-安装（命令行执行任务）" class="headerlink" title="1. 安装（命令行执行任务）"></a>1. 安装（命令行执行任务）</h4><p>CentOS 系列系统： yum install screen</p>
-<p>Ubuntu 系列系统： sudo apt-get install screen</p>
-<h4 id="2-创建-screen-窗口"><a href="#2-创建-screen-窗口" class="headerlink" title="2. 创建 screen 窗口"></a>2. 创建 screen 窗口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">screen -S  name</span><br><span class="line"><span class="comment"># name可以设置为ssh、ftp，用于标注该 screen 窗口用途</span></span><br><span class="line"><span class="comment"># 示例：</span></span><br><span class="line">screen -S ftp</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724125912516.png" alt="image-20200724125912516"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130156915.png" alt="image-20200724130156915"></p>
+<p><strong>获取子节点，但是该方法较麻烦。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130354831.png" alt="image-20200724130354831"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130446645.png" alt="image-20200724130446645"></p>
+<hr>
+<p>但是此时如果含有文本节点的话 会返回文本节点。因此还有下面第二种方式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130631952.png" alt="image-20200724130631952"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724130844596.png" alt="image-20200724130844596"></p>
+<img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131022092.png" alt="image-20200724131022092" style="zoom:67%;" />
 
-<h4 id="退出保存"><a href="#退出保存" class="headerlink" title="退出保存"></a>退出保存</h4><p>就是完全退出exit， 不会进行session保存了。<br>CTRL-a+d ， 用screen -r就可恢复到原来的工作状态了<br>Detached， 在窗口中键入Ctrl+a 键，再按下 d 键，就可以退出 SSH 登录，退出之后不会影响 screen 程序的执行（也就是说我们服务器上部署的项目就会一直运行了）。</p>
-<p>简答的几步操作就可以搞定了。下面是另外两个命令，应该可以用得着。</p>
-<ol>
-<li>查看screen 进程 – &gt;<br>screen -ls</li>
-<li>进入 screen 进程<br>如果只有一个 screen 进程，命令行输入 screen -r -d 即可<br>如果有多个screen, 我们可以通过它的 PID 进入screen:</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190707215018997.png" alt="在这里插入图片描述"></p>
-<p> 进入 manager， 执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -r -d 1805</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>原文链接：<a href="https://blog.csdn.net/qq_36487585/article/details/95031164" target="_blank" rel="noopener">https://blog.csdn.net/qq_36487585/article/details/95031164</a></p>
+<hr>
+<h3 id="兄弟节点"><a href="#兄弟节点" class="headerlink" title="兄弟节点"></a>兄弟节点</h3><p>此方法同样会获得文本节点(不建议使用哦~)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131500498.png" alt="image-20200724131500498"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131557625.png" alt="image-20200724131557625"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131539556.png" alt="image-20200724131539556"></p>
+<hr>
+<h3 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724131749787.png" alt="image-20200724131749787"></p>
+<p>创建后需要添加</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724133323187.png" alt="image-20200724133323187"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724133408875.png" alt="image-20200724133408875"></p>
+<h3 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724133821358.png" alt="image-20200724133821358"></p>
+<h3 id="复制节点"><a href="#复制节点" class="headerlink" title="复制节点"></a>复制节点</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724135601237.png" alt="image-20200724135601237"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724140951041.png" alt="image-20200724140951041"></p>
+<h3 id="ps-补充"><a href="#ps-补充" class="headerlink" title="ps 补充"></a>ps 补充</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724151514733.png" alt="image-20200724151514733"></p>
+<hr>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="注册事件"><a href="#注册事件" class="headerlink" title="注册事件"></a>注册事件</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724152108352.png" alt="image-20200724152108352"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724152116778.png" alt="image-20200724152116778"></p>
+<p>删除等同理 就不重复了</p>
+<h2 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724154438064.png" alt="image-20200724154438064"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200724154535563.png" alt="image-20200724154535563"></p>
+<hr>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125055017.png" alt="image-20200727125055017">)<img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125132006.png" alt="image-20200727125132006"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125206624.png" alt="image-20200727125206624"></h3><h3 id="事件对象常用方法"><a href="#事件对象常用方法" class="headerlink" title="事件对象常用方法"></a>事件对象常用方法</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125242393.png" alt="image-20200727125242393"></p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727125759814.png" alt="image-20200727125759814"></p>
+<hr>
+<h2 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727131940024.png" alt="image-20200727131940024"></p>
+<h2 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727132301086.png" alt="image-20200727132301086"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727132512417.png" alt="image-20200727132512417"></p>
+<h3 id="ps-常见鼠标事件"><a href="#ps-常见鼠标事件" class="headerlink" title="ps 常见鼠标事件"></a>ps 常见鼠标事件</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727133043669.png" alt="image-20200727133043669"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727133321527.png" alt="image-20200727133321527"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727134250017.png" alt="image-20200727134250017"></p>
+<hr>
+<h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727145456330.png" alt="image-20200727145456330"></p>
+<h2 id="窗口加载事件"><a href="#窗口加载事件" class="headerlink" title="窗口加载事件"></a>窗口加载事件</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727150655430.png" alt="image-20200727150655430"></p>
+<h2 id="ps-回调函数"><a href="#ps-回调函数" class="headerlink" title="ps 回调函数"></a>ps 回调函数</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727152804091.png" alt="image-20200727152804091"></p>
+<h2 id="location"><a href="#location" class="headerlink" title="location"></a>location</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727164716804.png" alt="image-20200727164716804"></p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><h2 id="navigator对象与history对象"><a href="#navigator对象与history对象" class="headerlink" title="navigator对象与history对象"></a><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200727165256345.png" alt="image-20200727165256345">navigator对象与history对象</h2><p>navigator可以判断用户端是手机还是pc;<br>history记录历史浏览</p>
 
       
 
@@ -294,7 +410,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -350,7 +466,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/08/0608linux%E5%90%8E%E5%8F%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/22/0722JavaScript%20Web%20APIs/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -364,18 +480,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/13/0613%E6%B3%9B%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          泛型
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/06/06/0606%E5%80%BC%E4%BC%A0%E9%80%92/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">值传递</div>
+    <a href="/2020/07/07/0707JVM/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JVM</div>
       <i class="icon-circle-right"></i>
     </a>
   
