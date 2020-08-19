@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Bean | Leib&#39;s Blog</title>
+  <title>深入理解List的toArray()方法和toArray(T[] a)方法 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Bean IOC与DI Spring的3种编程风格与2种注入方式 1️⃣XML配置开发：描述依赖关系 自动装配：让职责单一化 2️⃣XML+注解：XML+context:component-scan+@Component @Autowired的小秘密 2️⃣JavaConfig+注解：@Configuration+@ComponentScan+@Component 3️⃣JavaConfig方式：">
+  <meta name="description" content="深入理解List的toArray()方法和toArray(T[] a)方法这两个方法都是将列表List中的元素转导出为数组，不同的是，toArray()方法导出的是Object类型数组，而toArray[T[] a]方法导出的是指定类型的数组。 下面是两个方法的申明及说明，摘自Java8的API文档。 toArray()方法的分析 1Object[] toArray()  Returns an a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bean">
-<meta property="og:url" content="http://yoursite.com/2020/07/01/0701-bean/index.html">
+<meta property="og:title" content="深入理解List的toArray()方法和toArray(T[] a)方法">
+<meta property="og:url" content="http://yoursite.com/2020/08/19/0819_toArray/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="Bean IOC与DI Spring的3种编程风格与2种注入方式 1️⃣XML配置开发：描述依赖关系 自动装配：让职责单一化 2️⃣XML+注解：XML+context:component-scan+@Component @Autowired的小秘密 2️⃣JavaConfig+注解：@Configuration+@ComponentScan+@Component 3️⃣JavaConfig方式：">
+<meta property="og:description" content="深入理解List的toArray()方法和toArray(T[] a)方法这两个方法都是将列表List中的元素转导出为数组，不同的是，toArray()方法导出的是Object类型数组，而toArray[T[] a]方法导出的是指定类型的数组。 下面是两个方法的申明及说明，摘自Java8的API文档。 toArray()方法的分析 1Object[] toArray()  Returns an a">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-d1894656e55d9db98345b7f75c1c4260_720w.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-4e403a8b86914ee63164159976f1ae7b_720w.jpg">
-<meta property="article:published_time" content="2020-07-01T04:00:00.000Z">
-<meta property="article:modified_time" content="2020-07-01T07:07:44.405Z">
+<meta property="article:published_time" content="2020-08-19T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-08-19T06:15:00.082Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="spring">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-d1894656e55d9db98345b7f75c1c4260_720w.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -175,14 +172,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-0701-bean" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-0819_toArray" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Bean
+      深入理解List的toArray()方法和toArray(T[] a)方法
     </h1>
   
 
@@ -193,7 +190,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">355字</span>
+        <span class="post-count">3.1k字</span>
       </span>
     </span>
 
@@ -202,7 +199,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">14分</span>
       </span>
     </span>
 </div>
@@ -217,76 +214,119 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/07/01/0701-bean/" class="archive-article-date">
-  	<time datetime="2020-07-01T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+<a href="/2020/08/19/0819_toArray/" class="archive-article-date">
+  	<time datetime="2020-08-19T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Bean"><a href="#Bean" class="headerlink" title="Bean"></a>Bean</h2><ul>
-<li>IOC与DI</li>
-<li>Spring的3种编程风格与2种注入方式</li>
-<li>1️⃣XML配置开发：<bean>描述依赖关系</li>
-<li>自动装配：让<bean>职责单一化</li>
-<li>2️⃣XML+注解：XML+<a href="context:component-scan">context:component-scan</a>+@Component</li>
-<li>@Autowired的小秘密</li>
-<li>2️⃣JavaConfig+注解：@Configuration+@ComponentScan+@Component</li>
-<li>3️⃣JavaConfig方式：@Configuration+@Bean</li>
-<li>大乱斗：@ImportResource、@Component、@Bean</li>
-</ul>
-<h3 id="Spring的3种编程风格与2种注入方式"><a href="#Spring的3种编程风格与2种注入方式" class="headerlink" title="Spring的3种编程风格与2种注入方式"></a>Spring的3种编程风格与2种注入方式</h3><ul>
-<li>Schema-based Container Configuration（XML配置）</li>
-<li>Annotation-based Container Configuration（注解）</li>
-<li>Java-based Container Configuration（@Configuration配置类）</li>
-</ul>
-<p>Spring支持的2种注入方式：</p>
-<ul>
-<li>构造方法注入</li>
-<li>setter方法注入</li>
-</ul>
-<a id="more"></a>
+        <h2 id="深入理解List的toArray-方法和toArray-T-a-方法"><a href="#深入理解List的toArray-方法和toArray-T-a-方法" class="headerlink" title="深入理解List的toArray()方法和toArray(T[] a)方法"></a>深入理解List的toArray()方法和toArray(T[] a)方法</h2><p>这两个方法都是将列表List中的元素转导出为数组，不同的是，toArray()方法导出的是Object类型数组，而toArray[T[] a]方法导出的是指定类型的数组。</p>
+<p>下面是两个方法的申明及说明，摘自Java8的API文档。</p>
+<h2 id="toArray-方法的分析"><a href="#toArray-方法的分析" class="headerlink" title="toArray()方法的分析"></a>toArray()方法的分析</h2><blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object[] toArray()</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-d1894656e55d9db98345b7f75c1c4260_720w.jpg" alt="img"></p>
-<h4 id="XML配置"><a href="#XML配置" class="headerlink" title="XML配置"></a>XML配置</h4><ul>
-<li>XML配置<property> + 对象提供对应的setter方法</li>
-<li>XML配置<constructor-arg> + 对象提供对应的构造方法</li>
-</ul>
-<p>改变XML配置的同时，需要对象提供对应的方法支持。如果你用了<property>，却没有在类中提供setter方法，则会报错。</p>
-<h5 id="自动装配：让职责单一化"><a href="#自动装配：让职责单一化" class="headerlink" title="自动装配：让职责单一化"></a>自动装配：让<bean>职责单一化</h5><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/v2-4e403a8b86914ee63164159976f1ae7b_720w.jpg" alt="img"></p>
-<h4 id="XML-注解："><a href="#XML-注解：" class="headerlink" title="XML+注解："></a>XML+注解：</h4><p>XML+<a href="context:component-scan">context:component-scan</a>+@Component</p>
-<h4 id="JavaConfig-注解："><a href="#JavaConfig-注解：" class="headerlink" title="JavaConfig+注解："></a>JavaConfig+注解：</h4><p>@Configuration+@ComponentScan+@Component</p>
-<h4 id="JavaConfig方式："><a href="#JavaConfig方式：" class="headerlink" title="JavaConfig方式："></a>JavaConfig方式：</h4><p>@Configuration+@Bean</p>
-<hr>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
-<li><p>纯XML配置开发：没有注解，全部<bean>标签，但也可以配置自动装配</p>
-</li>
-<li><p>注解开发不能单独存在，需要<strong>开启扫描</strong>。自动装配一般用@Autowired</p>
-</li>
-<li><ul>
-<li>XML+注解：XML+<strong><a href="context:component-scan">context:component-scan</a></strong>+@Component</li>
-</ul>
-</li>
-<li><ul>
-<li>JavaConfig+注解：@Configuration+<strong>@ComponentScan</strong>+@Component</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>JavaConfig方式：@Configuration+@Bean</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>通常我们都会两两混用，比如XML+注解，或者JavaConfig+注解，但很少三种一起用。</p>
-<hr>
+<p>Returns an array containing all of the elements in this list in proper sequence (from first to last element).</p>
+<p>The returned array will be “safe” in that no references to it are maintained by this list. (In other words, this method must allocate a new array even if this list is backed by an array). The caller is thus free to modify the returned array.</p>
+<p>This method acts as bridge between array-based and collection-based APIs.</p>
 <ul>
-<li>3种编程风格：XML、注解、JavaConfig</li>
-<li>2种注入方式：setter方法、构造方法</li>
-<li>4种装配模式：byType、byName、constructor、no</li>
+<li>Specified by:</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toArray&#96; in interface &#96;Collection&lt;E&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Returns:</li>
+</ul>
+<p>an array containing all of the elements in this list in proper sequence</p>
+<ul>
+<li>See Also:</li>
+</ul>
+<p><a href="https://blog.csdn.net/mucaoyx/java/util/Arrays.html#asList-T...-" target="_blank" rel="noopener"><code>Arrays.asList(Object[\])</code></a></p>
+</blockquote>
+<p>toArray()方法会返回List中所有元素构成的数组，并且数组类型是Object[]。还要注意一点就是，返回的数组是新生成的一个数组，也就是说，多次运行toArray()方法会获得不同的数组对象，但是这些数组对象中内容一样的。也就是说，toArray()返回的数组是安全的，你可以对它进行任意的修改，其原因就是List不会维持一个对该返回的数组的引用。下面我们做一个小实验来验证一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.add(<span class="number">1</span>);</span><br><span class="line">    list.add(<span class="number">2</span>);</span><br><span class="line">    Object[] objects1 = list.toArray();</span><br><span class="line">    Object[] objects2 = list.toArray();</span><br><span class="line">    System.out.println(<span class="string">"objects1 == objects2 : "</span>+(objects1 == objects2));</span><br><span class="line">    objects1[<span class="number">1</span>]=<span class="number">4</span>;</span><br><span class="line">    System.out.println(<span class="string">"show objects1: "</span>+ Arrays.toString(objects1));</span><br><span class="line">    System.out.println(<span class="string">"show objects2: "</span>+ Arrays.toString(objects2));</span><br><span class="line">    System.out.println(<span class="string">"show list: "</span>+list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<blockquote>
+<p>objects1 == objects2 : false<br>show objects1: [1, 4]<br>show objects2: [1, 2]<br>show list: [1, 2]</p>
+</blockquote>
+<p>从这个小实验里面，可以看出确实toArray()返回的是一个新的数组对象，并且多次执行toArray()方法获得的是不同的数组对象，并且对其中一个数组进行修改，不会影响到其他toArray()方法获得的数组，并且也不会影响到list本身原来存储的元素值。</p>
+<p>这儿存在一个问题，list中存储的是基本类型int的包装类型Integer，如果换成其他的自定义类型呢，结果会是怎么样？接下来我们看下面这个例子。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"People&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;People&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.add(<span class="keyword">new</span> People(<span class="string">"小明"</span>));</span><br><span class="line">    list.add(<span class="keyword">new</span> People(<span class="string">"小王"</span>));</span><br><span class="line">    Object[] objects1 = list.toArray();</span><br><span class="line">    Object[] objects2 = list.toArray();</span><br><span class="line">    System.out.println(<span class="string">"objects1 == objects2 : "</span>+(objects1 == objects2));</span><br><span class="line">    objects1[<span class="number">1</span>]=<span class="keyword">new</span> People(<span class="string">"小花"</span>);</span><br><span class="line">    System.out.println(<span class="string">"show objects1: "</span>+ Arrays.toString(objects1));</span><br><span class="line">    System.out.println(<span class="string">"show objects2: "</span>+ Arrays.toString(objects2));</span><br><span class="line">    System.out.println(<span class="string">"show list: "</span>+list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<blockquote>
+<p>objects1 == objects2 : false<br>show objects1: [People{name=‘小明’}, People{name=‘小花’}]<br>show objects2: [People{name=‘小明’}, People{name=‘小王’}]<br>show list: [People{name=‘小明’}, People{name=‘小王’}]</p>
+</blockquote>
+<p>可以看到依然是和上面的分析结果一样，toArray()返回的是一个新的数组对象，对于toArray()返回的一个数组元素进行修改，不会影响到其他toArray()返回的数组对象，也不会影响list本身。</p>
+<p>现在元素是自定义对象，那么我们对元素对象对象修改会怎么样呢？看下面这个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//People类和上一个例子中的一样，这里不再列出了。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;People&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.add(<span class="keyword">new</span> People(<span class="string">"小明"</span>));</span><br><span class="line">    list.add(<span class="keyword">new</span> People(<span class="string">"小王"</span>));</span><br><span class="line">    Object[] objects1 = list.toArray();</span><br><span class="line">    Object[] objects2 = list.toArray();</span><br><span class="line">    System.out.println(<span class="string">"objects1 == objects2 : "</span>+(objects1 == objects2));</span><br><span class="line">    ((People)objects1[<span class="number">1</span>]).name = <span class="string">"小花"</span>;</span><br><span class="line">    System.out.println(<span class="string">"show objects1: "</span>+ Arrays.toString(objects1));</span><br><span class="line">    System.out.println(<span class="string">"show objects2: "</span>+ Arrays.toString(objects2));</span><br><span class="line">    System.out.println(<span class="string">"show list: "</span>+list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<blockquote>
+<p>objects1 == objects2 : false<br>show objects1: [People{name=‘小明’}, People{name=‘小花’}]<br>show objects2: [People{name=‘小明’}, People{name=‘小花’}]<br>show list: [People{name=‘小明’}, People{name=‘小花’}]</p>
+</blockquote>
+<p>从这个例子的输出结果可以看出，对元素对象本身就行修改，会导致toArray()返回的所有数组中的内容都发生改变，包括原始的list容器里面的元素类容。从这个例子可以得出，如果list.toArray()返回的数组中存放的是list原始对象的引用，只是创建了一个新的数组来装这些引用，并没有对list中原始对象进行拷贝或复制。</p>
+<p>都已经分析到这儿了，再看一下Java内部实现的源码。首先看一下List中toArray()方法的申明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Returns an array containing all of the elements in this list in proper</span></span><br><span class="line"><span class="comment">    * sequence (from first to last element).</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * &lt;p&gt;The returned array will be "safe" in that no references to it are</span></span><br><span class="line"><span class="comment">    * maintained by this list.  (In other words, this method must</span></span><br><span class="line"><span class="comment">    * allocate a new array even if this list is backed by an array).</span></span><br><span class="line"><span class="comment">    * The caller is thus free to modify the returned array.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * &lt;p&gt;This method acts as bridge between array-based and collection-based</span></span><br><span class="line"><span class="comment">    * APIs.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> an array containing all of the elements in this list in proper</span></span><br><span class="line"><span class="comment">    *         sequence</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@see</span> Arrays#asList(Object[])</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   Object[] toArray();</span><br></pre></td></tr></table></figure>
+
+<p>这只是一个申明，由于我们在上面的例子中使用的是ArrayList这个实现类，接下来我们再看一下ArrayList中的实现源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns an array containing all of the elements in this list</span></span><br><span class="line"><span class="comment"> * in proper sequence (from first to last element).</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;The returned array will be "safe" in that no references to it are</span></span><br><span class="line"><span class="comment"> * maintained by this list.  (In other words, this method must allocate</span></span><br><span class="line"><span class="comment"> * a new array).  The caller is thus free to modify the returned array.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This method acts as bridge between array-based and collection-based</span></span><br><span class="line"><span class="comment"> * APIs.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> an array containing all of the elements in this list in</span></span><br><span class="line"><span class="comment"> *         proper sequence</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> Object[] toArray() &#123;</span><br><span class="line">    <span class="keyword">return</span> Arrays.copyOf(elementData, size);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，在ArrayList中的实现是调用了Arrays工具类的copyOf()方法，这和ArrayLIst类中元素的存储结构相关，具体的细节就不在这里进行分析了，如果有时间的话，以后会对ArrayList这个常用的类进行一个分析。至于Arrays.copyOf()方法的作用就是上面分析的List的toArray()方法的作用了，因为toArray()本质上就是直接调用的Arrays.copyOf()方法了。</p>
+<p>下面再来分析一下List的toArray(T[] a)方法。</p>
+<hr>
+<h2 id="toArray-T-a-方法的分析"><a href="#toArray-T-a-方法的分析" class="headerlink" title="toArray(T[] a)方法的分析"></a>toArray(T[] a)方法的分析</h2><p>先看一下Java8中Api对于toArray(T[] a)方法的描述：</p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; T[] toArray(T[] a)</span><br></pre></td></tr></table></figure>
+
+<p>Returns an array containing all of the elements in this list in proper sequence (from first to last element); the runtime type of the returned array is that of the specified array. If the list fits in the specified array, it is returned therein. Otherwise, a new array is allocated with the runtime type of the specified array and the size of this list.</p>
+<p>If the list fits in the specified array with room to spare (i.e., the array has more elements than the list), the element in the array immediately following the end of the list is set to <code>null</code>. (This is useful in determining the length of the list <em>only</em> if the caller knows that the list does not contain any null elements.)</p>
+<p>Like the <a href="https://blog.csdn.net/mucaoyx/java/util/List.html#toArray--" target="_blank" rel="noopener"><code>toArray()</code></a> method, this method acts as bridge between array-based and collection-based APIs. Further, this method allows precise control over the runtime type of the output array, and may, under certain circumstances, be used to save allocation costs.</p>
+<p>Suppose <code>x</code> is a list known to contain only strings. The following code can be used to dump the list into a newly allocated array of <code>String</code>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] y = x.toArray(<span class="keyword">new</span> String[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>Note that toArray(new Object[0]) is identical in function to toArray()</p>
+<ul>
+<li>Specified by:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toArray in <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Type Parameters:</li>
+</ul>
+<p><code>T</code> - the runtime type of the array to contain the collection</p>
+<ul>
+<li>Parameters:</li>
+</ul>
+<p><code>a</code> - the array into which the elements of this list are to be stored, if it is big enough; otherwise, a new array of the same runtime type is allocated for this purpose.</p>
+<ul>
+<li>Returns:</li>
+</ul>
+<p>an array containing the elements of this list</p>
+<ul>
+<li>Throws:</li>
+</ul>
+<p><code>ArrayStoreException</code> - if the runtime type of the specified array is not a supertype of the runtime type of every element in this list</p>
+<p><code>NullPointerException</code> - if the specified array is null</p>
+</blockquote>
+<p>看着有点长哈，我在这儿进行一个简要的描述，toArray(T[] a)方法使用了泛型参数，可以返回指定类型数组，但是这个泛型在确定的时候必须是list中元素类型的父类或本身，至于那个参数数组，其实就是为了传递参数类型罢了，在给出的例子中： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] y = x.toArray(<span class="keyword">new</span> String[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>可以清楚的看到，传进去的就是一个String 的空数组，然后返回的是list中String类型元素组成的数组。并且API中还提到，如果传进去的是new Object[]类型空数组，那么toArray(T[] a)方法就和toArray()方法相同了，我在这里猜测toArray(T[] a)方法的实现和toArray()方法应该是一样的，就不看list中的接口了，直接看ArrayList中的实现源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns an array containing all of the elements in this list in proper</span></span><br><span class="line"><span class="comment"> * sequence (from first to last element); the runtime type of the returned</span></span><br><span class="line"><span class="comment"> * array is that of the specified array.  If the list fits in the</span></span><br><span class="line"><span class="comment"> * specified array, it is returned therein.  Otherwise, a new array is</span></span><br><span class="line"><span class="comment"> * allocated with the runtime type of the specified array and the size of</span></span><br><span class="line"><span class="comment"> * this list.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;If the list fits in the specified array with room to spare</span></span><br><span class="line"><span class="comment"> * (i.e., the array has more elements than the list), the element in</span></span><br><span class="line"><span class="comment"> * the array immediately following the end of the collection is set to</span></span><br><span class="line"><span class="comment"> * &lt;tt&gt;null&lt;/tt&gt;.  (This is useful in determining the length of the</span></span><br><span class="line"><span class="comment"> * list &lt;i&gt;only&lt;/i&gt; if the caller knows that the list does not contain</span></span><br><span class="line"><span class="comment"> * any null elements.)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> a the array into which the elements of the list are to</span></span><br><span class="line"><span class="comment"> *          be stored, if it is big enough; otherwise, a new array of the</span></span><br><span class="line"><span class="comment"> *          same runtime type is allocated for this purpose.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> an array containing the elements of the list</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> ArrayStoreException if the runtime type of the specified array</span></span><br><span class="line"><span class="comment"> *         is not a supertype of the runtime type of every element in</span></span><br><span class="line"><span class="comment"> *         this list</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if the specified array is null</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; T[] toArray(T[] a) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a.length &lt; size)</span><br><span class="line">        <span class="comment">// Make a new array of a's runtime type, but my contents:</span></span><br><span class="line">        <span class="keyword">return</span> (T[]) Arrays.copyOf(elementData, size, a.getClass());</span><br><span class="line">    System.arraycopy(elementData, <span class="number">0</span>, a, <span class="number">0</span>, size);</span><br><span class="line">    <span class="keyword">if</span> (a.length &gt; size)</span><br><span class="line">        a[size] = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注释有点长，比较的详尽，暂时先不管注释，直接看实现的源码。从实现源码中看出，首先会判断数组a的长度和list元素的个数，进行一个比较，如果a数组的长度小于list元素个数，那么就会直接调用工具类Arrays.copyOf()方法直接进行一个拷贝，注意，这儿的是Arrays.copyOf(elementData, size, a.getClass())方法，是由元素类型参数的，就是最后一项参数，和toArray()方法实现Arrays.copyOf(elementData, size)不相同。</p>
+<p>接着在看，如果数组a的长度length不小于list元素个数，即a.length&gt;=sizea.length &gt;= size<em>a</em>.<em>l<strong>e</strong>n<strong>g</strong>t**h</em>&gt;=<em>s*</em>i<strong>z</strong>e*得话，就会走下面的流程，首先调用<code>System.arraycopy(elementData, 0, a, 0, size)</code>将ArrayList里的元素数组<code>elementData</code>中的元素拷贝到a对象中，至于这个System.arraycopy()在这里就不详细说了。</p>
+<p>接下来会判断一下a.length 是否大于list元素个数size，如果大于的话，会在a[size]位置设置一个null，这个设置的目的是了toArray(T[] a)方法调用者从返回的数组中检测到null时就知道后面已经没有list元素对象了。</p>
+<p>终于分析完了，ArrayList的toArray(T[] a)源码代码证明自己上面的猜测是错的，toArray(T[] a)的实现和toArray()方法的实现很不一样，并且其实List的toArray(T[] a)方法的API说明中也提到了，如果传递进来的数组a的空间是大于list的话，就不是直接生成一个新数组来装list原来的元素对象了，而是往a数组中填，并且在最后还是放置一个null，并且在api中也说明了放置null的作用。</p>
+<p>看来自己看的还是不够仔细，观察力还有待提升啊。同时注意个小细节，ArrayList中对于toArray(T[] a)方法的注释只是一个简要的，List中对于toArray(T[] a)方法的注释更为详尽，并且还举了例子，以后看方法注解的时候还是尽量看详尽的那一个，免得遗漏信息。</p>
+<p>下面对这两个方法进行一个小的总结吧。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>List接口的toArray()方法就是直接调用Arrays.copyOf(elementData, size)，将list中的元素对象的引用装在一个新的生成数组中。</p>
+<p>List接口的toArray(T[] a)方法会返回指定类型（必须为list元素类型的父类或本身）的数组对象，如果a.length小于list元素个数就直接调用Arrays的copyOf()方法进行拷贝并且返回新数组对象，新数组中也是装的list元素对象的引用，否则先调用System.arraycopy()将list元素对象的引用装在a数组中，如果a数组还有剩余的空间，则在a[size]放置一个null，size就是list中元素的个数，这个null值可以使得toArray(T[] a)方法调用者可以判断null后面已经没有list元素了。</p>
+<p>好了，终于分析完了！</p>
+<p><a href="https://blog.csdn.net/mucaoyx/article/details/86005283" target="_blank" rel="noopener">https://blog.csdn.net/mucaoyx/article/details/86005283</a></p>
 
       
 
@@ -335,7 +375,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -391,7 +431,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/01/0701-bean/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/08/19/0819_toArray/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -405,18 +445,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/07/0707JVM/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JVM
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/06/13/0613%E6%B3%9B%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">泛型</div>
+    <a href="/2020/07/22/0722JavaScript%20Web%20APIs/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript Web APIs</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -537,7 +568,7 @@
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：50.4k</span>
+<span class="post-count">字数统计：53.5k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
