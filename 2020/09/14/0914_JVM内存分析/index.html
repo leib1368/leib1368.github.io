@@ -6,25 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: docker | Leib&#39;s Blog</title>
+  <title>JVM内存分析 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随便记录一下 菜鸟学习中">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leib&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/docker/index.html">
+  <meta name="description" content="JVM内存分析一、堆内存和栈内存栈(stack)与堆(heap)都是Java用来在Ram中存放数据的地方。与C++不同，Java自动管理栈和堆，程序员不能直接地设置栈或堆。  栈： 简单理解：堆栈（stack）是操作系统在建立某个进程或者线程（在支持多线程的操作系统中是线程）为这个线程建立的存储区域，该区域具有先进后出的特性。 特点：存取速度比堆要快，仅次于直接位于CPU中的寄存器。栈中的数据可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM内存分析">
+<meta property="og:url" content="http://yoursite.com/2020/09/14/0914_JVM%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="随便记录一下 菜鸟学习中">
+<meta property="og:description" content="JVM内存分析一、堆内存和栈内存栈(stack)与堆(heap)都是Java用来在Ram中存放数据的地方。与C++不同，Java自动管理栈和堆，程序员不能直接地设置栈或堆。  栈： 简单理解：堆栈（stack）是操作系统在建立某个进程或者线程（在支持多线程的操作系统中是线程）为这个线程建立的存储区域，该区域具有先进后出的特性。 特点：存取速度比堆要快，仅次于直接位于CPU中的寄存器。栈中的数据可以">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/2369895-5d6597d7f891ee4a.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/2369895-57063d01008436c0.png">
+<meta property="article:published_time" content="2020-09-14T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-14T08:46:00.008Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="后端">
 <meta property="article:tag" content="java">
-<meta property="article:tag" content="C&#x2F;C++">
-<meta property="article:tag" content="SpringBoot">
-<meta property="article:tag" content="mybatis">
-<meta property="article:tag" content="Dota2">
-<meta property="article:tag" content="NBA">
-<meta property="article:tag" content="Cristiano Ronaldo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/2369895-5d6597d7f891ee4a.png">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -177,100 +175,376 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-0914_JVM内存分析" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/05/19/0518Docker%E8%BF%9B%E9%98%B6/" class="archive-article-date">
-  	<time datetime="2020-05-19T07:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/0518Docker%E8%BF%9B%E9%98%B6/">Docker进阶</a>
+    <h1 class="article-title" itemprop="name">
+      JVM内存分析
     </h1>
   
 
-        <div class="article-info info-on-right">
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">4.4k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">15分</span>
+      </span>
+    </span>
+</div>
           
+
+
+
+        
+         
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/09/14/0914_JVM%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2020-09-14T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JVM内存分析"><a href="#JVM内存分析" class="headerlink" title="JVM内存分析"></a>JVM内存分析</h2><h3 id="一、堆内存和栈内存"><a href="#一、堆内存和栈内存" class="headerlink" title="一、堆内存和栈内存"></a>一、堆内存和栈内存</h3><p>栈(stack)与堆(heap)都是Java用来在Ram中存放数据的地方。与C++不同，Java自动管理栈和堆，程序员不能直接地设置栈或堆。</p>
+<ul>
+<li>栈：<ul>
+<li><strong>简单理解：</strong>堆栈（stack）是操作系统在建立某个进程或者线程（在支持多线程的操作系统中是线程）为这个线程建立的存储区域，该区域具有先进后出的特性。</li>
+<li><strong>特点：</strong>存取速度比堆要快，仅次于直接位于CPU中的寄存器。栈中的数据可以共享（意思是：栈中的数据可以被多个变量共同引用）。</li>
+<li><strong>缺点：</strong>存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。</li>
+<li><strong>相关存放对象：</strong>①一些基本类型的变量（,int, short, long, byte, float, double, boolean, char）和对象句柄【例如：在函数中定义的一些基本类型的变量和对象的引用变量】。②方法的形参 直接在栈空间分配，当方法调用完成后从栈空间回收。</li>
+<li><strong>特殊：</strong>①方法的引用参数，在栈空间分配一个地址空间，并指向堆空间的对象区，当方法调用完成后从栈空间回收。②局部变量new出来之后，在栈控件和堆空间中分配空间，当局部变量生命周期结束后，它的栈空间立刻被回收，它的堆空间等待GC回收。</li>
+</ul>
+</li>
+<li>堆：<ul>
+<li><strong>简单理解：</strong>每个Java应用都唯一对应一个JVM实例，每一个JVM实例唯一对应一个堆。应用程序在运行中所创建的所有类实例或者数组都放在这个堆中，并由应用所有的线程共享。Java中分配堆内存是自动初始化的，Java中所有对象的存储控件都是在堆中分配的，但这些对象的引用则是在栈中分配，也就是一般在建立一个对象时，堆和栈都会分配内存。</li>
+<li><strong>特点：</strong>可以动态地分配内存大小、比较灵活，生存期也不必事先告诉编译器，Java的垃圾收集器会自动收走这些不再使用的数据。在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理。</li>
+<li><strong>缺点：</strong>由于要在运行时动态分配内存，存取速度较慢。</li>
+<li><strong>主要存放：</strong>①由new创建的对象和数组 ；②this</li>
+<li><strong>特殊：</strong>引用数据类型（需要用new来创建），既在栈控件分配一个地址空间，又在堆空间分配对象的类变量。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>补充：</strong>   在堆中产生了一个数组或对象后，还可以在栈中定义一个特殊的变量，让栈中这个变量的取值等于数组或对象在堆内存中的首地址，栈中的这个变量就成了数组或对象的引用变量。<br> 引用变量就相当于是为数组或对象起的一个名称，以后就可以在程序中使用栈中的引用变量来访问堆中的数组或对象。<br> 引用变量是普通变量，定义时在栈中分配内存，引用变量在程序运行到作用域外释放。而数组＆对象本身在堆中分配，即使程序运行到使用new产生数组和对象的语句所在地代码块之外，数组和对象本身占用的堆内存也不会被释放，<u><em>数组和对象在没有引用变量指向它的时候，才变成垃圾，不能再被使用，但是仍然占着内存，在随后的一个不确定的时间被垃圾回收器释放掉。这个也是java比较占内存的主要原因</em></u>。<br> <strong>这里可以理解为：<code>String s1 = new String(&quot;abc&quot;);</code>这里面：  <code>&quot;abc&quot;</code>表示栈中的一个存储空间中的一个数据，<code>new String(&quot;abc&quot;)</code>表示存在于堆中的一个对象，这个对象的值为‘abc’，<code>String s1</code>则表示栈中定义的一个取了<code>new String(&quot;abc&quot;)</code>在堆中的首地址的一个特殊变量，也就是：<code>s1</code>成了引用变量，相当于一个别名。</strong></p>
+</blockquote>
+<h3 id="二、Java数据存储和JVM内存分区"><a href="#二、Java数据存储和JVM内存分区" class="headerlink" title="二、Java数据存储和JVM内存分区"></a>二、Java数据存储和JVM内存分区</h3><ul>
+<li><u>
+
+<p>在JAVA中，有六个不同的地方可以存储数据：</p>
+</u>
+
+<ol>
+<li><strong>寄存器（register）</strong>。这是最快的存储区，因为它位于不同于其他存储区的地方——处理器内部。但是寄存器的数量极其有限，所以寄存器由编译器根据需求进行分配。你不能直接控制，也不能在程序中感觉到寄存器存在的任何迹象。</li>
+<li><strong>堆栈（stack）</strong>。位于通用RAM中，但通过它的“堆栈指针”可以从处理器哪里获得支持。堆栈指针若向下移动，则分配新的内存；若向上移动，则释放那些内存。这是一种快速有效的分配存储方法，仅次于寄存器。创建程序时候，JAVA编译器必须知道存储在堆栈内所有数据的确切大小和生命周期，因为它必须生成相应的代码，以便上下移动堆栈指针。这一约束限制了程序的灵活性，所以虽然某些Java数据存储在堆栈中——特别是对象引用，但是JAVA对象不存储其中。</li>
+<li><strong>堆（heap）</strong>。一种通用性的内存池（也存在于RAM中），用于存放所以的JAVA对象。堆不同于堆栈的好处是：编译器不需要知道要从堆里分配多少存储区域，也不必知道存储的数据在堆里存活多长时间。因此，在堆里分配存储有很大的灵活性。当你需要创建一个对象的时候<br> ，只需要new写一行简单的代码，当执行这行代码时，会自动在堆里进行存储分配。当然，为这种灵活性必须要付出相应的代码。用堆进行存储分配比用堆栈进行存储存储需要更多的时间。</li>
+<li><strong>静态存储（static storage）</strong>。这里的“静态”是指“在固定的位置”。静态存储里存放程序运行时一直存在的数据。你可用关键字static来标识一个对象的特定元素是静态的，但JAVA对象本身从来不会存放在静态存储空间里。</li>
+<li><strong>常量存储（constant storage）</strong>。常量值通常直接存放在程序代码内部，这样做是安全的，因为它们永远不会被改变。有时，在嵌入式系统中，常量本身会和其他部分分割离开，所以在这种情况下，可以选择将其放在ROM中 。</li>
+<li><strong>非RAM存储</strong>。如果数据完全存活于程序之外，那么它可以不受程序的任何控制，在程序没有运行时也可以存在。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>就速度来说，有如下关系：<br> 寄存器 &lt; 堆栈 &lt; 堆 &lt; 其他</p>
+</blockquote>
+<ul>
+<li><u>
+
+<p>JVM的内存分区：</p>
+</u>
+
+<p>JVM的分区可分为三个：堆（heap）、栈（stack）和方法区（method）</p>
+<ol>
+<li><strong>堆区：</strong></li>
+</ol>
+<ul>
+<li>存储的全是对象，每个对象都包含一个与之对应的class信息（我们常说的类类型，<code>Clazz.getClass()</code>等方式获取），class目的是得到操作指令。</li>
+<li>JVM只有一个堆区（heap）被所有线程共享，堆中不存放基本类型和对象引用，只存放对象本身。【这里的‘对象’，就不包括基本数据类型】</li>
+</ul>
+<ol>
+<li><strong>栈区：</strong></li>
+</ol>
+<ul>
+<li>每个线程包含自己的一个栈区，栈中只保存基本数据类型的对象和自定义对象的引用。</li>
+<li>每个栈中的数据（基本类型和对象引用）都是私有的，其他栈不可访问。</li>
+<li>栈 = 基本类型变量区 + 执行环境上下文 + 操作指令区（存放操作指令）</li>
+</ul>
+<ol>
+<li><strong>方法区</strong>【这个可能比较陌生】</li>
+</ol>
+<ul>
+<li>又称为‘静态区’，和堆一样，被所有的线程共享。</li>
+<li>方法区包含所有的class和static变量。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>补充：大家也许听说过“数据区”或者“运行时数据区”这个名词，这里，我们说JVM是驱动Java程序运行的基础，而它有三个分区：堆、栈、方法区，实际上，JVM的三个方法区就是包含于 JVM的运行时数据区中的三大块。于是，“数据区”与上述的分区的关系就明朗了。</p>
+</blockquote>
+<h3 id="三、Java的两种数据类型："><a href="#三、Java的两种数据类型：" class="headerlink" title="三、Java的两种数据类型："></a>三、Java的两种数据类型：</h3><ol>
+<li><strong>基本类型(primitive types)</strong>, 共有8种，即int, short, long, byte, float, double, boolean, char(注意，<br> 并没有string的基本类型)。这种类型的定义是通过诸如int a = 3; long b = 255L;的形式来定义的，称为自动变量。【自动变量存的是字面值，不是类的实例（即不是类的引用），这里并没有类的存在，如<code>int a=3;</code>这里a只是指向int类型（不是类）的引用，指向字面值3，此时，由于这些字面值的数据大小可知并且生存期可知（他们在程序内某个固定代码块中，代码块退出，他们就消失），为了追求速度，于是存在<strong>栈</strong>中】</li>
+<li><strong>包装类</strong>，如Integer, String, Double等将相应的基本数据类型包装起来的类。这些类数据全部存在于<strong>堆</strong>中，Java用new()语句来显式地告诉编译器，在运行时才根据需要动态创建，因此比较灵活，但缺点是要占用更多的时间。</li>
+</ol>
+<h3 id="四、代码示例说明"><a href="#四、代码示例说明" class="headerlink" title="四、代码示例说明"></a>四、代码示例说明</h3><p>用一些例子来理解哪些数据属于栈内存，哪些数据属于堆内存：</p>
+<h5 id="示例一：对于字面值和字面值引用"><a href="#示例一：对于字面值和字面值引用" class="headerlink" title="示例一：对于字面值和字面值引用"></a>示例一：对于字面值和字面值引用</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.....</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>; <span class="comment">//a属于字面值 1 的引用</span></span><br><span class="line"><span class="comment">//.....</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">1</span>;<span class="comment">//b属于字面值 1 的引用</span></span><br></pre></td></tr></table></figure>
+
+<p>执行上面的代码是这样的一个过程：</p>
+<ol>
+<li>编译器先处理int a = 1；首先它会在栈中创建一个变量为a的引用，然后查找有没有字面值为 1 的地址，没找到，就开辟一个存放 1 这个字面值的地址，然后将a指向3的地址。</li>
+<li>接着处理int b = 1；在创建完b的引用变量后，由于在栈中已经有3这个字面值，便将b直接指向3的地址。这样，就出现了a与b同时均指向3的情况。</li>
+</ol>
+<blockquote>
+<p>注意：上面代码注释说了，a和b都是字面值 1 的引用，他们和我们理解的类对象的引用不同：假定两个类对象的引用同时指向一个对象，如果一个对象引用变量修改了这个<br> 对象的内部状态，那么另一个对象引用变量<u>也即刻反映出这个变化</u>。而通过字面值的引用来修改其值，<strong>不会导致</strong>另一个指向此字面值的引用的值也跟着改变的情况。如上例，我们定义完a与b的值后，再令a=2；那么，b不会等于2，还是等于1。在编译器内部，遇到<code>a=2</code>时，它就会重新搜索栈中是否有2的字面值，如果没有，重新开辟地址存放2的值；如果已经有了，则直接将a指向这个地址。因此a值的改变不会影响到b的值。</p>
+</blockquote>
+<h5 id="示例二：由new-String-开始解释"><a href="#示例二：由new-String-开始解释" class="headerlink" title="示例二：由new String()开始解释"></a>示例二：由new String()开始解释</h5><p>代码一：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> str1 = <span class="string">"abc"</span>; </span><br><span class="line"><span class="built_in">String</span> str2 = <span class="string">"abc"</span>; </span><br><span class="line">System.out.println(str1==str2); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>代码二：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> str1 =<span class="keyword">new</span> <span class="built_in">String</span> (<span class="string">"abc"</span>); </span><br><span class="line"><span class="built_in">String</span> str2 =<span class="keyword">new</span> <span class="built_in">String</span> (<span class="string">"abc"</span>); </span><br><span class="line">System.out.println(str1==str2); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>从代码一和代码二分析：<br> String是一个特殊的包装类数据。可以用：<br> ①String str = new String(“abc”);<br> ②String str = “abc”;<br> 两种的形式来创建，第一种是用new()来新建对象的，它会在存放于堆中。每调用一次就会创建一个新的对象。<br> 而第二种是先在栈中创建一个对String类的对象引用变量str，然后查找栈中有没有存放”abc”，如果没有，则将”abc”存放进栈，并令str指向”abc”，如果已经有”abc” 则直接令str指向“abc”。</p>
+<p>代码三：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> s1 = <span class="string">"ja"</span>; </span><br><span class="line"><span class="built_in">String</span> s2 = <span class="string">"va"</span>; </span><br><span class="line"><span class="built_in">String</span> s3 = <span class="string">"java"</span>; </span><br><span class="line"><span class="built_in">String</span> s4 = s1 + s2; </span><br><span class="line">System.out.println(s3 == s4);<span class="comment">//false </span></span><br><span class="line">System.out.println(s3.equals(s4));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>从代码三分析：<br> 比较类里面的数值是否相等时，用equals()方法；当测试两个包装类的引用是否指向同一个对象时，用==。</p>
+<h5 id="示例三：程序代码运行过程分析"><a href="#示例三：程序代码运行过程分析" class="headerlink" title="示例三：程序代码运行过程分析"></a>示例三：程序代码运行过程分析</h5><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> &#123;<span class="comment"><span class="doctag">///</span>运行时，JVM把TestB的类信息全部放入方法区</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>)</span>&#123;<span class="comment">//main方法本身是静态方法，放入方法区</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span>obj1 和 obj2都是对象引用，所以放到栈区，这个‘new Sample("xxx")’是自定义对象应该放到堆区</span></span><br><span class="line">        Obj obj1 = <span class="keyword">new</span> Obj(<span class="string">"A"</span>);</span><br><span class="line">        Obj obj2 = <span class="keyword">new</span> Obj(<span class="string">"A"</span>);</span><br><span class="line">        obj1.printName();</span><br><span class="line">        obj2.printName();</span><br><span class="line">        <span class="comment">//  这里，两个实例中的size成员都是int（基本类型），所以，这个“3”最终存在于栈区（而不是堆区），并供obj1和obj2共用。</span></span><br><span class="line">        obj1.size = <span class="number">3</span>;</span><br><span class="line">        obj2.size = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> A = <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">int</span> B = <span class="number">4</span>;</span><br><span class="line">        System.<span class="keyword">out</span>.println(obj1.getName()==obj2.getName());</span><br><span class="line">        System.<span class="keyword">out</span>.println(obj1 == obj2);</span><br><span class="line">        System.<span class="keyword">out</span>.println(A == B);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义类：Obj</span></span><br><span class="line"><span class="comment"> * 运行时，JVM把Obj的类信息全部放入方法区</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title">Obj</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;<span class="comment">//new出一个Obj实例后，‘name’这个引用放入了栈区，而给‘name’的赋值的是字面值"A"而不是一个newString("A")，则这个"A"会存在栈中，所以，obj1.name和obj2.name共用这个栈中的"A"</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> size;<span class="comment">//虽然size是基本数据类型的对象，但是它是跟随这Obj类初始化加载的，所以上面obj1和obj2两个对象的size指向的地址不同，由于此时赋予给他们的“3”在两个不同存储位置。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Obj</span>(<span class="params">String name</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printName</span>(<span class="params"></span>)</span>&#123;<span class="comment"><span class="doctag">///</span>printName方法本身放入方法区中</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整体图解：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/2369895-5d6597d7f891ee4a.png" alt="img"></p>
+<p>输出截图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/2369895-57063d01008436c0.png" alt="img"></p>
+<p>看过本人上一篇文章<a href="https://www.jianshu.com/p/ace2aa692f96" target="_blank" rel="noopener">Java面试相关（一）– Java类加载全过程</a>的朋友应该比较清楚JVM在启动程序执行代码时对类的加载过程，这里可以简单看看上述代码的注释说明类的加载时机。这里重点配合上述代码注释说说过程中的数据存储分区情况：</p>
+<ul>
+<li><code>Obj obj1 = new Obj(&quot;A&quot;);</code>：JVM首先就在它的堆区中为一个新的Obj实例分配内存，这个Obj实例持有着指向方法区的Sample类的类型信息的引用（这个‘引用’，实际上指的是Obj类的类型信息在方法区中的内存地址）。<code>obj1</code>一看就知道是main()方法中定义的局部变量，所以，它会被添加到执行main()方法的主线程中Java方法调用栈中。而<code>=</code>将把这个obj1对象指向堆区的Obj实例，换句话说，obj1对象持有指向Obj实例的引用。</li>
+<li>new出一个Obj实例后，‘name’这个引用放入了栈区，而给‘name’的赋值的是字面值”A”而不是一个newString(“A”)，则这个”A”会存在栈中，所以，obj1.name和obj2.name共用这个栈中的”A”。</li>
+<li>Obj类中，虽然size是基本数据类型的对象，但是它是跟随这Obj类初始化加载的，所以上面代码中，obj1和obj2两个对象的size指向的地址不同，由于此时赋予给他们的“3”在两个不同存储位置。</li>
+</ul>
+<h3 id="五、扩展：Java内存分配策略"><a href="#五、扩展：Java内存分配策略" class="headerlink" title="五、扩展：Java内存分配策略"></a>五、扩展：Java内存分配策略</h3><p>按照编译原理的观点,程序运行时的内存分配有三种策略,分别是静态的,栈式的,和堆式的。<br> <strong>静态存储分配</strong>是指在编译时就能确定每个数据目标在运行时刻的存储空间需求,因而在编译时就可以给他们分配固定的内存空间.这种分配策略要求程序代码中不允许有可变数据结构(比如可变数组)的存在,也不允许有嵌套或者递归的结构出现,因为它们都会导致编译程序无法计算准确的存储空间需求。<br> <strong>栈式存储分配</strong>也可称为动态存储分配,是由一个类似于堆栈的运行栈来实现的.和静态存储分配相反,在栈式存储方案中,程序对数据区的需求在编译时是完全未知的,只有到运行的时候才能够知道,但是规定在运行中进入一个程序模块时,必须知道该程序模块所需的数据区大小才能够为其分配内存.和我们在数据结构所熟知的栈一样,栈式存储分配按照先进后出的原则进行分配。<br> 静态存储分配要求在编译时能知道所有变量的存储要求,栈式存储分配要求在过程的入口处必须知道所有的存储要求,而堆式存储分配则专门负责在编译时或运行时模块入口处都无法确定存储要求的数据结构的内存分配,比如可变长度串和对象实例.堆由大片的可利用块或空闲块组成,堆中的内存可以按照任意顺序分配和释放。</p>
+<hr>
+<p>作者：androidjp<br>链接：<a href="https://www.jianshu.com/p/bfa5337ef59e" target="_blank" rel="noopener">https://www.jianshu.com/p/bfa5337ef59e</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.JPG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/09/14/0914_JVM%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/05/18/0518Docker/" class="archive-article-date">
-  	<time datetime="2020-05-18T06:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/08/19/0819_toArray/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入理解List的toArray()方法和toArray(T[] a)方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/18/0518Docker/">Docker基础</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
+
+
+  
     
+  
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDA5MS8yNjU4MQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+  
+
+  
+    <div class="valine_comment"></div>
+<!--载入js，在<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TkaOsLUB4HWqGxgFvAWlS1Ml-gzGzoHsz',
+      app_key: '3LKy8g3cmiIcA54iXXd7f0GO',
+      placeholder: 'anything want to say ?'
+    });
+</script>
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -340,9 +614,9 @@ setInterval("createtime()",250);
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

@@ -179,6 +179,225 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-0914_JVM内存分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/14/0914_JVM%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/">JVM内存分析</a>
+    </h1>
+  
+
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">4.4k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">15分</span>
+      </span>
+    </span>
+</div>
+          
+
+
+
+        
+         
+<a href="/2020/09/14/0914_JVM%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2020-09-14T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JVM内存分析"><a href="#JVM内存分析" class="headerlink" title="JVM内存分析"></a>JVM内存分析</h2><h3 id="一、堆内存和栈内存"><a href="#一、堆内存和栈内存" class="headerlink" title="一、堆内存和栈内存"></a>一、堆内存和栈内存</h3><p>栈(stack)与堆(heap)都是Java用来在Ram中存放数据的地方。与C++不同，Java自动管理栈和堆，程序员不能直接地设置栈或堆。</p>
+<ul>
+<li>栈：<ul>
+<li><strong>简单理解：</strong>堆栈（stack）是操作系统在建立某个进程或者线程（在支持多线程的操作系统中是线程）为这个线程建立的存储区域，该区域具有先进后出的特性。</li>
+<li><strong>特点：</strong>存取速度比堆要快，仅次于直接位于CPU中的寄存器。栈中的数据可以共享（意思是：栈中的数据可以被多个变量共同引用）。</li>
+<li><strong>缺点：</strong>存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。</li>
+<li><strong>相关存放对象：</strong>①一些基本类型的变量（,int, short, long, byte, float, double, boolean, char）和对象句柄【例如：在函数中定义的一些基本类型的变量和对象的引用变量】。②方法的形参 直接在栈空间分配，当方法调用完成后从栈空间回收。</li>
+<li><strong>特殊：</strong>①方法的引用参数，在栈空间分配一个地址空间，并指向堆空间的对象区，当方法调用完成后从栈空间回收。②局部变量new出来之后，在栈控件和堆空间中分配空间，当局部变量生命周期结束后，它的栈空间立刻被回收，它的堆空间等待GC回收。</li>
+</ul>
+</li>
+<li>堆：<ul>
+<li><strong>简单理解：</strong>每个Java应用都唯一对应一个JVM实例，每一个JVM实例唯一对应一个堆。应用程序在运行中所创建的所有类实例或者数组都放在这个堆中，并由应用所有的线程共享。Java中分配堆内存是自动初始化的，Java中所有对象的存储控件都是在堆中分配的，但这些对象的引用则是在栈中分配，也就是一般在建立一个对象时，堆和栈都会分配内存。</li>
+<li><strong>特点：</strong>可以动态地分配内存大小、比较灵活，生存期也不必事先告诉编译器，Java的垃圾收集器会自动收走这些不再使用的数据。在堆中分配的内存，由Java虚拟机的自动垃圾回收器来管理。</li>
+<li><strong>缺点：</strong>由于要在运行时动态分配内存，存取速度较慢。</li>
+<li><strong>主要存放：</strong>①由new创建的对象和数组 ；②this</li>
+<li><strong>特殊：</strong>引用数据类型（需要用new来创建），既在栈控件分配一个地址空间，又在堆空间分配对象的类变量。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>补充：</strong>   在堆中产生了一个数组或对象后，还可以在栈中定义一个特殊的变量，让栈中这个变量的取值等于数组或对象在堆内存中的首地址，栈中的这个变量就成了数组或对象的引用变量。<br> 引用变量就相当于是为数组或对象起的一个名称，以后就可以在程序中使用栈中的引用变量来访问堆中的数组或对象。<br> 引用变量是普通变量，定义时在栈中分配内存，引用变量在程序运行到作用域外释放。而数组＆对象本身在堆中分配，即使程序运行到使用new产生数组和对象的语句所在地代码块之外，数组和对象本身占用的堆内存也不会被释放，<u><em>数组和对象在没有引用变量指向它的时候，才变成垃圾，不能再被使用，但是仍然占着内存，在随后的一个不确定的时间被垃圾回收器释放掉。这个也是java比较占内存的主要原因</em></u>。<br> <strong>这里可以理解为：<code>String s1 = new String(&quot;abc&quot;);</code>这里面：  <code>&quot;abc&quot;</code>表示栈中的一个存储空间中的一个数据，<code>new String(&quot;abc&quot;)</code>表示存在于堆中的一个对象，这个对象的值为‘abc’，<code>String s1</code>则表示栈中定义的一个取了<code>new String(&quot;abc&quot;)</code>在堆中的首地址的一个特殊变量，也就是：<code>s1</code>成了引用变量，相当于一个别名。</strong></p>
+</blockquote>
+<h3 id="二、Java数据存储和JVM内存分区"><a href="#二、Java数据存储和JVM内存分区" class="headerlink" title="二、Java数据存储和JVM内存分区"></a>二、Java数据存储和JVM内存分区</h3><ul>
+<li><u>
+
+<p>在JAVA中，有六个不同的地方可以存储数据：</p>
+</u>
+
+<ol>
+<li><strong>寄存器（register）</strong>。这是最快的存储区，因为它位于不同于其他存储区的地方——处理器内部。但是寄存器的数量极其有限，所以寄存器由编译器根据需求进行分配。你不能直接控制，也不能在程序中感觉到寄存器存在的任何迹象。</li>
+<li><strong>堆栈（stack）</strong>。位于通用RAM中，但通过它的“堆栈指针”可以从处理器哪里获得支持。堆栈指针若向下移动，则分配新的内存；若向上移动，则释放那些内存。这是一种快速有效的分配存储方法，仅次于寄存器。创建程序时候，JAVA编译器必须知道存储在堆栈内所有数据的确切大小和生命周期，因为它必须生成相应的代码，以便上下移动堆栈指针。这一约束限制了程序的灵活性，所以虽然某些Java数据存储在堆栈中——特别是对象引用，但是JAVA对象不存储其中。</li>
+<li><strong>堆（heap）</strong>。一种通用性的内存池（也存在于RAM中），用于存放所以的JAVA对象。堆不同于堆栈的好处是：编译器不需要知道要从堆里分配多少存储区域，也不必知道存储的数据在堆里存活多长时间。因此，在堆里分配存储有很大的灵活性。当你需要创建一个对象的时候<br> ，只需要new写一行简单的代码，当执行这行代码时，会自动在堆里进行存储分配。当然，为这种灵活性必须要付出相应的代码。用堆进行存储分配比用堆栈进行存储存储需要更多的时间。</li>
+<li><strong>静态存储（static storage）</strong>。这里的“静态”是指“在固定的位置”。静态存储里存放程序运行时一直存在的数据。你可用关键字static来标识一个对象的特定元素是静态的，但JAVA对象本身从来不会存放在静态存储空间里。</li>
+<li><strong>常量存储（constant storage）</strong>。常量值通常直接存放在程序代码内部，这样做是安全的，因为它们永远不会被改变。有时，在嵌入式系统中，常量本身会和其他部分分割离开，所以在这种情况下，可以选择将其放在ROM中 。</li>
+<li><strong>非RAM存储</strong>。如果数据完全存活于程序之外，那么它可以不受程序的任何控制，在程序没有运行时也可以存在。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>就速度来说，有如下关系：<br> 寄存器 &lt; 堆栈 &lt; 堆 &lt; 其他</p>
+</blockquote>
+<ul>
+<li><u>
+
+<p>JVM的内存分区：</p>
+</u>
+
+<p>JVM的分区可分为三个：堆（heap）、栈（stack）和方法区（method）</p>
+<ol>
+<li><strong>堆区：</strong></li>
+</ol>
+<ul>
+<li>存储的全是对象，每个对象都包含一个与之对应的class信息（我们常说的类类型，<code>Clazz.getClass()</code>等方式获取），class目的是得到操作指令。</li>
+<li>JVM只有一个堆区（heap）被所有线程共享，堆中不存放基本类型和对象引用，只存放对象本身。【这里的‘对象’，就不包括基本数据类型】</li>
+</ul>
+<ol>
+<li><strong>栈区：</strong></li>
+</ol>
+<ul>
+<li>每个线程包含自己的一个栈区，栈中只保存基本数据类型的对象和自定义对象的引用。</li>
+<li>每个栈中的数据（基本类型和对象引用）都是私有的，其他栈不可访问。</li>
+<li>栈 = 基本类型变量区 + 执行环境上下文 + 操作指令区（存放操作指令）</li>
+</ul>
+<ol>
+<li><strong>方法区</strong>【这个可能比较陌生】</li>
+</ol>
+<ul>
+<li>又称为‘静态区’，和堆一样，被所有的线程共享。</li>
+<li>方法区包含所有的class和static变量。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>补充：大家也许听说过“数据区”或者“运行时数据区”这个名词，这里，我们说JVM是驱动Java程序运行的基础，而它有三个分区：堆、栈、方法区，实际上，JVM的三个方法区就是包含于 JVM的运行时数据区中的三大块。于是，“数据区”与上述的分区的关系就明朗了。</p>
+</blockquote>
+<h3 id="三、Java的两种数据类型："><a href="#三、Java的两种数据类型：" class="headerlink" title="三、Java的两种数据类型："></a>三、Java的两种数据类型：</h3><ol>
+<li><strong>基本类型(primitive types)</strong>, 共有8种，即int, short, long, byte, float, double, boolean, char(注意，<br> 并没有string的基本类型)。这种类型的定义是通过诸如int a = 3; long b = 255L;的形式来定义的，称为自动变量。【自动变量存的是字面值，不是类的实例（即不是类的引用），这里并没有类的存在，如<code>int a=3;</code>这里a只是指向int类型（不是类）的引用，指向字面值3，此时，由于这些字面值的数据大小可知并且生存期可知（他们在程序内某个固定代码块中，代码块退出，他们就消失），为了追求速度，于是存在<strong>栈</strong>中】</li>
+<li><strong>包装类</strong>，如Integer, String, Double等将相应的基本数据类型包装起来的类。这些类数据全部存在于<strong>堆</strong>中，Java用new()语句来显式地告诉编译器，在运行时才根据需要动态创建，因此比较灵活，但缺点是要占用更多的时间。</li>
+</ol>
+<h3 id="四、代码示例说明"><a href="#四、代码示例说明" class="headerlink" title="四、代码示例说明"></a>四、代码示例说明</h3><p>用一些例子来理解哪些数据属于栈内存，哪些数据属于堆内存：</p>
+<h5 id="示例一：对于字面值和字面值引用"><a href="#示例一：对于字面值和字面值引用" class="headerlink" title="示例一：对于字面值和字面值引用"></a>示例一：对于字面值和字面值引用</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.....</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>; <span class="comment">//a属于字面值 1 的引用</span></span><br><span class="line"><span class="comment">//.....</span></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">1</span>;<span class="comment">//b属于字面值 1 的引用</span></span><br></pre></td></tr></table></figure>
+
+<p>执行上面的代码是这样的一个过程：</p>
+<ol>
+<li>编译器先处理int a = 1；首先它会在栈中创建一个变量为a的引用，然后查找有没有字面值为 1 的地址，没找到，就开辟一个存放 1 这个字面值的地址，然后将a指向3的地址。</li>
+<li>接着处理int b = 1；在创建完b的引用变量后，由于在栈中已经有3这个字面值，便将b直接指向3的地址。这样，就出现了a与b同时均指向3的情况。</li>
+</ol>
+<blockquote>
+<p>注意：上面代码注释说了，a和b都是字面值 1 的引用，他们和我们理解的类对象的引用不同：假定两个类对象的引用同时指向一个对象，如果一个对象引用变量修改了这个<br> 对象的内部状态，那么另一个对象引用变量<u>也即刻反映出这个变化</u>。而通过字面值的引用来修改其值，<strong>不会导致</strong>另一个指向此字面值的引用的值也跟着改变的情况。如上例，我们定义完a与b的值后，再令a=2；那么，b不会等于2，还是等于1。在编译器内部，遇到<code>a=2</code>时，它就会重新搜索栈中是否有2的字面值，如果没有，重新开辟地址存放2的值；如果已经有了，则直接将a指向这个地址。因此a值的改变不会影响到b的值。</p>
+</blockquote>
+<h5 id="示例二：由new-String-开始解释"><a href="#示例二：由new-String-开始解释" class="headerlink" title="示例二：由new String()开始解释"></a>示例二：由new String()开始解释</h5><p>代码一：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> str1 = <span class="string">"abc"</span>; </span><br><span class="line"><span class="built_in">String</span> str2 = <span class="string">"abc"</span>; </span><br><span class="line">System.out.println(str1==str2); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>代码二：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> str1 =<span class="keyword">new</span> <span class="built_in">String</span> (<span class="string">"abc"</span>); </span><br><span class="line"><span class="built_in">String</span> str2 =<span class="keyword">new</span> <span class="built_in">String</span> (<span class="string">"abc"</span>); </span><br><span class="line">System.out.println(str1==str2); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>从代码一和代码二分析：<br> String是一个特殊的包装类数据。可以用：<br> ①String str = new String(“abc”);<br> ②String str = “abc”;<br> 两种的形式来创建，第一种是用new()来新建对象的，它会在存放于堆中。每调用一次就会创建一个新的对象。<br> 而第二种是先在栈中创建一个对String类的对象引用变量str，然后查找栈中有没有存放”abc”，如果没有，则将”abc”存放进栈，并令str指向”abc”，如果已经有”abc” 则直接令str指向“abc”。</p>
+<p>代码三：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span> s1 = <span class="string">"ja"</span>; </span><br><span class="line"><span class="built_in">String</span> s2 = <span class="string">"va"</span>; </span><br><span class="line"><span class="built_in">String</span> s3 = <span class="string">"java"</span>; </span><br><span class="line"><span class="built_in">String</span> s4 = s1 + s2; </span><br><span class="line">System.out.println(s3 == s4);<span class="comment">//false </span></span><br><span class="line">System.out.println(s3.equals(s4));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>从代码三分析：<br> 比较类里面的数值是否相等时，用equals()方法；当测试两个包装类的引用是否指向同一个对象时，用==。</p>
+<h5 id="示例三：程序代码运行过程分析"><a href="#示例三：程序代码运行过程分析" class="headerlink" title="示例三：程序代码运行过程分析"></a>示例三：程序代码运行过程分析</h5><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Test</span> &#123;<span class="comment"><span class="doctag">///</span>运行时，JVM把TestB的类信息全部放入方法区</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>)</span>&#123;<span class="comment">//main方法本身是静态方法，放入方法区</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span>obj1 和 obj2都是对象引用，所以放到栈区，这个‘new Sample("xxx")’是自定义对象应该放到堆区</span></span><br><span class="line">        Obj obj1 = <span class="keyword">new</span> Obj(<span class="string">"A"</span>);</span><br><span class="line">        Obj obj2 = <span class="keyword">new</span> Obj(<span class="string">"A"</span>);</span><br><span class="line">        obj1.printName();</span><br><span class="line">        obj2.printName();</span><br><span class="line">        <span class="comment">//  这里，两个实例中的size成员都是int（基本类型），所以，这个“3”最终存在于栈区（而不是堆区），并供obj1和obj2共用。</span></span><br><span class="line">        obj1.size = <span class="number">3</span>;</span><br><span class="line">        obj2.size = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> A = <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">int</span> B = <span class="number">4</span>;</span><br><span class="line">        System.<span class="keyword">out</span>.println(obj1.getName()==obj2.getName());</span><br><span class="line">        System.<span class="keyword">out</span>.println(obj1 == obj2);</span><br><span class="line">        System.<span class="keyword">out</span>.println(A == B);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义类：Obj</span></span><br><span class="line"><span class="comment"> * 运行时，JVM把Obj的类信息全部放入方法区</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title">Obj</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;<span class="comment">//new出一个Obj实例后，‘name’这个引用放入了栈区，而给‘name’的赋值的是字面值"A"而不是一个newString("A")，则这个"A"会存在栈中，所以，obj1.name和obj2.name共用这个栈中的"A"</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> size;<span class="comment">//虽然size是基本数据类型的对象，但是它是跟随这Obj类初始化加载的，所以上面obj1和obj2两个对象的size指向的地址不同，由于此时赋予给他们的“3”在两个不同存储位置。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Obj</span>(<span class="params">String name</span>)</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printName</span>(<span class="params"></span>)</span>&#123;<span class="comment"><span class="doctag">///</span>printName方法本身放入方法区中</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整体图解：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/2369895-5d6597d7f891ee4a.png" alt="img"></p>
+<p>输出截图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/2369895-57063d01008436c0.png" alt="img"></p>
+<p>看过本人上一篇文章<a href="https://www.jianshu.com/p/ace2aa692f96" target="_blank" rel="noopener">Java面试相关（一）– Java类加载全过程</a>的朋友应该比较清楚JVM在启动程序执行代码时对类的加载过程，这里可以简单看看上述代码的注释说明类的加载时机。这里重点配合上述代码注释说说过程中的数据存储分区情况：</p>
+<ul>
+<li><code>Obj obj1 = new Obj(&quot;A&quot;);</code>：JVM首先就在它的堆区中为一个新的Obj实例分配内存，这个Obj实例持有着指向方法区的Sample类的类型信息的引用（这个‘引用’，实际上指的是Obj类的类型信息在方法区中的内存地址）。<code>obj1</code>一看就知道是main()方法中定义的局部变量，所以，它会被添加到执行main()方法的主线程中Java方法调用栈中。而<code>=</code>将把这个obj1对象指向堆区的Obj实例，换句话说，obj1对象持有指向Obj实例的引用。</li>
+<li>new出一个Obj实例后，‘name’这个引用放入了栈区，而给‘name’的赋值的是字面值”A”而不是一个newString(“A”)，则这个”A”会存在栈中，所以，obj1.name和obj2.name共用这个栈中的”A”。</li>
+<li>Obj类中，虽然size是基本数据类型的对象，但是它是跟随这Obj类初始化加载的，所以上面代码中，obj1和obj2两个对象的size指向的地址不同，由于此时赋予给他们的“3”在两个不同存储位置。</li>
+</ul>
+<h3 id="五、扩展：Java内存分配策略"><a href="#五、扩展：Java内存分配策略" class="headerlink" title="五、扩展：Java内存分配策略"></a>五、扩展：Java内存分配策略</h3><p>按照编译原理的观点,程序运行时的内存分配有三种策略,分别是静态的,栈式的,和堆式的。<br> <strong>静态存储分配</strong>是指在编译时就能确定每个数据目标在运行时刻的存储空间需求,因而在编译时就可以给他们分配固定的内存空间.这种分配策略要求程序代码中不允许有可变数据结构(比如可变数组)的存在,也不允许有嵌套或者递归的结构出现,因为它们都会导致编译程序无法计算准确的存储空间需求。<br> <strong>栈式存储分配</strong>也可称为动态存储分配,是由一个类似于堆栈的运行栈来实现的.和静态存储分配相反,在栈式存储方案中,程序对数据区的需求在编译时是完全未知的,只有到运行的时候才能够知道,但是规定在运行中进入一个程序模块时,必须知道该程序模块所需的数据区大小才能够为其分配内存.和我们在数据结构所熟知的栈一样,栈式存储分配按照先进后出的原则进行分配。<br> 静态存储分配要求在编译时能知道所有变量的存储要求,栈式存储分配要求在过程的入口处必须知道所有的存储要求,而堆式存储分配则专门负责在编译时或运行时模块入口处都无法确定存储要求的数据结构的内存分配,比如可变长度串和对象实例.堆由大片的可利用块或空闲块组成,堆中的内存可以按照任意顺序分配和释放。</p>
+<hr>
+<p>作者：androidjp<br>链接：<a href="https://www.jianshu.com/p/bfa5337ef59e" target="_blank" rel="noopener">https://www.jianshu.com/p/bfa5337ef59e</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/14/0914_JVM%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-0819_toArray" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -226,110 +445,9 @@
       
         <h2 id="深入理解List的toArray-方法和toArray-T-a-方法"><a href="#深入理解List的toArray-方法和toArray-T-a-方法" class="headerlink" title="深入理解List的toArray()方法和toArray(T[] a)方法"></a>深入理解List的toArray()方法和toArray(T[] a)方法</h2><p>这两个方法都是将列表List中的元素转导出为数组，不同的是，toArray()方法导出的是Object类型数组，而toArray[T[] a]方法导出的是指定类型的数组。</p>
 <p>下面是两个方法的申明及说明，摘自Java8的API文档。</p>
-<h2 id="toArray-方法的分析"><a href="#toArray-方法的分析" class="headerlink" title="toArray()方法的分析"></a>toArray()方法的分析</h2><blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object[] toArray()</span><br></pre></td></tr></table></figure>
-
-<p>Returns an array containing all of the elements in this list in proper sequence (from first to last element).</p>
-<p>The returned array will be “safe” in that no references to it are maintained by this list. (In other words, this method must allocate a new array even if this list is backed by an array). The caller is thus free to modify the returned array.</p>
-<p>This method acts as bridge between array-based and collection-based APIs.</p>
-<ul>
-<li>Specified by:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toArray&#96; in interface &#96;Collection&lt;E&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Returns:</li>
-</ul>
-<p>an array containing all of the elements in this list in proper sequence</p>
-<ul>
-<li>See Also:</li>
-</ul>
-<p><a href="https://blog.csdn.net/mucaoyx/java/util/Arrays.html#asList-T...-" target="_blank" rel="noopener"><code>Arrays.asList(Object[\])</code></a></p>
-</blockquote>
-<p>toArray()方法会返回List中所有元素构成的数组，并且数组类型是Object[]。还要注意一点就是，返回的数组是新生成的一个数组，也就是说，多次运行toArray()方法会获得不同的数组对象，但是这些数组对象中内容一样的。也就是说，toArray()返回的数组是安全的，你可以对它进行任意的修改，其原因就是List不会维持一个对该返回的数组的引用。下面我们做一个小实验来验证一下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.add(<span class="number">1</span>);</span><br><span class="line">    list.add(<span class="number">2</span>);</span><br><span class="line">    Object[] objects1 = list.toArray();</span><br><span class="line">    Object[] objects2 = list.toArray();</span><br><span class="line">    System.out.println(<span class="string">"objects1 == objects2 : "</span>+(objects1 == objects2));</span><br><span class="line">    objects1[<span class="number">1</span>]=<span class="number">4</span>;</span><br><span class="line">    System.out.println(<span class="string">"show objects1: "</span>+ Arrays.toString(objects1));</span><br><span class="line">    System.out.println(<span class="string">"show objects2: "</span>+ Arrays.toString(objects2));</span><br><span class="line">    System.out.println(<span class="string">"show list: "</span>+list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出结果为：</p>
-<blockquote>
-<p>objects1 == objects2 : false<br>show objects1: [1, 4]<br>show objects2: [1, 2]<br>show list: [1, 2]</p>
-</blockquote>
-<p>从这个小实验里面，可以看出确实toArray()返回的是一个新的数组对象，并且多次执行toArray()方法获得的是不同的数组对象，并且对其中一个数组进行修改，不会影响到其他toArray()方法获得的数组，并且也不会影响到list本身原来存储的元素值。</p>
-<p>这儿存在一个问题，list中存储的是基本类型int的包装类型Integer，如果换成其他的自定义类型呢，结果会是怎么样？接下来我们看下面这个例子。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"People&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;People&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.add(<span class="keyword">new</span> People(<span class="string">"小明"</span>));</span><br><span class="line">    list.add(<span class="keyword">new</span> People(<span class="string">"小王"</span>));</span><br><span class="line">    Object[] objects1 = list.toArray();</span><br><span class="line">    Object[] objects2 = list.toArray();</span><br><span class="line">    System.out.println(<span class="string">"objects1 == objects2 : "</span>+(objects1 == objects2));</span><br><span class="line">    objects1[<span class="number">1</span>]=<span class="keyword">new</span> People(<span class="string">"小花"</span>);</span><br><span class="line">    System.out.println(<span class="string">"show objects1: "</span>+ Arrays.toString(objects1));</span><br><span class="line">    System.out.println(<span class="string">"show objects2: "</span>+ Arrays.toString(objects2));</span><br><span class="line">    System.out.println(<span class="string">"show list: "</span>+list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果：</p>
-<blockquote>
-<p>objects1 == objects2 : false<br>show objects1: [People{name=‘小明’}, People{name=‘小花’}]<br>show objects2: [People{name=‘小明’}, People{name=‘小王’}]<br>show list: [People{name=‘小明’}, People{name=‘小王’}]</p>
-</blockquote>
-<p>可以看到依然是和上面的分析结果一样，toArray()返回的是一个新的数组对象，对于toArray()返回的一个数组元素进行修改，不会影响到其他toArray()返回的数组对象，也不会影响list本身。</p>
-<p>现在元素是自定义对象，那么我们对元素对象对象修改会怎么样呢？看下面这个例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//People类和上一个例子中的一样，这里不再列出了。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;People&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    list.add(<span class="keyword">new</span> People(<span class="string">"小明"</span>));</span><br><span class="line">    list.add(<span class="keyword">new</span> People(<span class="string">"小王"</span>));</span><br><span class="line">    Object[] objects1 = list.toArray();</span><br><span class="line">    Object[] objects2 = list.toArray();</span><br><span class="line">    System.out.println(<span class="string">"objects1 == objects2 : "</span>+(objects1 == objects2));</span><br><span class="line">    ((People)objects1[<span class="number">1</span>]).name = <span class="string">"小花"</span>;</span><br><span class="line">    System.out.println(<span class="string">"show objects1: "</span>+ Arrays.toString(objects1));</span><br><span class="line">    System.out.println(<span class="string">"show objects2: "</span>+ Arrays.toString(objects2));</span><br><span class="line">    System.out.println(<span class="string">"show list: "</span>+list);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出结果：</p>
-<blockquote>
-<p>objects1 == objects2 : false<br>show objects1: [People{name=‘小明’}, People{name=‘小花’}]<br>show objects2: [People{name=‘小明’}, People{name=‘小花’}]<br>show list: [People{name=‘小明’}, People{name=‘小花’}]</p>
-</blockquote>
-<p>从这个例子的输出结果可以看出，对元素对象本身就行修改，会导致toArray()返回的所有数组中的内容都发生改变，包括原始的list容器里面的元素类容。从这个例子可以得出，如果list.toArray()返回的数组中存放的是list原始对象的引用，只是创建了一个新的数组来装这些引用，并没有对list中原始对象进行拷贝或复制。</p>
-<p>都已经分析到这儿了，再看一下Java内部实现的源码。首先看一下List中toArray()方法的申明：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Returns an array containing all of the elements in this list in proper</span></span><br><span class="line"><span class="comment">    * sequence (from first to last element).</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * &lt;p&gt;The returned array will be "safe" in that no references to it are</span></span><br><span class="line"><span class="comment">    * maintained by this list.  (In other words, this method must</span></span><br><span class="line"><span class="comment">    * allocate a new array even if this list is backed by an array).</span></span><br><span class="line"><span class="comment">    * The caller is thus free to modify the returned array.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * &lt;p&gt;This method acts as bridge between array-based and collection-based</span></span><br><span class="line"><span class="comment">    * APIs.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> an array containing all of the elements in this list in proper</span></span><br><span class="line"><span class="comment">    *         sequence</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@see</span> Arrays#asList(Object[])</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   Object[] toArray();</span><br></pre></td></tr></table></figure>
-
-<p>这只是一个申明，由于我们在上面的例子中使用的是ArrayList这个实现类，接下来我们再看一下ArrayList中的实现源码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns an array containing all of the elements in this list</span></span><br><span class="line"><span class="comment"> * in proper sequence (from first to last element).</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;The returned array will be "safe" in that no references to it are</span></span><br><span class="line"><span class="comment"> * maintained by this list.  (In other words, this method must allocate</span></span><br><span class="line"><span class="comment"> * a new array).  The caller is thus free to modify the returned array.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This method acts as bridge between array-based and collection-based</span></span><br><span class="line"><span class="comment"> * APIs.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> an array containing all of the elements in this list in</span></span><br><span class="line"><span class="comment"> *         proper sequence</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> Object[] toArray() &#123;</span><br><span class="line">    <span class="keyword">return</span> Arrays.copyOf(elementData, size);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到，在ArrayList中的实现是调用了Arrays工具类的copyOf()方法，这和ArrayLIst类中元素的存储结构相关，具体的细节就不在这里进行分析了，如果有时间的话，以后会对ArrayList这个常用的类进行一个分析。至于Arrays.copyOf()方法的作用就是上面分析的List的toArray()方法的作用了，因为toArray()本质上就是直接调用的Arrays.copyOf()方法了。</p>
-<p>下面再来分析一下List的toArray(T[] a)方法。</p>
-<hr>
-<h2 id="toArray-T-a-方法的分析"><a href="#toArray-T-a-方法的分析" class="headerlink" title="toArray(T[] a)方法的分析"></a>toArray(T[] a)方法的分析</h2><p>先看一下Java8中Api对于toArray(T[] a)方法的描述：</p>
-<blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; T[] toArray(T[] a)</span><br></pre></td></tr></table></figure>
-
-<p>Returns an array containing all of the elements in this list in proper sequence (from first to last element); the runtime type of the returned array is that of the specified array. If the list fits in the specified array, it is returned therein. Otherwise, a new array is allocated with the runtime type of the specified array and the size of this list.</p>
-<p>If the list fits in the specified array with room to spare (i.e., the array has more elements than the list), the element in the array immediately following the end of the list is set to <code>null</code>. (This is useful in determining the length of the list <em>only</em> if the caller knows that the list does not contain any null elements.)</p>
-<p>Like the <a href="https://blog.csdn.net/mucaoyx/java/util/List.html#toArray--" target="_blank" rel="noopener"><code>toArray()</code></a> method, this method acts as bridge between array-based and collection-based APIs. Further, this method allows precise control over the runtime type of the output array, and may, under certain circumstances, be used to save allocation costs.</p>
-<p>Suppose <code>x</code> is a list known to contain only strings. The following code can be used to dump the list into a newly allocated array of <code>String</code>:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] y = x.toArray(<span class="keyword">new</span> String[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
-
-<p>Note that toArray(new Object[0]) is identical in function to toArray()</p>
-<ul>
-<li>Specified by:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toArray in <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Type Parameters:</li>
-</ul>
-<p><code>T</code> - the runtime type of the array to contain the collection</p>
-<ul>
-<li>Parameters:</li>
-</ul>
-<p><code>a</code> - the array into which the elements of this list are to be stored, if it is big enough; otherwise, a new array of the same runtime type is allocated for this purpose.</p>
-<ul>
-<li>Returns:</li>
-</ul>
-<p>an array containing the elements of this list</p>
-<ul>
-<li>Throws:</li>
-</ul>
-<p><code>ArrayStoreException</code> - if the runtime type of the specified array is not a supertype of the runtime type of every element in this list</p>
-<p><code>NullPointerException</code> - if the specified array is null</p>
-</blockquote>
-<p>看着有点长哈，我在这儿进行一个简要的描述，toArray(T[] a)方法使用了泛型参数，可以返回指定类型数组，但是这个泛型在确定的时候必须是list中元素类型的父类或本身，至于那个参数数组，其实就是为了传递参数类型罢了，在给出的例子中： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] y = x.toArray(<span class="keyword">new</span> String[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
-
-<p>可以清楚的看到，传进去的就是一个String 的空数组，然后返回的是list中String类型元素组成的数组。并且API中还提到，如果传进去的是new Object[]类型空数组，那么toArray(T[] a)方法就和toArray()方法相同了，我在这里猜测toArray(T[] a)方法的实现和toArray()方法应该是一样的，就不看list中的接口了，直接看ArrayList中的实现源码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns an array containing all of the elements in this list in proper</span></span><br><span class="line"><span class="comment"> * sequence (from first to last element); the runtime type of the returned</span></span><br><span class="line"><span class="comment"> * array is that of the specified array.  If the list fits in the</span></span><br><span class="line"><span class="comment"> * specified array, it is returned therein.  Otherwise, a new array is</span></span><br><span class="line"><span class="comment"> * allocated with the runtime type of the specified array and the size of</span></span><br><span class="line"><span class="comment"> * this list.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;If the list fits in the specified array with room to spare</span></span><br><span class="line"><span class="comment"> * (i.e., the array has more elements than the list), the element in</span></span><br><span class="line"><span class="comment"> * the array immediately following the end of the collection is set to</span></span><br><span class="line"><span class="comment"> * &lt;tt&gt;null&lt;/tt&gt;.  (This is useful in determining the length of the</span></span><br><span class="line"><span class="comment"> * list &lt;i&gt;only&lt;/i&gt; if the caller knows that the list does not contain</span></span><br><span class="line"><span class="comment"> * any null elements.)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> a the array into which the elements of the list are to</span></span><br><span class="line"><span class="comment"> *          be stored, if it is big enough; otherwise, a new array of the</span></span><br><span class="line"><span class="comment"> *          same runtime type is allocated for this purpose.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> an array containing the elements of the list</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> ArrayStoreException if the runtime type of the specified array</span></span><br><span class="line"><span class="comment"> *         is not a supertype of the runtime type of every element in</span></span><br><span class="line"><span class="comment"> *         this list</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if the specified array is null</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; T[] toArray(T[] a) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a.length &lt; size)</span><br><span class="line">        <span class="comment">// Make a new array of a's runtime type, but my contents:</span></span><br><span class="line">        <span class="keyword">return</span> (T[]) Arrays.copyOf(elementData, size, a.getClass());</span><br><span class="line">    System.arraycopy(elementData, <span class="number">0</span>, a, <span class="number">0</span>, size);</span><br><span class="line">    <span class="keyword">if</span> (a.length &gt; size)</span><br><span class="line">        a[size] = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注释有点长，比较的详尽，暂时先不管注释，直接看实现的源码。从实现源码中看出，首先会判断数组a的长度和list元素的个数，进行一个比较，如果a数组的长度小于list元素个数，那么就会直接调用工具类Arrays.copyOf()方法直接进行一个拷贝，注意，这儿的是Arrays.copyOf(elementData, size, a.getClass())方法，是由元素类型参数的，就是最后一项参数，和toArray()方法实现Arrays.copyOf(elementData, size)不相同。</p>
-<p>接着在看，如果数组a的长度length不小于list元素个数，即a.length&gt;=sizea.length &gt;= size<em>a</em>.<em>l<strong>e</strong>n<strong>g</strong>t**h</em>&gt;=<em>s*</em>i<strong>z</strong>e*得话，就会走下面的流程，首先调用<code>System.arraycopy(elementData, 0, a, 0, size)</code>将ArrayList里的元素数组<code>elementData</code>中的元素拷贝到a对象中，至于这个System.arraycopy()在这里就不详细说了。</p>
-<p>接下来会判断一下a.length 是否大于list元素个数size，如果大于的话，会在a[size]位置设置一个null，这个设置的目的是了toArray(T[] a)方法调用者从返回的数组中检测到null时就知道后面已经没有list元素对象了。</p>
-<p>终于分析完了，ArrayList的toArray(T[] a)源码代码证明自己上面的猜测是错的，toArray(T[] a)的实现和toArray()方法的实现很不一样，并且其实List的toArray(T[] a)方法的API说明中也提到了，如果传递进来的数组a的空间是大于list的话，就不是直接生成一个新数组来装list原来的元素对象了，而是往a数组中填，并且在最后还是放置一个null，并且在api中也说明了放置null的作用。</p>
-<p>看来自己看的还是不够仔细，观察力还有待提升啊。同时注意个小细节，ArrayList中对于toArray(T[] a)方法的注释只是一个简要的，List中对于toArray(T[] a)方法的注释更为详尽，并且还举了例子，以后看方法注解的时候还是尽量看详尽的那一个，免得遗漏信息。</p>
-<p>下面对这两个方法进行一个小的总结吧。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>List接口的toArray()方法就是直接调用Arrays.copyOf(elementData, size)，将list中的元素对象的引用装在一个新的生成数组中。</p>
-<p>List接口的toArray(T[] a)方法会返回指定类型（必须为list元素类型的父类或本身）的数组对象，如果a.length小于list元素个数就直接调用Arrays的copyOf()方法进行拷贝并且返回新数组对象，新数组中也是装的list元素对象的引用，否则先调用System.arraycopy()将list元素对象的引用装在a数组中，如果a数组还有剩余的空间，则在a[size]放置一个null，size就是list中元素的个数，这个null值可以使得toArray(T[] a)方法调用者可以判断null后面已经没有list元素了。</p>
-<p>好了，终于分析完了！</p>
-<p><a href="https://blog.csdn.net/mucaoyx/article/details/86005283" target="_blank" rel="noopener">https://blog.csdn.net/mucaoyx/article/details/86005283</a></p>
-
+        
+          <a class="article-more-a" href="/2020/08/19/0819_toArray/#more">more >></a>
+        
       
 
       
@@ -1282,112 +1400,6 @@
 
 
   
-    <article id="post-0603指针part1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/03/0603%E6%8C%87%E9%92%88part1/">c语言 指针相关 part1</a>
-    </h1>
-  
-
-
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">109字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-          
-
-
-
-        
-         
-<a href="/2020/06/03/0603%E6%8C%87%E9%92%88part1/" class="archive-article-date">
-  	<time datetime="2020-06-03T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="指针相关"><a href="#指针相关" class="headerlink" title="指针相关"></a>指针相关</h2><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200603114920632.png" alt="image-20200603114920632"></p>
-        
-          <a class="article-more-a" href="/2020/06/03/0603%E6%8C%87%E9%92%88part1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-	
-
-	
-	
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">c</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/03/0603%E6%8C%87%E9%92%88part1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1430,7 +1442,7 @@
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：53.5k</span>
+<span class="post-count">字数统计：57.9k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
