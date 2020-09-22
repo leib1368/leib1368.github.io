@@ -6,25 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: vue | Leib&#39;s Blog</title>
+  <title>JVM补充以及变量存储 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随便记录一下 菜鸟学习中">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leib&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/vue/index.html">
+  <meta name="description" content="-JVM补充">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM补充以及变量存储">
+<meta property="og:url" content="http://yoursite.com/2020/09/22/0922_JVM%E8%A1%A5%E5%85%85/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="随便记录一下 菜鸟学习中">
+<meta property="og:description" content="-JVM补充">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200922090051178.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190226181808168.jpg">
+<meta property="article:published_time" content="2020-09-22T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-22T04:14:26.613Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="后端">
 <meta property="article:tag" content="java">
-<meta property="article:tag" content="C&#x2F;C++">
-<meta property="article:tag" content="SpringBoot">
-<meta property="article:tag" content="mybatis">
-<meta property="article:tag" content="Dota2">
-<meta property="article:tag" content="NBA">
-<meta property="article:tag" content="Cristiano Ronaldo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200922090051178.png">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -177,100 +175,330 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-0922_JVM补充" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/05/11/0512%E6%89%93%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2020-05-11T12:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/11/0512%E6%89%93%E5%8C%85/">vue打包相关</a>
+    <h1 class="article-title" itemprop="name">
+      JVM补充以及变量存储
     </h1>
   
 
-        <div class="article-info info-on-right">
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">3.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">11分</span>
+      </span>
+    </span>
+</div>
           
+
+
+
+        
+         
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/09/22/0922_JVM%E8%A1%A5%E5%85%85/" class="archive-article-date">
+  	<time datetime="2020-09-22T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JVM补充"><a href="#JVM补充" class="headerlink" title="-JVM补充"></a>-JVM补充</h2><a id="more"></a>
+
+<p> <img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20200922090051178.png" alt="image-20200922090051178"></p>
+<hr>
+<h2 id="变量存储"><a href="#变量存储" class="headerlink" title="-变量存储"></a>-变量存储</h2><p>Java中的变量根据不同的标准可以分为两类，以其引用的数据类型的不同来划分可分为“原始数据类型变量和引用数据类型变量”，以其作用范围的不同来区分可分为“局部变量，实例变量和静态变量”。</p>
+<p>根据“<a href="https://blog.csdn.net/leunging/article/details/80598259" target="_blank" rel="noopener">Java中的变量与数据类型</a>”中的介绍，“变量是在内存中分配的保留区域的名称。换句话说，它是一个内存位置的名称”，也就是说我们通过这个变量名字就可以找到一个指向这个变量所引用的数据的内存指针，根据变量的类型我们可以知道这个指针之后的几个字节里存储了这个变量所引用的数据。</p>
+<p>所以，了解变量在方法区、栈内存、堆内存中的分配要了解两部分内容，一个是“变量在内存中的分配”，另一个是“变量所引用的数据在内存中的分配”。以下简称为“变量分配”与“数据分配”。</p>
+<p><strong>原始数据类型变量：</strong><br>原始数据类型变量的“变量分配”与“数据分配”是在一起的（都在方法区或栈内存或堆内存）</p>
+<p><strong>引用数据类型变量：</strong><br>引用数据类型变量的“变量分配”与“数据分配”不一定是在一起的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> x = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">static</span> BigWaterMelon bigWaterMelon_1 = <span class="keyword">new</span> BigWaterMelon(x);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">int</span> y = <span class="number">20</span>;</span><br><span class="line">    BigWaterMelon bigWaterMelon_2 = <span class="keyword">new</span> BigWaterMelon(y);</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Fruit fruit = <span class="keyword">new</span> Fruit();</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">int</span> z = <span class="number">30</span>;</span><br><span class="line">        BigWaterMelon bigWaterMelon_3 = <span class="keyword">new</span> BigWaterMelon(z);</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">int</span> k = <span class="number">100</span>;</span><br><span class="line">                setWeight(k);</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            <span class="function"><span class="keyword">void</span> <span class="title">setWeight</span><span class="params">(<span class="keyword">int</span> waterMelonWeight)</span> </span>&#123;</span><br><span class="line">                fruit.bigWaterMelon_2.weight = waterMelonWeight;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BigWaterMelon</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BigWaterMelon</span><span class="params">(<span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.weight = weight;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> weight;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190226181808168.jpg" alt="img"></p>
+<p><strong>同一种颜色代表变量和对象的引用关系</strong></p>
+<p>由于方法区和堆内存的数据都是线程间共享的，所以线程Main Thread，New Thread和Another Thread都可以访问方法区中的静态变量以及访问这个变量所引用的对象的实例变量。<strong>ps：方法区存储的都是只加载一次的。</strong></p>
+<p>栈内存中每个线程都有自己的虚拟机栈，每一个栈帧之间的数据就是线程独有的了，也就是说线程New Thread中setWeight方法是不能访问线程Main Thread中的局部变量bigWaterMelon_3，但是我们发现setWeight却访问了同为Main Thread局部变量的“fruit”，这是为什么呢？因为“fruit”被声明为final了。</p>
+<p>当“fruit”被声明为final后，“fruit”会作为New Thread的构造函数的一个参数传入New Thread，也就是堆内存中Fruit$1对象中的实例变量val$fruit会引用“fruit”引用的对象，从而New Thread可以访问到Main Thread的局部变量“fruit”。<br>-——————– </p>
+<p><a href="https://blog.csdn.net/HD243608836/article/details/87940295" target="_blank" rel="noopener">https://blog.csdn.net/HD243608836/article/details/87940295</a></p>
+<p>原文：<a href="https://blog.csdn.net/leunging/article/details/80599282" target="_blank" rel="noopener">https://blog.csdn.net/leunging/article/details/80599282</a> </p>
+<hr>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h2 id="2-堆和栈详解"><a href="#2-堆和栈详解" class="headerlink" title="2. 堆和栈详解"></a>2. 堆和栈详解</h2><h3 id="2-1-两者相同点和不同点"><a href="#2-1-两者相同点和不同点" class="headerlink" title="2.1 两者相同点和不同点"></a>2.1 两者相同点和不同点</h3><p>相同之处：</p>
+<p>堆与栈都是用于程序中的数据在RAM(内存)上的存储区域。并且Java会自动地管理堆和栈，不能人为去直接设置。</p>
+<p>区别：</p>
+<ol>
+<li>存储数据类型：栈内存中存放局部变量（基本数据类型和对象引用)，而堆内存用于存放对象（实体）。</li>
+<li>存储速度：就存储速度而言，栈内存的存储分配与清理速度更快于堆，并且栈内存的存储速度仅次于直接位于处理器当中的寄存器。</li>
+<li>灵活性：就灵活性而言，由于栈内存与堆内存存储机制的不同，堆内存灵活性更优于栈内存。</li>
+</ol>
+<h3 id="2-2-存储机制"><a href="#2-2-存储机制" class="headerlink" title="2.2 存储机制"></a>2.2 存储机制</h3><ul>
+<li>栈内存被要求存放在其中的数据的大小、生命周期必须是已经确定的；</li>
+<li>堆内存可以被虚拟机动态的分配内存大小，无需事先告诉编译器的数据的大小、生命周期等相关信息。</li>
+</ul>
+<ol>
+<li>栈内存和堆内存的存储数据类型为何不同？</li>
+</ol>
+<p>我们知道在Java中，变量的类型通常分为：基本数据类型变量和对象引用变量。<br> 首先，8种基本数据类型中的数字类型实际上都是存储的一组位数(所占bit位)不同的二进制数据；除此之外，布尔型只有true和false两种可能值。<br> 其次，对象引用变量存储的，实际是其所关联(指向)对象在内存中的内存地址，而内存地址实际上也是一串二进制的数据。<br> 所以，局部变量的大小是可以被确定的；<br> 接下来，java中，局部变量会在其自身所属方法（或代码块）执行完毕后，被自动释放。<br> 所以局部变量的生命周期也是可以被确定的。</p>
+<p><strong>那么，既然局部变量的大小和生命周期都可以被确定，完全符合栈内存的存储特点。自然，局部变量被存放在栈内存中。</strong></p>
+<p>而Java中使用关键字new通过调用类的构造函数，从而得到该类的对象。<br> 对象类型数据在程序编译期，并不会在内存中进行创建和存储工作；而是在程序运行期，才根据需要进行动态的创建和存储。<br> 也就是说，在程序运行之前，我们永远不能确定这个对象的内容、大小、生命周期。自然，对象由堆内存进行存储管理。</p>
+<ol>
+<li>为什么栈内存的速度高于堆内存？</li>
+</ol>
+<p>1.栈中数据大小和生命周期确定；堆中不确定。</p>
+<p>2.说到大小，栈中存放的局部变量（8种基本数据类型和对象引用）实际值基本都是一串二进制数据，所以数据很小。而堆中存放的对象类型数据更大。</p>
+<p>3.说到生命周期，栈中的数据在其所属方法或代码块执行结束后，就被释放；而堆中的数据由垃圾回收机制进行管理，无法确定合适会被回收释放。</p>
+<p>那么，一进行比较，很明显的可以预见到：自身信息（大小和生命周期）确定，数据大小更小的数据被处理起来肯定更加快捷，所以栈的存储管理速度优于堆。</p>
+<ol>
+<li>为什么堆内存的灵活性高于栈内存？</li>
+</ol>
+<p>这就更好理解了，一个要求数据的自身信息都必须被确定。一个可以动态的分配内存大小，也不必事先了解存储数据的任何信息。<br> 何为灵活性？也就是我们可以有更多的变数。那么对应的，规则越多，限制则越强，灵活性也就越弱。所以堆内存的灵活性自然高于栈内存。</p>
+<h2 id="3-数据共享"><a href="#3-数据共享" class="headerlink" title="3. 数据共享"></a>3. 数据共享</h2><p>栈和常量池都有一个特点就是共享数据。</p>
+<p>假设我们同时定义了两个变量：  int a = 100; int b = 100;<br> 这时候编译器的工作过程是：首先会在栈中开辟一块名为”a“的存储空间，然后查看栈中是否存放着一个”100“的值，发现在栈中没有找到这样的一个值，那么向栈中加入一个”100“的值，让”a“等于这个值。继而再在栈中开辟一块名为”b“的存储空间，这时候栈中已经存在一个”100“的值，那么就直接让”b“也等于这个值就行了。<br> 由此我们发现，在完成对“a”的存储分配后，再存储“b”时，我们并没有再次向柜子放进一个“100”，而是直接将前一次放进栈中的“100”的地址拿给“b”，栈里面”100“这个值同时功共享给了变量”a“和”b“，这就是栈内存中的数据共享。那么，你可能会想，实现数据共享的好处是什么？自然是节约内存空间，既然同样的值可以实现共享，那么就避免了反复向内存中加入同样的值。<br> 定义完a与b的值后，再令a = 4；那么，b不会等于4，还是等于100。在编译器内部，遇到时，它就会重新搜索栈中是否有4的字面值，如果没有，重新开辟地址存放4的值；如果已经有了，则直接将a指向这个地址。因此a值的改变不会影响到b的值。</p>
+<p>那么，接下再看另一个例子(String类型的存储是相对比较特殊的)：<br> String s1 = “abc”;<br> String s2 = “abc”;<br> System.out.print(s1= =s2);<br> 这里的打印结果会是什么？我们可能会这样思考：<br> 因为String是对象类型，定义了s1和s2两个对象引用，分别指向值同样为”abc“的两个String类型对象。<br> Java中，”==”用于比较两个对象引用时，实际是在比较这两个引用是否指向同一个对象。<br> 所以这里应该会打印false。但事实上，打印的结果为true。这是由于什么原因造成的？</p>
+<p>要搞清楚这个过程，首先要理解：String s = “abc”和String s = new String(“abc”)两张声明方式的不同之处：<br> 如果是使用String s = “abc”这种形式，也就是直接用双引号定义的形式。<br> 可以看做我们声明了一个值为”abc“的字符串对象引用变量s。<br> 但是，由于String类是final的，所以事实上，可以看做是声明了一个字符串引用常量。存放在常量池中。<br> 如果是使用关键字new这种形式声明出的，则是在程序运行期被动态创建，存放在堆中。</p>
+<p>所以，对于字符串而言，如果是编译期已经创建好(直接用双引号定义的)的就存储在常量池中；<br> 如果是运行期（new出来的）才能确定的就存储在堆中。<br> 对于equals相等的字符串，在常量池中永远只有一份，在堆中可以有多份。</p>
+<p>了解了字符串存储的这种特点，就可以对上面两种不同的声明方式进一步细化理解：</p>
+<p>String s = ”abc“的工作过程可以分为以下几个步骤：</p>
+<p>(1)定义了一个名为”s”的String类型的引用。</p>
+<p>(2)检查在常量池中是否存在值为”abc”的字符串对象；</p>
+<p>(3)如果不存在，则在常量池（字符串池）创建存储进一个值为”abc”的字符串对象。如果已经存在，则跳过这一步工作。</p>
+<p>(4)将对象引用s指向字符串池当中的”abc“对象。</p>
+<p>String s = new String(”abc“)的步骤则为：</p>
+<p>(1)定义了一个名为”s”的String类型的引用。</p>
+<p>(2)检查在常量池中是否存在值为”abc”的字符串对象；</p>
+<p>(3)如果不存在，则在常量池（字符串池）存储进一个值为”abc”的字符串对象。如果已经存在，则跳过这一步工作。</p>
+<p>(4)在堆中创建存储一个”abc“字符串对象。</p>
+<p>(5)将对象引用指向堆中的对象。</p>
+<p>这里指的注意的是，采用new的方式，虽然是在堆中存储对象，但是也会在存储之前检查常量池中是否已经含有此对象，如果没有，则会先在常量池创建对象，然后在堆中创建这个对象的”拷贝对象“。这也就是为什么有道面试题：String s = new String(“xyz”);产生几个对象？的答案是：一个或两个的原因。因为如果常量池中原来没有”xyz”,就是两个。</p>
+<p>弄清楚了原理，再看上面的例子，就知道为什么了。在执行String s1 = ‘abc”时;常量池中还没有对象，所以创建一个对象。之后在执行String s2 = ‘abc”的时候，因为常量池中已经存在了”abc’对象，所以说s2只需要指向这个对象就完成工作了。那么s1和s2指向同一个对象,用”==“比较自然返回true。所以常量池与栈内存一样，也可以实现数据共享。</p>
+<p>还有值得注意的一点的就是：我们知道局部变量存储于栈内存当中。<br> 那么成员变量呢？答案是：==成员变量的数据存储于堆中该成员变量所属的对象里面==。</p>
+<p>而栈内存与堆内存的另一不同点在于，堆内存中存放的变量都会进行默认初始化，而栈内存中存放的变量却不会。<br> 这也就是为什么，我们在声明一个成员变量时，可以不用对其进行初始化赋值。而如果声明一个局部变量却未进行初始赋值，如果想对其进行使用就会报编译异常的原因了。</p>
+<p>作者：DanielHan<br>链接：<a href="https://www.jianshu.com/p/6e169f3da70b" target="_blank" rel="noopener">https://www.jianshu.com/p/6e169f3da70b</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.JPG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/09/22/0922_JVM%E8%A1%A5%E5%85%85/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/05/04/0504vue%E5%AE%9E%E6%88%98/" class="archive-article-date">
-  	<time datetime="2020-05-04T13:46:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/18/0915_%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">类加载器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/04/0504vue%E5%AE%9E%E6%88%98/">vue基础</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
+
+
+  
     
+  
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDA5MS8yNjU4MQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+  
+
+  
+    <div class="valine_comment"></div>
+<!--载入js，在<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TkaOsLUB4HWqGxgFvAWlS1Ml-gzGzoHsz',
+      app_key: '3LKy8g3cmiIcA54iXXd7f0GO',
+      placeholder: 'anything want to say ?'
+    });
+</script>
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -340,9 +568,9 @@ setInterval("createtime()",250);
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
