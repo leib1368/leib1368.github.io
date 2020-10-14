@@ -6,25 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/6 | Leib&#39;s Blog</title>
+  <title>Spring 声明式事务 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随便记录一下 菜鸟学习中">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leib&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/06/index.html">
+  <meta name="description" content="一、引言Spring的事务机制包括声明式事务和编程式事务。  编程式事务管理：Spring推荐使用 TransactionTemplate，实际开发中使用声明式事务较多。  声明式事务管理：将我们从复杂的事务处理中解脱出来，获取连接，关闭连接、事务提交、回滚、异常处理等这些操作都不用我们处理了，Spring都会帮我们处理。 声明式事务管理使用了 AOP 实现的，本质就是在目标方法执行前后进行拦截。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring 声明式事务">
+<meta property="og:url" content="http://yoursite.com/2020/10/14/1014_Spring%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="随便记录一下 菜鸟学习中">
+<meta property="og:description" content="一、引言Spring的事务机制包括声明式事务和编程式事务。  编程式事务管理：Spring推荐使用 TransactionTemplate，实际开发中使用声明式事务较多。  声明式事务管理：将我们从复杂的事务处理中解脱出来，获取连接，关闭连接、事务提交、回滚、异常处理等这些操作都不用我们处理了，Spring都会帮我们处理。 声明式事务管理使用了 AOP 实现的，本质就是在目标方法执行前后进行拦截。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201014121639763.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190613234506839.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190613234651346.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190613234709559.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201014135814487.png">
+<meta property="article:published_time" content="2020-10-14T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-14T06:04:07.909Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="后端">
 <meta property="article:tag" content="java">
-<meta property="article:tag" content="C&#x2F;C++">
-<meta property="article:tag" content="SpringBoot">
-<meta property="article:tag" content="mybatis">
-<meta property="article:tag" content="Dota2">
-<meta property="article:tag" content="NBA">
-<meta property="article:tag" content="Cristiano Ronaldo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201014121639763.png">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -177,37 +178,284 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-1014_Spring声明式事务" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/13/0613%E6%B3%9B%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-06-13T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/13/0613%E6%B3%9B%E5%9E%8B/">泛型</a>
+    <h1 class="article-title" itemprop="name">
+      Spring 声明式事务
     </h1>
   
 
-        <div class="article-info info-on-right">
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">3.7k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">13分</span>
+      </span>
+    </span>
+</div>
           
+
+
+
+        
+         
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/10/14/1014_Spring%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/" class="archive-article-date">
+  	<time datetime="2020-10-14T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>Spring的事务机制包括<code>声明式事务</code>和<code>编程式事务</code>。</p>
+<ul>
+<li><p><strong>编程式事务管理</strong>：Spring推荐使用 <code>TransactionTemplate</code>，实际开发中使用声明式事务较多。</p>
+</li>
+<li><p><strong>声明式事务管理</strong>：将我们从复杂的事务处理中解脱出来，获取连接，关闭连接、事务提交、回滚、异常处理等这些操作都不用我们处理了，Spring都会帮我们处理。</p>
+<p>声明式事务管理使用了 <code>AOP</code> 实现的，本质就是<strong>在目标方法执行前后进行拦截</strong>。在目标方法执行前加入或创建一个事务，在执行方法执行后，根据实际情况选择提交或是回滚事务。</p>
+</li>
+</ul>
+<p><strong>声明式事务优点：不需要在业务逻辑代码中编写事务相关代码</strong>，只需要在配置文件配置或使用注解（<code>@Transaction</code>），这种方式没有侵入性。</p>
+<p><strong>声明式事务缺点：声明式事务的最细粒度作用于方法上</strong>，如果像代码块也有事务需求，只能变通下，将代码块变为方法。</p>
+<p>事务属性包含以下五个方面：<code>隔离级别</code>、<code>传播行为</code>、<code>回滚规则</code>、<code>事务超时</code>、<code>只读</code>。</p>
+<a id="more"></a>
+
+<h2 id="二、基本使用"><a href="#二、基本使用" class="headerlink" title="二、基本使用"></a>二、基本使用</h2><p>首先在类中注入事务管理器，然后在需要实现事务的方法上添加 <code>@Transactional</code> 注解。通过调用 transactionManager 的 <code>commit()</code> 和 <code>rollback()</code> 实现事务提交和回滚。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestServiceImpl</span> <span class="keyword">implements</span> <span class="title">TestService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DataSourceTransactionManager transactionManager;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span>(timeout = -<span class="number">1</span>,readOnly = <span class="keyword">false</span>)<span class="comment">//事务配置</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        DefaultTransactionDefinition definition = <span class="keyword">new</span> DefaultTransactionDefinition();</span><br><span class="line">        TransactionStatus status = transactionManager.getTransaction(definition);<span class="comment">//获取事务状态</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> save = ...;</span><br><span class="line">        <span class="keyword">if</span>(save) &#123;</span><br><span class="line">            transactionManager.commit(status);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            transactionManager.rollback(status);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-TransactionManager"><a href="#2-1-TransactionManager" class="headerlink" title="2.1 TransactionManager"></a>2.1 TransactionManager</h3><p>Spring 并不直接对事务进行管理，而是通过事务管理器接口 <code>PlatformTransactionManager</code>将事务职责委托给<strong>不同的 ORM 框架</strong>的事务来实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PlatformTransactionManager</span> </span>&#123;  </span><br><span class="line">       <span class="function">TransactionStatus <span class="title">getTransaction</span><span class="params">(TransactionDefinition definition)</span> <span class="keyword">throws</span> TransactionException</span>;  </span><br><span class="line"><span class="comment">//返回一个已经激活的事务或创建一个新的事务（根据给定的TransactionDefinition类型参数定义的事务属性），返回的是TransactionStatus对象代表了当前事务的状态，其中该方法抛出TransactionException（未检查异常）表示事务由于某种原因失败。    </span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">commit</span><span class="params">(TransactionStatus status)</span> <span class="keyword">throws</span> TransactionException</span>;  </span><br><span class="line"><span class="comment">//用于提交TransactionStatus参数代表的事务</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">rollback</span><span class="params">(TransactionStatus status)</span> <span class="keyword">throws</span> TransactionException</span>;  </span><br><span class="line"><span class="comment">//用于回滚TransactionStatus参数代表的事务</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//TransactionDefinition接口定义如下：</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TransactionDefinition</span> </span>&#123;  </span><br><span class="line">       <span class="function"><span class="keyword">int</span> <span class="title">getPropagationBehavior</span><span class="params">()</span></span>;   <span class="comment">//返回定义的事务传播行为；</span></span><br><span class="line">       <span class="function"><span class="keyword">int</span> <span class="title">getIsolationLevel</span><span class="params">()</span></span>;  <span class="comment">//返回定义的事务隔离级别；</span></span><br><span class="line">       <span class="function"><span class="keyword">int</span> <span class="title">getTimeout</span><span class="params">()</span></span>;  <span class="comment">//返回定义的事务超时时间；</span></span><br><span class="line">       <span class="function"><span class="keyword">boolean</span> <span class="title">isReadOnly</span><span class="params">()</span></span>;  <span class="comment">//返回定义的事务是否是只读的；</span></span><br><span class="line">       <span class="function">String <span class="title">getName</span><span class="params">()</span></span>;  <span class="comment">//返回定义的事务名字。</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//TransactionStatus接口定义如下：</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TransactionStatus</span> <span class="keyword">extends</span> <span class="title">SavepointManager</span> </span>&#123;  </span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">flush</span><span class="params">()</span>		<span class="comment">//刷新事务</span></span></span><br><span class="line"><span class="function">        <span class="keyword">boolean</span> <span class="title">hasSavepoint</span><span class="params">()</span></span>; <span class="comment">// 是否有恢复点</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> isCompleted; <span class="comment">// 是否已完成</span></span><br><span class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">isNewTransaction</span><span class="params">()</span></span>; <span class="comment">// 是否是新的事务</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">setRollbackOnly</span><span class="params">()</span></span>;  <span class="comment">// 设置为只回滚</span></span><br><span class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">isRollbackOnly</span><span class="params">()</span></span>; <span class="comment">// 是否为只回滚</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过TransactionManager，Spring 为 JDBC、JPA、Hibernate 等提供了不同的实现，常见的实现大致有以下几种。</p>
+<table>
+<thead>
+<tr>
+<th>TransactionManager</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DataSourceTransactionManager</td>
+<td>适用 <code>JDBC</code> 或 <code>iBatis(MyBatis)</code></td>
+</tr>
+<tr>
+<td>HibernateTransactionManager</td>
+<td>适用 <code>Hibernate 3</code> 及以上版本</td>
+</tr>
+<tr>
+<td>JpaTransactionManager</td>
+<td>适用 <code>JPA</code></td>
+</tr>
+<tr>
+<td>JtaTransactionManager</td>
+<td>使用一个 JTA 实现来管理事务，在一个事务跨越多个资源时使用</td>
+</tr>
+</tbody></table>
+<p>HibernateTransactionManager 和 JpaTransactionManager 不再探讨，因为目前我使用的是原生 <code>JDBC</code> 或 <code>MyBatis</code>，因此没有了解过这两种事务管理器。</p>
+<p><code>JtaTransactionManager</code> 则是 Spring 对<strong>分布式事务</strong>管理的支持，如果项目采用多数据源，且要实现跨源事务，则需要了解下这个，可以参考文章：<a href="https://www.ibm.com/developerworks/cn/java/j-lo-jta/" target="_blank" rel="noopener">《JTA 深度历险 - 原理与实现》</a>。</p>
+<h3 id="2-2-TransactionStatus"><a href="#2-2-TransactionStatus" class="headerlink" title="2.2 TransactionStatus"></a>2.2 TransactionStatus</h3><p>通过调用 transactionManager 的 <code>getTransaction()</code> 方法，可以得到 <code>TransactionStatus</code>，该接口用来记录事务的状态，它定义了一组方法，用来获取或判断事务的相应状态信息。</p>
+<h3 id="2-3-事务接口联系"><a href="#2-3-事务接口联系" class="headerlink" title="2.3 事务接口联系"></a>2.3 事务接口联系</h3><p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201014121639763.png" alt="image-20201014121639763"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190613234506839.png" alt="img"></p>
+<h2 id="三、事务属性"><a href="#三、事务属性" class="headerlink" title="三、事务属性"></a>三、事务属性</h2><h3 id="3-1-隔离级别"><a href="#3-1-隔离级别" class="headerlink" title="3.1 隔离级别"></a>3.1 隔离级别</h3><p><code>隔离级别</code>定义了一个事务可能受其他并发事务影响的程度。 数据库的不同隔离级别和带来的并发一致性问题参考文章：<br><a href="https://developer.ibm.com/zh/technologies/databases/articles/os-mysql-transaction-isolation-levels-and-locks/" target="_blank" rel="noopener">MySQL 事务隔离级别和锁</a>， 这里不再赘述。</p>
+<p>在Spring 中，预置了以下五种隔离级别：</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ISOLATION_DEFAULT</td>
+<td>使用数据库默认的隔离级别</td>
+</tr>
+<tr>
+<td>ISOLATION_READ_UNCOMMITTED</td>
+<td>最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读</td>
+</tr>
+<tr>
+<td>ISOLATION_READ_COMMITTED</td>
+<td>允许读取并发事务已经提交的数据，可以阻止脏读，但是幻读或不可重复读仍有可能发生</td>
+</tr>
+<tr>
+<td>ISOLATION_REPEATABLE_READ</td>
+<td>对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生</td>
+</tr>
+<tr>
+<td>ISOLATION_SERIALIZABLE</td>
+<td>最高的隔离级别，完全服从ACID的隔离级别，确保阻止脏读、不可重复读以及幻读</td>
+</tr>
+</tbody></table>
+<p>可以看到预置的隔离界别和数据库的四大事务隔离级别是保持一致的，因此使用起来也比较方便，根据实际需要选择即可。</p>
+<p>需要注意的是，如果你选择 <code>ISOLATION_DEFAULT</code>的话，你需要明确 SQL Server 的默认隔离级别是 <code>READ_COMMITTED</code>，MySQL 的默认的隔离级别是 <code>REPEATABLE_READ</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认事务隔离级别</span></span><br><span class="line"><span class="meta">@Transactional</span>(isolation = Isolation.DEFAULT)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-传播行为"><a href="#3-2-传播行为" class="headerlink" title="3.2 传播行为"></a>3.2 传播行为</h3><p>如果在一个事务中调用了另一个事务，那么到底是新开一个事务，还是继续在这个事务内部处理，亦或是其他等等，这都是由<strong>传播行为</strong>所决定的。Spring 支持以下七种传播行为：</p>
+<table>
+<thead>
+<tr>
+<th>传播行为</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PROPAGATION_REQUIRED</td>
+<td>当前方法<strong>必须</strong>运行在事务中。 如果当前存在事务，加入已存在的事务中，否则启动一个新事务。</td>
+</tr>
+<tr>
+<td>PROPAGATION_SUPPORTS</td>
+<td>当前方法<strong>支持</strong>运行在事务中。 如果当前存在事务，加入已存在的事务中，否则非事务运行。</td>
+</tr>
+<tr>
+<td>PROPAGATION_MANDATORY</td>
+<td>当前方法<strong>必须</strong>运行在事务中。 如果当前存在事务，加入已存在的事务中，否则抛出异常。</td>
+</tr>
+<tr>
+<td>PROPAGATION_REQUIRED_NEW</td>
+<td>当前方法<strong>必须</strong>运行在<strong>自己的</strong>事务中。 如果当前存在事务，挂起已存在的事务中，启动一个新事务执行。</td>
+</tr>
+<tr>
+<td>PROPAGATION_NOT_SUPPORTED</td>
+<td>当前方法<strong>不支持</strong>运行在事务中。 如果当前存在事务，挂起已存在的事务中，非事务运行。</td>
+</tr>
+<tr>
+<td>PROPAGATION_NEVER</td>
+<td>当前方法<strong>不能</strong>运行在事务中。 如果当前存在事务，抛出异常。</td>
+</tr>
+<tr>
+<td>PROPAGATION_NESTED</td>
+<td>类似于 PROPAGATION_REQUIRED_NEW，但前者是两个独立的事务，而它是嵌套事务。</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span>(propagation = Propagation.REQUIRED)</span><br></pre></td></tr></table></figure>
+
+<p>以上传播行为基本都很易于理解，但其中 <code>PROPAGATION_REQUIRED_NEW</code> 和 <code>PROPAGATION_NESTED</code> 是最容易产生疑问的两种，下面了解下这两种传播行为。</p>
+<h4 id="3-2-1-PROPAGATION-REQUIRED-NEW"><a href="#3-2-1-PROPAGATION-REQUIRED-NEW" class="headerlink" title="3.2.1 PROPAGATION_REQUIRED_NEW"></a>3.2.1 PROPAGATION_REQUIRED_NEW</h4><p><code>PROPAGATION_REQUIRES_NEW</code> 启动一个新的，不依赖于环境的 “内部” 事务。这个事务将被完全 commited 或 rolled back 而不依赖于外部事务，它拥有自己的隔离范围, 自己的锁等等。当内部事务开始执行时，外部事务将被挂起， 内务事务结束时，外部事务将继续执行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ServiceA &#123;  </span><br><span class="line">    <span class="comment">// PROPAGATION_REQUIRED </span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span> </span>&#123; ServiceB.methodB(); &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">ServiceB &#123;  </span><br><span class="line">    <span class="comment">// PROPAGATION_REQUIRES_NEW </span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">methodB</span><span class="params">()</span> </span>&#123; ... &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上面代码为例，由于 ServiceB#methodB 设置为 <code>PROPAGATION_REQUIRES_NEW</code>，它在执行时 ServiceA#methodA 的<strong>事务会被挂起</strong>。因此ServiceA#methodA 和 ServiceB#methodB 不会因为对方的执行情况而影响事务的结果，二者完全就是独立的两个事务。</p>
+<h4 id="3-2-2-PROPAGATION-NESTED"><a href="#3-2-2-PROPAGATION-NESTED" class="headerlink" title="3.2.2 PROPAGATION_NESTED"></a>3.2.2 PROPAGATION_NESTED</h4><p><code>PROPAGATION_NESTED</code> 开始一个 “嵌套的” 事务，它是已经存在事务的一个真正的子事务。 嵌套事务开始执行时，它将取得一个 savepoint，如果这个嵌套事务失败，将回滚到此 savepoint。嵌套事务是外部事务的一部分，只有外部事务结束后它才会被提交。</p>
+<p>由此可见，两者的最大区别在于：PROPAGATION_REQUIRES_NEW 完全是<strong>一个新的事务</strong>，而 PROPAGATION_NESTED 则是<strong>外部事务的子事务</strong>，如果外部事务 commit，嵌套事务也会被 commit,，这个规则同样适用于 rollback.。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ServiceA &#123;  </span><br><span class="line">    <span class="comment">// PROPAGATION_REQUIRED </span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span> </span>&#123; ServiceB.methodB(); &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">ServiceB &#123;  </span><br><span class="line">    <span class="comment">// PROPAGATION_NESTED </span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">methodB</span><span class="params">()</span> </span>&#123; ... &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还是以上面这段代码为例，那么实际上它就等价于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ServiceA &#123;</span><br><span class="line">    <span class="comment">// PROPAGATION_REQUIRED  </span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// PROPAGATION_NESTED</span></span><br><span class="line">            ServiceB.methodB();  </span><br><span class="line">        &#125; <span class="keyword">catch</span> (SomeException) &#123;  </span><br><span class="line">            <span class="comment">// 执行其他业务, 如 ServiceC.methodC();  </span></span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当初始执行 <code>ServiceB.methodB()</code> 这行代码时，将当前事务状态保存 SavePoint，当 <code>ServiceB.methodB()</code> 执行过程中出现异常导致子事务回滚，那么它会回滚到外部事务的 SavePoint 位置，外部事务可以根据业务场景去执行具体操作。</p>
+<p>还不明白的可以参考本篇文章<br><a href="https://juejin.im/entry/6844903566205779982" target="_blank" rel="noopener">Spring事务传播行为详解</a></p>
+<h3 id="3-3-回滚规则"><a href="#3-3-回滚规则" class="headerlink" title="3.3 回滚规则"></a>3.3 回滚规则</h3><p>通过配置当程序抛出指定异常时，自动回滚事务，通过指定 <code>rollbackFor</code> 指定异常类，通过指定 <code>noRollbackFor</code> 指定忽略的不回滚事务的异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 回滚异常</span></span><br><span class="line"><span class="meta">@Transactional</span>(rollbackFor = &#123;SQLException<span class="class">.<span class="keyword">class</span>, <span class="title">NullPointerException</span>.<span class="title">class</span>&#125;)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">// 忽略回滚异常</span></span><br><span class="line"><span class="class">@<span class="title">Transactional</span>(<span class="title">noRollbackFor</span> </span>= ArrayIndexOutOfBoundsException<span class="class">.<span class="keyword">class</span>)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-事务超时"><a href="#3-4-事务超时" class="headerlink" title="3.4 事务超时"></a>3.4 事务超时</h3><p>为了使应用程序很好地运行，事务不能运行太长的时间。因为事务可能涉及对后端数据库的锁定，所以长时间的事务会不必要的占用数据库资源。</p>
+<p>事务超时就是事务的一个定时器，在特定时间内事务如果没有执行完毕，那么就会自动回滚，而不是一直等待其结束。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设定事务超时时间，单位：s，-1表示不设置</span></span><br><span class="line"><span class="meta">@Transactional</span>(timeout = -<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-只读"><a href="#3-5-只读" class="headerlink" title="3.5 只读"></a>3.5 只读</h3><p>如果事务只对数据库进行读操作，数据库可以利用事务的只读特性来进行一些特定的优化，例如优化掉不必要的锁操作等等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明事务只读</span></span><br><span class="line"><span class="meta">@Transactional</span>(readOnly = <span class="keyword">true</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在 MySQL 中，如果事务声明为只读，却在其中做修改操作，会抛出异常。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190613234651346.png" alt="img"></p>
+<h2 id="四、注意点"><a href="#四、注意点" class="headerlink" title="四、注意点"></a>四、注意点</h2><h3 id="4-1-仅对-public-方法有效"><a href="#4-1-仅对-public-方法有效" class="headerlink" title="4.1 仅对 public 方法有效"></a>4.1 仅对 public 方法有效</h3><p>只有 <code>@Transactional</code> 注解应用到 public 方法上才能进行事务管理。这是因为 Spring 在 AOP 事务注解时，在读取注解上的属性方法中，会优先判断方法是否是 public，如果不是 public，就不会读取事务配置信息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/20190613234709559.png" alt="AbstractFallbackTransactionAttributeSource#computeTransactionAttribute"></p>
+<h3 id="4-2-AOP-的自调用问题（-重要）"><a href="#4-2-AOP-的自调用问题（-重要）" class="headerlink" title="4.2 AOP 的自调用问题（*重要）"></a>4.2 AOP 的自调用问题（*重要）</h3><p>在 Spring 的 AOP 代理下，只有<strong>目标方法由外部调用</strong>，目标方法才由 Spring 生成的代理对象来管理。也就是说，在同一个类中的一个 @Transactional 方法中，去调用另一个 @Transactional 方法，会导致第二个方法的事务无效，<strong>被 Spring AOP 所忽略</strong>。（划重点）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestServiceImpl</span> <span class="keyword">implements</span> <span class="title">TestService</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Transactional</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transaction1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    transaction2(); <span class="comment">// transaction2 事务无效</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Transactional</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transaction2</span><span class="params">()</span> </span>&#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Spring AOP 代理下，只有目标方法由外部调用，目标方法才由 Spring 生成的代理对象来管理，这会造成自调用问题。若同一类中的其他没有@Transactional 注解的方法内部调用有@Transactional 注解的方法，有@Transactional 注解的方法的事务被忽略，不会发生回滚。</p>
+<p><strong>失效原因</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201014135814487.png" alt="image-20201014135814487"></p>
+<p>方法one方法two都是public的：</p>
+<ul>
+<li>classA中 ，任意要调用classB的方法，是通过spring代理的方式，那么spring的注解才会生效</li>
+<li>classA中，方法one 调用同class内的方法two，即this调用，spring注解不会生效（例如@Cachable，@Transaction）</li>
+</ul>
+<blockquote>
+<p>既然已知原因，那么解决的方法就有了，核心思想就是如何获得动态代理对象，而不是使用this去调用。</p>
+</blockquote>
+<p><strong>方案一</strong>：使用AspectJ代理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        insertOrder();</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//insert log info</span></span><br><span class="line">        <span class="comment">//insertOrder</span></span><br><span class="line">        <span class="comment">//updateAccount</span></span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>insertOrder 尽管有@Transactional 注解，但它被内部方法 insert 调用，事务被忽略，出现异常事务不会发生回滚。</p>
+<p>上面的两个问题@Transactional <strong>注解只应用到 public 方法和自调用问题</strong>，是由于使用 Spring AOP 代理造成的。为解决这两个问题，可以使用 <strong>AspectJ</strong>取代 Spring AOP 代理，但现在有更好的解决方法。</p>
+<p><strong>方案二</strong>：利用AopContext.currentProxy()方法获得代理</p>
+<p>方法的意思是尝试返回当前AOP代理。这种做法非常简洁，但是在默认情况下是不起作用的！因为AopContext中拿不到currentProxy，会报空指针。需要一些额外的配置，但不能对所有的注解拦截都有效，这是因为这些注解不是用的AspectJ代理，如果是@Transactional事务注解的话， 则是生效的，具体细节要翻源码了，这里不推荐使用。</p>
+<p><strong>方案三</strong>：通过ApplicationContext来获得动态代理对象（推荐）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AsyncService</span> <span class="keyword">implements</span> <span class="title">ApplicationContextAware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">async1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"1:"</span> + Thread.currentThread().getName());</span><br><span class="line">        <span class="comment">// 使用AppicationContext来获得动态代理的bean，然后再执行你调用的方法</span></span><br><span class="line">        <span class="keyword">this</span>.applicationContext.getBean(AsyncService<span class="class">.<span class="keyword">class</span>).<span class="title">async2</span>()</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Async</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">async2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"2:"</span> + Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 注入ApplicationContext</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.applicationContext = applicationContext;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3注意点"><a href="#4-3注意点" class="headerlink" title="4.3注意点"></a>4.3注意点</h3><p>事务嵌套，不回滚的问题描述：</p>
+<p>要想事务起作用，必须是主方法名上有@Transactional注解，方法体内不能用try catch；如果用try catch，则catch中必须用throw new RuntimeException();</p>
+<p>@Transactional注解应该只被应用到public方法上，不要用在protected、private等方法上，即使用了也将被忽略，不起作用。这是由Spring AOP决定的。</p>
+<p>只有来自外部的方法调用才会被AOP代理捕捉，类内部方法调用类内部的其他方法，<strong>子方法并会不引起事务行为</strong>，即使被调用的方法上使用有@Transactional注解。</p>
+<p>类内部方法调用内部的其他方法，被调用的方法体中如果有try catch，则catch中必须用throw new RuntimeException()，否则即使主方法上加上@Transactional注解，<strong>如果被调用的子方法出错也不会抛出异常，不会引起事务起作用</strong>。</p>
+<p>一、不同类中的方法的事务嵌套问题：<br>不同类中有@Transactional 的方法调用有@Transactional 的方法</p>
+<p>二、同一类中的方法的事务嵌套<br>同一类中的其他没有@Transactional 注解的方法内部调用有@Transactional 注解的方法，<strong>有@Transactional 注解的方法的事务被忽略，不会发生回滚。</strong></p>
+<p>原因：spring的事务处理底层是通过CGlib动态代理来实现的。目标方法由外部调用才由 Spring 生成的代理对象来管理，<strong>这会造成自调用问题。</strong></p>
+<p>为了解决事务嵌套这个问题，我们用到了@AspectJ 面向切面来实现，不能使用spring aop动态代理</p>
+<p><a href="https://blog.csdn.net/jaryle/article/details/88764751" target="_blank" rel="noopener">↑ 解决方法</a></p>
+<h2 id="五、转载源"><a href="#五、转载源" class="headerlink" title="五、转载源"></a>五、转载源</h2><p><a href="https://blog.csdn.net/yuanlaijike/article/details/91909069" target="_blank" rel="noopener">https://blog.csdn.net/yuanlaijike/article/details/91909069</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.JPG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -219,214 +467,156 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/10/14/1014_Spring%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/08/0608linux%E5%90%8E%E5%8F%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/" class="archive-article-date">
-  	<time datetime="2020-06-08T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/01/1001_%E9%87%8D%E7%9C%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1001_重看多线程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/08/0608linux%E5%90%8E%E5%8F%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/">linux后台部署</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/06/0606%E5%80%BC%E4%BC%A0%E9%80%92/" class="archive-article-date">
-  	<time datetime="2020-06-06T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-06</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/06/0606%E5%80%BC%E4%BC%A0%E9%80%92/">值传递</a>
-    </h1>
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDA5MS8yNjU4MQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/04/0604%E6%8C%87%E9%92%88part3/" class="archive-article-date">
-  	<time datetime="2020-06-04T06:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/04/0604%E6%8C%87%E9%92%88part3/">c语言 指针相关 part3</a>
-    </h1>
+    <div class="valine_comment"></div>
+<!--载入js，在<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TkaOsLUB4HWqGxgFvAWlS1Ml-gzGzoHsz',
+      app_key: '3LKy8g3cmiIcA54iXXd7f0GO',
+      placeholder: 'anything want to say ?'
+    });
+</script>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">c</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/04/0603%E6%8C%87%E9%92%88part2/" class="archive-article-date">
-  	<time datetime="2020-06-04T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/04/0603%E6%8C%87%E9%92%88part2/">c语言 指针相关 part2</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">c</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/03/0603%E6%8C%87%E9%92%88part1/" class="archive-article-date">
-  	<time datetime="2020-06-03T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/03/0603%E6%8C%87%E9%92%88part1/">c语言 指针相关 part1</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">c</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -496,8 +686,8 @@ setInterval("createtime()",250);
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

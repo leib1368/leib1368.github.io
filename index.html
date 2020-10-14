@@ -179,6 +179,122 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-1014_Spring声明式事务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/14/1014_Spring%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/">Spring 声明式事务</a>
+    </h1>
+  
+
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">3.7k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">13分</span>
+      </span>
+    </span>
+</div>
+          
+
+
+
+        
+         
+<a href="/2020/10/14/1014_Spring%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/" class="archive-article-date">
+  	<time datetime="2020-10-14T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h2><p>Spring的事务机制包括<code>声明式事务</code>和<code>编程式事务</code>。</p>
+<ul>
+<li><p><strong>编程式事务管理</strong>：Spring推荐使用 <code>TransactionTemplate</code>，实际开发中使用声明式事务较多。</p>
+</li>
+<li><p><strong>声明式事务管理</strong>：将我们从复杂的事务处理中解脱出来，获取连接，关闭连接、事务提交、回滚、异常处理等这些操作都不用我们处理了，Spring都会帮我们处理。</p>
+<p>声明式事务管理使用了 <code>AOP</code> 实现的，本质就是<strong>在目标方法执行前后进行拦截</strong>。在目标方法执行前加入或创建一个事务，在执行方法执行后，根据实际情况选择提交或是回滚事务。</p>
+</li>
+</ul>
+<p><strong>声明式事务优点：不需要在业务逻辑代码中编写事务相关代码</strong>，只需要在配置文件配置或使用注解（<code>@Transaction</code>），这种方式没有侵入性。</p>
+<p><strong>声明式事务缺点：声明式事务的最细粒度作用于方法上</strong>，如果像代码块也有事务需求，只能变通下，将代码块变为方法。</p>
+<p>事务属性包含以下五个方面：<code>隔离级别</code>、<code>传播行为</code>、<code>回滚规则</code>、<code>事务超时</code>、<code>只读</code>。</p>
+        
+          <a class="article-more-a" href="/2020/10/14/1014_Spring%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/14/1014_Spring%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-1001_重看多线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1148,132 +1264,6 @@
 
 
   
-    <article id="post-0701bean" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/01/0701bean/">Bean</a>
-    </h1>
-  
-
-
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">355字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-          
-
-
-
-        
-         
-<a href="/2020/07/01/0701bean/" class="archive-article-date">
-  	<time datetime="2020-07-01T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Bean"><a href="#Bean" class="headerlink" title="Bean"></a>Bean</h2><ul>
-<li>IOC与DI</li>
-<li>Spring的3种编程风格与2种注入方式</li>
-<li>1️⃣XML配置开发：<bean>描述依赖关系</li>
-<li>自动装配：让<bean>职责单一化</li>
-<li>2️⃣XML+注解：XML+<a href="context:component-scan">context:component-scan</a>+@Component</li>
-<li>@Autowired的小秘密</li>
-<li>2️⃣JavaConfig+注解：@Configuration+@ComponentScan+@Component</li>
-<li>3️⃣JavaConfig方式：@Configuration+@Bean</li>
-<li>大乱斗：@ImportResource、@Component、@Bean</li>
-</ul>
-<h3 id="Spring的3种编程风格与2种注入方式"><a href="#Spring的3种编程风格与2种注入方式" class="headerlink" title="Spring的3种编程风格与2种注入方式"></a>Spring的3种编程风格与2种注入方式</h3><ul>
-<li>Schema-based Container Configuration（XML配置）</li>
-<li>Annotation-based Container Configuration（注解）</li>
-<li>Java-based Container Configuration（@Configuration配置类）</li>
-</ul>
-<p>Spring支持的2种注入方式：</p>
-<ul>
-<li>构造方法注入</li>
-<li>setter方法注入</li>
-</ul>
-        
-          <a class="article-more-a" href="/2020/07/01/0701bean/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-	
-
-	
-	
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/01/0701bean/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1316,7 +1306,7 @@
   
 
   <i class="fas fa-chart-area"></i>
-<span class="post-count">字数统计：65k</span>
+<span class="post-count">字数统计：68.7k</span>
 
 <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
 <script>
