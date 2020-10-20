@@ -6,24 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: c | Leib&#39;s Blog</title>
+  <title>Spring PropertyPlaceholderConfigurer | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随便记录一下 菜鸟学习中">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leib&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/c/index.html">
+  <meta name="description" content="PropertyPlaceholderConfigurer PropertyPlaceholderConfigurer和context:property-placeholder&#x2F;有何区别？ @Value在Controller层和Service层使用有何不同？ @Value和${key}在web中配置注意事项。 PropertyPlaceholderConfigurer在容器里能存在多个bean吗">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring PropertyPlaceholderConfigurer">
+<meta property="og:url" content="http://yoursite.com/2020/10/20/1020_PropertyPlaceholderConfigurer/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="随便记录一下 菜鸟学习中">
+<meta property="og:description" content="PropertyPlaceholderConfigurer PropertyPlaceholderConfigurer和context:property-placeholder&#x2F;有何区别？ @Value在Controller层和Service层使用有何不同？ @Value和${key}在web中配置注意事项。 PropertyPlaceholderConfigurer在容器里能存在多个bean吗">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-20T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-20T10:03:51.599Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="后端">
 <meta property="article:tag" content="java">
-<meta property="article:tag" content="C&#x2F;C++">
-<meta property="article:tag" content="SpringBoot">
-<meta property="article:tag" content="mybatis">
-<meta property="article:tag" content="Dota2">
-<meta property="article:tag" content="NBA">
-<meta property="article:tag" content="Cristiano Ronaldo">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
@@ -177,139 +172,304 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-1020_PropertyPlaceholderConfigurer" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring PropertyPlaceholderConfigurer
+    </h1>
+  
+
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2.2k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">9分</span>
+      </span>
+    </span>
+</div>
+          
+
+
+
+        
+         
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/10/20/1020_PropertyPlaceholderConfigurer/" class="archive-article-date">
+  	<time datetime="2020-10-20T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-20</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="PropertyPlaceholderConfigurer"><a href="#PropertyPlaceholderConfigurer" class="headerlink" title="PropertyPlaceholderConfigurer"></a>PropertyPlaceholderConfigurer</h2><ol>
+<li>PropertyPlaceholderConfigurer和<a href="context:property-placeholder/">context:property-placeholder/</a>有何区别？</li>
+<li>@Value在Controller层和Service层使用有何不同？</li>
+<li>@Value和${key}在web中配置注意事项。</li>
+<li>PropertyPlaceholderConfigurer在容器里能存在多个bean吗 ？</li>
+</ol>
+<a id="more"></a>
+
+<h2 id="关于PropertyPlaceholderConfigurer"><a href="#关于PropertyPlaceholderConfigurer" class="headerlink" title="关于PropertyPlaceholderConfigurer"></a>关于PropertyPlaceholderConfigurer</h2><p>1.PropertyPlaceholderConfigurer是个bean工厂后置处理器的实现，也就是 BeanFactoryPostProcessor接口的一个实现。PropertyPlaceholderConfigurer可以将<strong>上下文</strong>（配置文件）中的属性值放在另一个单独的标准java Properties文件中去。在XML文件中用${key}替换指定的properties文件中的值。这样的话，只需要对properties文件进行修改，而不用对xml配置文件进行修改。</p>
+<p>2.在Spring中，使用PropertyPlaceholderConfigurer可以在XML配置文件中加入外部属性文件，当然也可以指定外部的编码:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"propertyConfigurer"</span><span class="attr">class</span>=<span class="string">"org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"location"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>conf/sqlmap/jdbc.properties<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"fileEncoding"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--引入多个文件也是可以的--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"propertyConfigurer"</span><span class="attr">class</span>=<span class="string">"org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"locations"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/WEB-INF/mail.properties<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath: conf/sqlmap/jdbc.properties<span class="tag">&lt;/<span class="name">value</span>&gt;</span>   	<span class="comment">&lt;!--注意这两种value值的写法--&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 譬如，jdbc.properties的内容为：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">jdbc.driverClassName</span>=<span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="meta">jdbc.url</span>=<span class="string">jdbc:mysql://localhost/mysqldb?useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;zeroDateTimeBehavior=round;</span></span><br><span class="line"><span class="meta">jdbc.username</span>=<span class="string">root</span></span><br><span class="line"><span class="meta">jdbc.password</span>=<span class="string">123456</span></span><br></pre></td></tr></table></figure>
+
+<p>那么在spring配置文件中，我们就可以这样写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"propertyConfigurer"</span><span class="attr">class</span>=<span class="string">"org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"locations"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath: conf/sqlmap/jdbc.properties <span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span><span class="attr">class</span>=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span><span class="attr">destroy-method</span>=<span class="string">"close"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span><span class="attr">value</span>=<span class="string">"$&#123;jdbc.driverClassName&#125;"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span><span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，一个简单的数据源就设置完毕了。可以看出：PropertyPlaceholderConfigurer起的作用就是将占位符指向的数据库配置信息放在bean中定义的工具。</p>
+<p>查看源代码，可以发现，locations属性定义在PropertyPlaceholderConfigurer的祖父类 PropertiesLoaderSupport中，而location只有 setter方法。类似于这样的配置，在spring的源程序中很常见的。</p>
+<p>PropertyPlaceholderConfigurer内置的功能非常丰富，如果它未找到${xxx}中定义的xxx键，它还会去JVM系统属性（System.getProperty()）和环境变量（System.getenv()）中寻找。通过启用systemPropertiesMode和searchSystemEnvironment属性，开发者能够控制这一行为。</p>
+<p>我们可以通过System.setProperty(key, value)或者java中通过-Dnamevalue来给Spring配置文件传递参数。</p>
+<p> <strong>为简化PropertyPlaceholderConfigurer的使用，Spring提供了<a href="context:property-placeholder/">context:property-placeholder/</a>元素。下面给出了配置示例，启用它后，开发者便不用配置PropertyPlaceholderConfigurer对象了。</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">location</span>=<span class="string">"userinfo.properties"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> <strong>注意：Spring容器采用反射扫描的发现机制，在探测到Spring容器中有一个org.springframework.beans.factory.config.PropertyPlaceholderConfigurer的Bean就会停止对剩余PropertyPlaceholderConfigurer的扫描。</strong></p>
+<p>　　  <strong>即spring容器中最多只能定义一个context:property-placeholder  !!!</strong><br><strong>(spring和springmvc不是同一容器，PropertyPlaceholderConfigurer可以同时存在于spring和springmvc中)。</strong> </p>
+<h2 id="Value使用注意事项"><a href="#Value使用注意事项" class="headerlink" title="@Value使用注意事项"></a>@Value使用注意事项</h2><p>项目中经常会用到配置文件，定义成properties的形式比较常见，为了方便使用一般在spring配置文件中做如下配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">ignore-unresolvable</span>=<span class="string">"true"</span> <span class="attr">location</span>=<span class="string">"classpath:application.properties"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样在程序代码中直接用@Value(“${name}”)就能直接取到properties文件中定义的变量值。</p>
+<p>但是发现一个情况，在Controller中取不到这个值，直接输出了${name}字符串，并没有解析出值，而在service中却能取到。有点奇怪啊，明显在Controller中貌似并没有引入properties文件中的变量，而被当做普通的字符串处理了。突然想到这个项目有2个配置文件，1个在WEB-INF下的springmvc-servlet.xml，1个在classpath下的applicationContext.xml，其中applicationContext.xml中定义有placeholder。</p>
+<p>说实话之前并没有注意过这个配置文件的区别，一直以为只是放置的位置不一样而已，借助这次机会吧，查询到了一些资料。先看一则在web.xml中引入spring的配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- springmvc配置开始 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 可以自定义servlet.xml配置文件的位置和名称，默认为WEB-INF目录下，名称为[&lt;servlet-name&gt;]-servlet.xml，如spring-servlet.xml--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/spring-servlet.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.do<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- springmvc配置结束 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Spring配置开始 --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">listenerclass</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 指定Spring Bean的配置文件所在目录。默认配置在WEB-INF目录下 --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:config/applicationContext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Spring配置结束 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 可以看到分为spring配置和springmvc配置2种。其中spring配置以监听器的形式引入，不指定xml配置文件地址则默认查找WEB-INF下的applicationContext.xml文件。springmvc则以 servlet形式引入，当没有指定引入的xml配置文件地址时，则会自动引入WEB-INF下的[servlet-name]-servlet.xml文件，本例中为springmvc-servlet.xml。引入顺序为先引入spring配置，再引入servlet形式的springmvc配置。</p>
+<p>值得注意的几点是：springmvc的配置文件中可以直接用id引入spring配置文件中定义的bean，但是反过来不可以。每一个springmvc的配置文件xxx-servlet.xml对应一个web.xml中的servlet定义。当存在多个springmvc配置文件时候，他们之间是不能互相访问的。</p>
+<p>在百度中别人的帖子中看到一段应该是官方的原文解释，我摘抄过来并粗糙的直译一下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Spring lets you define multiple contexts in a parent-child hierarchy.</span><br><span class="line">spring允许你定义多个上下文在父子继承关系中</span><br><span class="line">The applicationContext.xml defines the beans for the "root webapp context", i.e. the context associated with the webapp.</span><br><span class="line">applicationContext.xml文件是为了"根webapp应用上下文"定义bean,也就是说它的上下文是和webapp相关联的</span><br><span class="line">The spring-servlet.xml (or whatever else you call it) defines the beans for one servlet's app context. There can be many of these in a webapp, spring-servlet.xml文件(或是其他的你习惯的称呼)是为了一个servlet应用上下文定义bean.在一个webapp中可以有多个此配置文件,one per Spring servlet (e.g. spring1-servlet.xml for servlet spring1, spring2-servlet.xml for servlet spring2).</span><br><span class="line">每一个配置对应一个spring的servlelt(例如: 名为spring1的servlet拥有配置文件spring1-servlet.xml, 名为spring2的servlet拥有配置文件spring2-servlet.xml).</span><br><span class="line">Beans in spring-servlet.xml can reference beans in applicationContext.xml, but not vice versa.</span><br><span class="line">在spring-servlet.xml中定义的bean可以直接引用在applicationContext.xml中定义的bean, 但是反过来不可以.</span><br><span class="line">All Spring MVC controllers must go in the spring-servlet.xml context.</span><br><span class="line">所有springmvc的Controller必须在spring-servlet.xml对应的上下文中运行.</span><br><span class="line">In most simple cases, the applicationContext.xml context is unnecessary. It is generally used to contain beans that are shared between all servlets在大多数简单的情况下, applicationContext.xml对应的上下文并不必须.它通常用来包含那些bean用来在webapp中所有servlet之间共享.in a webapp. If you only have one servlet, then there's not really much point, unless you have a specific use for it.如果你只有一个servlet, 那么实际没有什么必要定义applicationContext.xml, 除非你有特别应用.</span><br></pre></td></tr></table></figure>
+
+<p>@Value在哪个容器中使用，就调用哪个容器中的配置，因为Controller是定义在子容器中的，故在Controller中使用@Value也是在子容器中操作，而项目中placeholder是定义在父容器中的，在子容器中实际上没有它的定义，也就是并没有引入properties文件中的值。虽然子容器能访问父容器，但是如果不引入的话，子容器中实际上是没有父容器中的properties值。所以只需要在子容器中的配置中加入&lt;context:property-placeholder ignore-unresolvable=”true” location=”classpath*:/application.properties” /&gt;就一切正常了。</p>
+<p>那么回到最开始的@Value取不到值的问题，现在的可以清楚由于Controller是定义在springmvc的servlet配置文件中的，所以在Controller中使用@Value注解会从springmvc的配置中查找，故只需要将placeholder重新在springmvc的配置中配置一遍，Controller中的@Value注解便能取到值了。</p>
+<p> <strong>注意：</strong> </p>
+<p><strong>1.即使给变量赋了初值也会以配置文件的值为准</strong><br><strong>2.用@Value注解只能在spring管理的bean中使用，在非spring管理的工具类中，只能通过静态方法读取配置文件</strong></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.JPG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/04/0604%E6%8C%87%E9%92%88part3/" class="archive-article-date">
-  	<time datetime="2020-06-04T06:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/04/0604%E6%8C%87%E9%92%88part3/">c语言 指针相关 part3</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">c</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/10/20/1020_PropertyPlaceholderConfigurer/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/04/0603%E6%8C%87%E9%92%88part2/" class="archive-article-date">
-  	<time datetime="2020-06-04T05:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/15/1014_Spring%E4%BA%8B%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring 声明式事务</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/04/0603%E6%8C%87%E9%92%88part2/">c语言 指针相关 part2</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">c</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/03/0603%E6%8C%87%E9%92%88part1/" class="archive-article-date">
-  	<time datetime="2020-06-03T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-03</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/03/0603%E6%8C%87%E9%92%88part1/">c语言 指针相关 part1</a>
-    </h1>
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDA5MS8yNjU4MQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">c</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
+    <div class="valine_comment"></div>
+<!--载入js，在<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TkaOsLUB4HWqGxgFvAWlS1Ml-gzGzoHsz',
+      app_key: '3LKy8g3cmiIcA54iXXd7f0GO',
+      placeholder: 'anything want to say ?'
+    });
+</script>
+
   
 
-    
+
+
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -379,9 +539,9 @@ setInterval("createtime()",250);
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
