@@ -6,25 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: linux | Leib&#39;s Blog</title>
+  <title>MySql 优化 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随便记录一下 菜鸟学习中">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leib&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/linux/index.html">
+  <meta name="description" content="MySql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql 优化">
+<meta property="og:url" content="http://yoursite.com/2020/11/09/1109MySql%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="随便记录一下 菜鸟学习中">
+<meta property="og:description" content="MySql">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163001109.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163013223.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163119060.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163143742.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109162921631.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163218451.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/09/xLGpHgwqdjIzFiD.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/11/09/tMve63CpTslVIHY.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/09/GqkPDbSBAx3Ez8W.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/09/J9NjIQVk1lSLbsc.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/09/3GOEHknINjxlF5a.png">
+<meta property="article:published_time" content="2020-11-09T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-09T08:48:32.199Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="后端">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="C&#x2F;C++">
-<meta property="article:tag" content="SpringBoot">
-<meta property="article:tag" content="mybatis">
-<meta property="article:tag" content="Dota2">
-<meta property="article:tag" content="NBA">
-<meta property="article:tag" content="Cristiano Ronaldo">
+<meta property="article:tag" content="MySql">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163001109.png">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -177,100 +184,316 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-1109MySql优化" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/06/08/0608linux%E5%90%8E%E5%8F%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/" class="archive-article-date">
-  	<time datetime="2020-06-08T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/08/0608linux%E5%90%8E%E5%8F%B0%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/">linux后台部署</a>
+    <h1 class="article-title" itemprop="name">
+      MySql 优化
     </h1>
   
 
-        <div class="article-info info-on-right">
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.1k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
           
+
+
+
+        
+         
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/11/09/1109MySql%E4%BC%98%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2020-11-09T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MySql"><a href="#MySql" class="headerlink" title="MySql"></a>MySql</h2><a id="more"></a>
+
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163001109.png" alt="image-20201109163001109"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163013223.png" alt="image-20201109163013223"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163119060.png" alt="image-20201109163119060"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163143742.png" alt="image-20201109163143742"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109162921631.png" alt="image-20201109162921631"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/leib1368/pic/img/image-20201109163218451.png" alt="image-20201109163218451"></p>
+<h2 id="十三、不建议使用-前缀模糊查询"><a href="#十三、不建议使用-前缀模糊查询" class="headerlink" title="十三、不建议使用%前缀模糊查询"></a>十三、不建议使用%前缀模糊查询</h2><p>例如LIKE “%name”或者LIKE “%name%”，这种查询会导致索引失效而进行全表扫描。但是可以使用LIKE “name%”。</p>
+<p><strong>那如何查询%name%？</strong></p>
+<p>如下图所示，虽然给secret字段添加了索引，但在explain结果果并没有使用</p>
+<p> <img src="https://i.loli.net/2020/11/09/xLGpHgwqdjIzFiD.jpg" alt="1"></p>
+<p>那么如何解决这个问题呢，答案：<strong>使用全文索引</strong></p>
+<p>在我们查询中经常会用到select id,fnum,fdst from table_name where user_name like ‘%zhangsan%’; 。这样的语句，普通索引是无法满足查询需求的。庆幸的是在MySQL中，有全文索引来帮助我们。</p>
+<p>创建全文索引的sql语法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table_name&#96; ADD FULLTEXT INDEX &#96;idx_user_name&#96; (&#96;user_name&#96;);</span><br></pre></td></tr></table></figure>
+
+<p>使用全文索引的sql语句是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select id,fnum,fdst from table_name where match(user_name) against(&#39;zhangsan&#39; in boolean mode);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：在需要创建全文索引之前，请联系DBA确定能否创建。同时需要注意的是查询语句的写法与普通索引的区别</strong></p>
+<h2 id="十四、避免在where子句中对字段进行表达式操作"><a href="#十四、避免在where子句中对字段进行表达式操作" class="headerlink" title="十四、避免在where子句中对字段进行表达式操作"></a>十四、避免在where子句中对字段进行表达式操作</h2><p>比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select user_id,user_project from table_name where age*2&#x3D;36;</span><br></pre></td></tr></table></figure>
+
+<p>中对字段就行了算术运算，这会造成引擎放弃使用索引，建议改成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select user_id,user_project from table_name where age&#x3D;36&#x2F;2;</span><br></pre></td></tr></table></figure>
+
+<h2 id="十五、避免隐式类型转换"><a href="#十五、避免隐式类型转换" class="headerlink" title="十五、避免隐式类型转换"></a>十五、避免隐式类型转换</h2><p>where 子句中出现 column 字段的类型和传入的参数类型不一致的时候发生的类型转换，建议先确定where中的参数类型</p>
+<p><img src="https://i.loli.net/2020/11/09/tMve63CpTslVIHY.png" alt="image-20201109164620987"></p>
+<h2 id="十六、对于联合索引来说，要遵守最左前缀法则"><a href="#十六、对于联合索引来说，要遵守最左前缀法则" class="headerlink" title="十六、对于联合索引来说，要遵守最左前缀法则"></a>十六、对于联合索引来说，要遵守最左前缀法则</h2><p>举列来说索引含有字段id,name,school，可以直接用id字段，也可以id,name这样的顺序，但是name;school都无法使用这个索引。所以在创建联合索引的时候一定要注意索引字段顺序，常用的查询字段放在最前面</p>
+<h2 id="十七、必要时可以使用force-index来强制查询走某个索引"><a href="#十七、必要时可以使用force-index来强制查询走某个索引" class="headerlink" title="十七、必要时可以使用force index来强制查询走某个索引"></a>十七、必要时可以使用force index来强制查询走某个索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有的时候MySQL优化器采取它认为合适的索引来检索sql语句，但是可能它所采用的索引并不是我们想要的。这时就可以采用force index来强制优化器使用我们制定的索引。</span><br></pre></td></tr></table></figure>
+
+<h2 id="十八、注意范围查询语句"><a href="#十八、注意范围查询语句" class="headerlink" title="十八、注意范围查询语句"></a>十八、注意范围查询语句</h2><p>对于联合索引来说，如果存在范围查询，比如between,&gt;,&lt;等条件时，会造成后面的索引字段失效。</p>
+<h2 id="十九、关于JOIN优化"><a href="#十九、关于JOIN优化" class="headerlink" title="十九、关于JOIN优化"></a>十九、关于JOIN优化</h2><p><img src="https://i.loli.net/2020/11/09/GqkPDbSBAx3Ez8W.png" alt="image-20201109164655802"></p>
+<ul>
+<li>LEFT JOIN A表为驱动表</li>
+<li>INNER JOIN MySQL会自动找出那个数据少的表作用驱动表</li>
+<li>RIGHT JOIN B表为驱动表</li>
+</ul>
+<p><strong>注意：MySQL中没有full join，可以用以下方式来解决</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select * from A left join B on B.name &#x3D; A.name </span><br><span class="line">where B.name is null</span><br><span class="line"> union all</span><br><span class="line">select * from B;</span><br></pre></td></tr></table></figure>
+
+<p><strong>尽量使用inner join，避免left join</strong></p>
+<p>参与联合查询的表至少为2张表，一般都存在大小之分。如果连接方式是inner join，在没有其他过滤条件的情况下MySQL会自动选择小表作为驱动表，但是left join在驱动表的选择上遵循的是左边驱动右边的原则，即left join左边的表名为驱动表。</p>
+<p><strong>合理利用索引</strong></p>
+<p>被驱动表的索引字段作为on的限制字段。</p>
+<p><strong>利用小表去驱动大表</strong></p>
+<p><img src="https://i.loli.net/2020/11/09/J9NjIQVk1lSLbsc.png" alt="image-20201109164712914"></p>
+<p>从原理图能够直观的看出如果能够减少驱动表的话，减少嵌套循环中的循环次数，以减少 IO总量及CPU运算的次数。</p>
+<p><strong>巧用STRAIGHT_JOIN</strong></p>
+<p>inner join是由mysql选择驱动表，但是有些特殊情况需要选择另个表作为驱动表，比如有group by、order by等「Using filesort」、「Using temporary」时。STRAIGHT_JOIN来强制连接顺序，在STRAIGHT_JOIN左边的表名就是驱动表，右边则是被驱动表。<strong>在使用STRAIGHT_JOIN有个前提条件是该查询是内连接，也就是inner join。其他链接不推荐使用STRAIGHT_JOIN，否则可能造成查询结果不准确。</strong></p>
+<p><img src="https://i.loli.net/2020/11/09/3GOEHknINjxlF5a.png" alt="image-20201109164725663"></p>
+<p>这个方式有时可能减少3倍的时间。</p>
+<p>这里只列举了上述优化方案，当然还有其他的优化方式，大家可以去摸索尝试，感谢关注。。</p>
+<p><a href="https://juejin.im/post/6844903750839058446" target="_blank" rel="noopener">https://juejin.im/post/6844903750839058446</a></p>
+<p><a href="https://segmentfault.com/a/1190000012155267" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012155267</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢大佬<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.JPG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+	
+
+	
+	
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySql</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/11/09/1109MySql%E4%BC%98%E5%8C%96/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	 
-<a href="/2020/04/20/0420Linux/" class="archive-article-date">
-  	<time datetime="2020-04-20T12:00:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/05/1105HashMap/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HASHMAP</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/20/0420Linux/">linux配置</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
+
+
+  
     
+  
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDA5MS8yNjU4MQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+  
+
+  
+    <div class="valine_comment"></div>
+<!--载入js，在<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  var notify = 'true' == true ? true : false;
+  var verify = 'false' == true ? true : false;
+  new Valine({
+      // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+      av: AV,
+      el: '.valine_comment',
+      emoticon_url: 'https://cloud.panjunwen.com/alu',
+      emoticon_list: ["狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","暗地观察.png"],
+      app_id: 'TkaOsLUB4HWqGxgFvAWlS1Ml-gzGzoHsz',
+      app_key: '3LKy8g3cmiIcA54iXXd7f0GO',
+      placeholder: 'anything want to say ?'
+    });
+</script>
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -340,9 +563,9 @@ setInterval("createtime()",250);
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
