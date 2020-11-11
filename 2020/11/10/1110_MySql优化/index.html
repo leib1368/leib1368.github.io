@@ -6,31 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>redis | Leib&#39;s Blog</title>
+  <title>MySQL百万级别数据查询优化 | Leib&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="REDISNoSQL的四大分类kv键值对KV键值对：  ​    redis  文档型数据库  ​    MongoDB ​    ConthDB  列存储数据库  ​    HBase 分布式文件系统">
+  <meta name="description" content="MySQL百万级别数据查询优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis">
-<meta property="og:url" content="http://yoursite.com/2020/05/15/0515redis%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="MySQL百万级别数据查询优化">
+<meta property="og:url" content="http://yoursite.com/2020/11/10/1110_MySql%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Leib&#39;s Blog">
-<meta property="og:description" content="REDISNoSQL的四大分类kv键值对KV键值对：  ​    redis  文档型数据库  ​    MongoDB ​    ConthDB  列存储数据库  ​    HBase 分布式文件系统">
+<meta property="og:description" content="MySQL百万级别数据查询优化">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/VfjiIWHYkt41xKg.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/SvAryHD91YlCBjs.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/ItW6EP5c8ghBmos.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/yLh53Pcj6JwFxWH.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/rRkfbZtOqBAhjmG.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/GM4eDKRWadOlBqm.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/Ws6QN2BDLjV8cqb.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/KezaDpgXPNFi9Gj.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/gbv8APVM2ExRNcy.png">
-<meta property="og:image" content="https://i.loli.net/2020/05/15/WpxXutgD3kZ4TIq.png">
-<meta property="article:published_time" content="2020-05-15T07:42:00.000Z">
-<meta property="article:modified_time" content="2020-05-28T02:19:29.000Z">
+<meta property="article:published_time" content="2020-11-10T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-10T12:13:27.663Z">
 <meta property="article:author" content="Leib">
-<meta property="article:tag" content="database">
+<meta property="article:tag" content="MySql">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2020/05/15/VfjiIWHYkt41xKg.png">
   
     <link rel="alternative" href="/atom.xml" title="Leib&#39;s Blog" type="application/atom+xml">
   
@@ -183,14 +172,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-0515redis基础" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-1110_MySql优化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      redis
+      MySQL百万级别数据查询优化
     </h1>
   
 
@@ -201,7 +190,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.3k字</span>
+        <span class="post-count">7.5k字</span>
       </span>
     </span>
 
@@ -210,7 +199,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">10分</span>
+        <span class="post-count">27分</span>
       </span>
     </span>
 </div>
@@ -225,153 +214,168 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/05/15/0515redis%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2020-05-15T07:42:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
+<a href="/2020/11/10/1110_MySql%E4%BC%98%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2020-11-10T04:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="REDIS"><a href="#REDIS" class="headerlink" title="REDIS"></a>REDIS</h2><h3 id="NoSQL的四大分类"><a href="#NoSQL的四大分类" class="headerlink" title="NoSQL的四大分类"></a>NoSQL的四大分类</h3><h4 id="kv键值对"><a href="#kv键值对" class="headerlink" title="kv键值对"></a>kv键值对</h4><p><strong>KV键值对：</strong></p>
-<ul>
-<li>​    <strong>redis</strong></li>
-</ul>
-<p><strong>文档型数据库</strong></p>
-<ul>
-<li>​    MongoDB</li>
-<li>​    ConthDB</li>
-</ul>
-<p><strong>列存储数据库</strong></p>
-<ul>
-<li>​    HBase</li>
-<li>分布式文件系统</li>
-</ul>
-<a id="more"></a>
+        <h2 id="MySQL百万级别数据查询优化"><a href="#MySQL百万级别数据查询优化" class="headerlink" title="MySQL百万级别数据查询优化"></a>MySQL百万级别数据查询优化</h2><a id="more"></a>
 
-<p><strong>图关系数据库</strong></p>
-<p><img src="https://i.loli.net/2020/05/15/VfjiIWHYkt41xKg.png" alt="image-20200515110631465"></p>
+<ol>
+<li><p>应尽量避免在 where子句中使用!=或&lt;&gt;操作符，否则将引擎放弃使用索引而进行全表扫描。</p>
+</li>
+<li><p>对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by涉及的列上建立索引。</p>
+</li>
+<li><p>应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如： select id from t where num is null 可以在num上设置默认值0，确保表中num列没有null值，然后这样查询： select id from t where num=0</p>
+</li>
+<li><p>应尽量避免在 where 子句中使用 or 来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如： select id from t where num=10 or num=20 可以这样查询：<br> select id from t where num=10 <strong>union all</strong> select id from t where num=20</p>
+</li>
+<li><p>下面的查询也将导致全表扫描：(不能前置百分号) select id from t where name like ‘%abc%’ 若要提高效率，可以考虑全文检索。</p>
+</li>
+<li><p>in 和 not in 也要慎用，否则会导致全表扫描，如： select id from t where num in(1,2,3) 对于连续的数值，能用 between 就不要用 in 了： select id from t where num <strong>between</strong> 1 and 3</p>
+</li>
+<li><p>应尽量避免在 where 子句中对<strong>字段进行表达式操作</strong>，这将导致引擎放弃使用索引而进行全表扫描。如： select id from t where num/2=100 应改为: select id from t where num=100*2</p>
+</li>
+<li><p>应尽量避免在where子句中对字段进行函数操作，这将导致引擎放弃使用索引而进行全表扫描。如： select id from t where substring(name,1,3)=’abc’–name<br>以abc开头的id<br>select id from t where datediff(day,createdate,’2005-11-30′)=0–’2005-11-30′生成的id<br>应改为: select id from t where name like ‘abc%’ select id from t where createdate&gt;=’2005-11-30′ and createdate&lt;’2005-12-1′</p>
+</li>
+<li><p>不要在 where 子句中的“=”左边进行函数、算术运算或其他表达式运算，否则系统将可能无法正确使用索引。</p>
+</li>
+<li><p>在使用索引字段作为条件时，如果该索引是复合索引，那么必须使用到该索引中的第一个字段作为条件时才能保证系统使用该索引，否则该索引将不会被使 用，并且应尽可能的让字段顺序与索引顺序相一致。</p>
 <hr>
-<h2 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
-<p>REmote DIctionary Server(<em>Redis</em>) 远程字典服务</p>
-</blockquote>
-<p>Redis是一个使用ANSI C编写的开源、支持网络、基于内存、可选持久性的键值对存储数据库。</p>
+<p>今天先看到这..</p>
 <hr>
-<h3 id="Redis使用"><a href="#Redis使用" class="headerlink" title="Redis使用"></a>Redis使用</h3><p><img src="https://i.loli.net/2020/05/15/SvAryHD91YlCBjs.png" alt="image-20200515111341434"></p>
-<h3 id="redis性能测试"><a href="#redis性能测试" class="headerlink" title="redis性能测试"></a>redis性能测试</h3><blockquote>
-<p><strong>redis-benchmark</strong></p>
-</blockquote>
-<p><img src="https://i.loli.net/2020/05/15/ItW6EP5c8ghBmos.png" alt="image-20200515111718127"></p>
+<ol>
+<li>不要写一些没有意义的查询，如需要生成一个空表结构： select col1,col2 into #t from t where 1=0 这类代码不会返回任何结果集，但是会消耗系统资源的，应改成这样： create table #t(…)</li>
+<li>很多时候用 exists 代替 in 是一个好的选择： select num from a where num in(select num from b) 用下面的语句替换： select num from a where exists(select 1 from b where num=a.num)</li>
+<li>并不是所有索引对查询都有效，SQL是根据表中数据来进行查询优化的，当索引列有大量数据重复时，SQL查询可能不会去利用索引，如一表中有字段 sex，male、female几乎各一半，那么即使在sex上建了索引也对查询效率起不了作用。</li>
+<li>索引并不是越多越好，索引固然可以提高相应的 select 的效率，但同时也降低了 insert 及 update 的效率，因为 insert 或 update 时有可能会重建索引，所以怎样建索引需要慎重考虑，视具体情况而定。一个表的索引数最好不要超过6个，若太多则应考虑一些不常使用到的列上建的索引是否有 必要。</li>
+<li>应尽可能的避免更新 clustered 索引数据列，因为 clustered 索引数据列的顺序就是表记录的物理存储顺序，一旦该列值改变将导致整个表记录的顺序的调整，会耗费相当大的资源。若应用系统需要频繁更新 clustered 索引数据列，那么需要考虑是否应将该索引建为 clustered 索引。</li>
+<li>尽量使用数字型字段，若只含数值信息的字段尽量不要设计为字符型，这会降低查询和连接的性能，并会增加存储开销。这是因为引擎在处理查询和连接时会 逐个比较字符串中每一个字符，而对于数字型而言只需要比较一次就够了。</li>
+<li>尽可能的使用 varchar/nvarchar 代替 char/nchar ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。</li>
+<li>任何地方都不要使用 select * from t ，用具体的字段列表代替 <code>*</code>，不要返回用不到的任何字段。</li>
+<li>尽量使用表变量来代替临时表。如果表变量包含大量数据，请注意索引非常有限（只有主键索引）。</li>
+</ol>
+<p>21.避免频繁创建和删除临时表，以减少系统表资源的消耗。</p>
+<ol>
+<li>临时表并不是不可使用，适当地使用它们可以使某些例程更有效，例如，当需要重复引用大型表或常用表中的某个数据集时。但是，对于一次性事件，最好使 用导出表。</li>
+<li>在新建临时表时，如果一次性插入数据量很大，那么可以使用 select into 代替 create table，避免造成大量 log ，以提高速度；如果数据量不大，为了缓和系统表的资源，应先create table，然后insert。</li>
+<li>如果使用到了临时表，在存储过程的最后务必将所有的临时表显式删除，先 truncate table ，然后 drop table ，这样可以避免系统表的较长时间锁定。</li>
+<li>尽量避免使用游标，因为游标的效率较差，如果游标操作的数据超过1万行，那么就应该考虑改写。</li>
+<li>使用基于游标的方法或临时表方法之前，应先寻找基于集的解决方案来解决问题，基于集的方法通常更有效。</li>
+<li>与临时表一样，游标并不是不可使用。对小型数据集使用 FAST_FORWARD 游标通常要优于其他逐行处理方法，尤其是在必须引用几个表才能获得所需的数据时。在结果集中包括“合计”的例程通常要比使用游标执行的速度快。如果开发时 间允许，基于游标的方法和基于集的方法都可以尝试一下，看哪一种方法的效果更好。</li>
+<li>在所有的存储过程和触发器的开始处设置 SET NOCOUNT ON ，在结束时设置 SET NOCOUNT OFF 。无需在执行存储过程和触发器的每个语句后向客户端发送 DONE_IN_PROC 消息。</li>
+<li>尽量避免向客户端返回大数据量，若数据量过大，应该考虑相应需求是否合理。</li>
+<li>尽量避免大事务操作，提高系统并发能力。</li>
+</ol>
 <hr>
-<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p>redis默认有16个数据库 使用select切换数据库 （默认使用数据库0</p>
-<p><img src="https://i.loli.net/2020/05/15/yLh53Pcj6JwFxWH.png" alt="image-20200515112339301"></p>
-<p><img src="https://i.loli.net/2020/05/15/rRkfbZtOqBAhjmG.png" alt="image-20200515112445219"></p>
-<p><strong>flusbdb 清除数据库</strong></p>
-<p><strong>flushall 清除全部数据库内容</strong></p>
+<h2 id="查询速度慢的原因："><a href="#查询速度慢的原因：" class="headerlink" title="查询速度慢的原因："></a>查询速度慢的原因：</h2><ol>
+<li>没有索引或者没有用到索引(这是查询慢最常见的问题，是程序设计的缺陷)</li>
+<li>I/O吞吐量小，形成了瓶颈效应。</li>
+<li>没有创建计算列导致查询不优化。</li>
+<li>内存不足</li>
+<li>网络速度慢</li>
+<li>查询出的数据量过大（可以采用多次查询，其他的方法降低数据量）</li>
+<li>锁或者死锁(这也是查询慢最常见的问题，是程序设计的缺陷)</li>
+<li>sp_lock,sp_who,活动的用户查看,原因是读写竞争资源。</li>
+<li>返回了不必要的行和列</li>
+<li>查询语句不好，没有优化</li>
+</ol>
 <hr>
-<h2 id="Redis-单线程-却这么快？"><a href="#Redis-单线程-却这么快？" class="headerlink" title="Redis 单线程 却这么快？"></a>Redis 单线程 却这么快？</h2><p>参考</p>
-<p><a href="https://juejin.im/post/5caae9876fb9a05e1530288b" target="_blank" rel="noopener">https://juejin.im/post/5caae9876fb9a05e1530288b</a></p>
-<p><strong>核心概况</strong></p>
-<p>redis 将所有数据全部放在内存中，所以使用单线程操作销量是最快的，多线程(上下文切换 ，耗时的操作)，对于内存系统来说，如果没有上下文切换效率就是最高的。多次读写都是在一个cpu上，在内存情况下，这个就是最佳的方案。</p>
-<hr>
-<h2 id="五大数据类型"><a href="#五大数据类型" class="headerlink" title="五大数据类型"></a>五大数据类型</h2><p><strong>redis - key</strong></p>
-<p><strong>String List Set Hash Zet</strong> </p>
-<h2 id="三种特殊数据类型"><a href="#三种特殊数据类型" class="headerlink" title="三种特殊数据类型"></a>三种特殊数据类型</h2><p><strong>geospatial hyperloglog bitmaps</strong></p>
-<hr>
-<h3 id="String（字符串）"><a href="#String（字符串）" class="headerlink" title="String（字符串）"></a>String（字符串）</h3><h5 id="无敌常用"><a href="#无敌常用" class="headerlink" title="无敌常用"></a>无敌常用</h5><p>基本操作</p>
-<p><img src="https://i.loli.net/2020/05/15/GM4eDKRWadOlBqm.png" alt="image-20200515125709619"></p>
-<h3 id="类似-java-中-i"><a href="#类似-java-中-i" class="headerlink" title="类似 java 中 i++"></a>类似 java 中 i++</h3><p><img src="https://i.loli.net/2020/05/15/Ws6QN2BDLjV8cqb.png" alt="image-20200515130826526"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">getrange key 0 5  <span class="comment">#截取字符段</span></span><br><span class="line">setrange key 1 x  <span class="comment">#替换字符段</span></span><br><span class="line">setex	<span class="comment">#设置过期时间</span></span><br><span class="line">setnx	<span class="comment">#如果不存在的话，设置  if(null)-&gt;set</span></span><br><span class="line">mset	<span class="comment">#设置多个值 </span></span><br><span class="line">mget	<span class="comment">#获取多个值</span></span><br><span class="line">msetnx	<span class="comment">#原子性操作，要么一起成功要么一起失败</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#对象</span></span><br><span class="line"><span class="comment">#user:&#123;id&#125;:&#123;filed&#125;</span></span><br><span class="line">127.0.0.1:6379[1]&gt; mset user:1:name zhangsan user:1:age 23</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[1]&gt; mget user:1:name user:1:age</span><br><span class="line">1) <span class="string">"zhangsan"</span></span><br><span class="line">2) <span class="string">"23"</span></span><br><span class="line">127.0.0.1:6379[1]&gt;</span><br><span class="line"></span><br><span class="line">getset <span class="comment"># 先get再set</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379[1]&gt; getset db redis	<span class="comment">#不存在返回nil</span></span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379[1]&gt; get db</span><br><span class="line"><span class="string">"redis"</span></span><br><span class="line">127.0.0.1:6379[1]&gt; getset db mongodb <span class="comment">#存在放回之前的值 并赋值</span></span><br><span class="line"><span class="string">"redis"</span></span><br><span class="line">127.0.0.1:6379[1]&gt; get db</span><br><span class="line"><span class="string">"mongodb"</span></span><br><span class="line">127.0.0.1:6379[1]&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="可以通过如下方法来优化查询"><a href="#可以通过如下方法来优化查询" class="headerlink" title="可以通过如下方法来优化查询"></a>可以通过如下方法来优化查询</h2><ol>
+<li>把数据、日志、索引放到不同的I/O设备上，增加读取速度，以前可以将Tempdb应放在RAID0上，SQL2000不在支持。数据量（尺寸）越大，提高I/O越重要.</li>
+<li>纵向、横向分割表，减少表的尺寸(sp_spaceuse)</li>
+<li>升级硬件</li>
+<li>根据查询条件,建立索引,优化索引、优化访问方式，限制结果集的数据量。注意填充因子要适当（最好是使用默认值0）。索引应该尽量小，使用字节数小的列建索引好（参照索引的创建）,不要对有限的几个值的字段建单一索引如性别字段</li>
+<li>提高网速;</li>
+<li>扩大服务器的内存,Windows   2000和SQL   server   2000能支持4-8G的内存。配置虚拟内存：虚拟内存大小应基于计算机上并发运行的服务进行配置。运行   Microsoft   SQL   Server?   2000   时，可考虑将虚拟内存大小设置为计算机中安装的物理内存的   1.5   倍。如果另外安装了全文检索功能，并打算运行   Microsoft   搜索服务以便执行全文索引和查询，可考虑：将虚拟内存大小配置为至少是计算机中安装的物理内存的   3   倍。将   SQL   Server   max   server   memory   服务器配置选项配置为物理内存的   1.5   倍（虚拟内存大小设置的一半）。</li>
+<li>增加 服务器CPU个数;但是必须明白并行处理串行处理更需要资源例如内存。使用并行还是串行程是MsSQL自动评估选择的。单个任务分解成多个任务，就可以在 处理器上运行。例如耽搁查询的排序、连接、扫描和GROUP   BY字句同时执行，SQL   SERVER根据系统的负载情况决定最优的并行等级，复杂的需要消耗大量的CPU的查询最适合并行处理。但是更新操作UPDATE,INSERT， DELETE还不能并行处理。</li>
+<li>如果是使用like进行查询的话，简单的使用index是不行的，但是全文索引，耗空间。   like   ‘a%’   使用索引   like   ‘%a’   不使用索引用   like   ‘%a%’   查询时，查询耗时和字段值总长度成正比,所以不能用CHAR类型，而是VARCHAR。对于字段的值很长的建全文索引。</li>
+<li>DB   Server   和APPLication   Server   分离；OLTP和OLAP分离</li>
+<li>分布式分区视图可用于实现数据库服务器联合体。联合体是一组分开管理的服务器，但它们相互协作分担系统的处理负荷。这种通过分区数据形成数据库服务器联合 体的机制能够扩大一组服务器，以支持大型的多层   Web   站点的处理需要。有关更多信息，参见设计联合数据库服务器。（参照SQL帮助文件’分区视图’）：<ol>
+<li>在实现分区视图之前，必须先水平分区表</li>
+<li>在创建成员表后，在每个成员服务器上定义一个分布式分区视图，并且每个视图具有相同的名称。这样，引用分布式分区视图名的查询可以在任何一个成员服务 器上运行。系统操作如同每个成员服务器上都有一个原始表的复本一样，但其实每个服务器上只有一个成员表和一个分布式分区视图。数据的位置对应用程序是透明 的。</li>
+</ol>
+</li>
+<li>重建索引   DBCC   REINDEX   ,DBCC   INDEXDEFRAG,收缩数据和日志   DBCC   SHRINKDB,DBCC   SHRINKFILE.   设置自动收缩日志.对于大的数据库不要设置数据库自动增长，它会降低服务器的性能。   在T-sql的写法上有很大的讲究，下面列出常见的要点：首先，DBMS处理查询计划的过程是这样的：<ol>
+<li>查询语句的词法、语法检查 <a href="http://www.2cto.com" target="_blank" rel="noopener">www.2cto.com</a></li>
+<li>将语句提交给DBMS的查询优化器</li>
+<li>优化器做代数优化和存取路径的优化</li>
+<li>由预编译模块生成查询规划</li>
+<li>然后在合适的时间提交给系统处理执行</li>
+<li>最后将执行结果返回给用户其次，看一下SQL   SERVER的数据存放的结构：一个页面的大小为8K(8060)字节，8个页面为一个盘区，按照B树存放。</li>
+</ol>
+</li>
+<li>Commit和rollback的区别   Rollback:回滚所有的事物。   Commit:提交当前的事物.   没有必要在动态SQL里写事物，如果要写请写在外面如：   begin   tran   exec(@s)   commit   trans   或者将动态SQL   写成函数或者存储过程。</li>
+<li>在查询Select语句中用Where字句限制返回的行数,避免表扫描,如果返回不必要的数据，浪费了服务器的I/O资源，加重了网络的负担降低性能。如果表很大，在表扫描的期间将表锁住，禁止其他的联接访问表,后果严重。</li>
+<li>SQL的注释申明对执行没有任何影响</li>
+<li>尽可能不使用游标，它占用大量的资源。如果需要row-by-row地执行，尽量采用非光标技术,如：在客户端循环，用临时表，Table变量，用子查 询，用Case语句等等。游标可以按照它所支持的提取选项进行分类：   只进   必须按照从第一行到最后一行的顺序提取行。FETCH   NEXT   是唯一允许的提取操作,也是默认方式。可滚动性   可以在游标中任何地方随机提取任意行。游标的技术在SQL2000下变得功能很强大，他的目的是支持循环。 有四个并发选项 READ_ONLY：不允许通过游标定位更新(Update)，且在组成结果集的行中没有锁。 OPTIMISTIC   WITH   valueS:乐观并发控制是事务控制理论的一个标准部分。乐观并发控制用于这样的情形，即在打开游标及更新行的间隔中，只有很小的机会让第二个用户更新 某一行。当某个游标以此选项打开时，没有锁控制其中的行，这将有助于最大化其处理能力。如果用户试图修改某一行，则此行的当前值会与最后一次提取此行时获 取的值进行比较。如果任何值发生改变，则服务器就会知道其他人已更新了此行，并会返回一个错误。如果值是一样的，服务器就执行修改。   选择这个并发选项OPTIMISTIC   WITH   ROW   VERSIONING:此乐观并发控制选项基于行版本控制。使用行版本控制，其中的表必须具有某种版本标识符，服务器可用它来确定该行在读入游标后是否有 所更改。 在   SQL   Server   中，这个性能由   timestamp   数据类型提供，它是一个二进制数字，表示数据库中更改的相对顺序。每个数据库都有一个全局当前时间戳值：@@DBTS。每次以任何方式更改带有   timestamp   列的行时，SQL   Server   先在时间戳列中存储当前的   @@DBTS   值，然后增加   @@DBTS   的值。如果某   个表具有   timestamp   列，则时间戳会被记到行级。服务器就可以比较某行的当前时间戳值和上次提取时所存储的时间戳值，从而确定该行是否已更新。服务器不必比较所有列的值，只需 比较   timestamp   列即可。如果应用程序对没有   timestamp   列的表要求基于行版本控制的乐观并发，则游标默认为基于数值的乐观并发控制。 SCROLL   LOCKS   这个选项实现悲观并发控制。在悲观并发控制中，在把数据库的行读入游标结果集时，应用程序将试图锁定数据库行。在使用服务器游标时，将行读入游标时会在其 上放置一个更新锁。如果在事务内打开游标，则该事务更新锁将一直保持到事务被提交或回滚；当提取下一行时，将除去游标锁。如果在事务外打开游标，则提取下 一行时，锁就被丢弃。因此，每当用户需要完全的悲观并发控制时，游标都应在事务内打开。更新锁将阻止任何其它任务获取更新锁或排它锁，从而阻止其它任务更 新该行。 然而，更新锁并不阻止共享锁，所以它不会阻止其它任务读取行，除非第二个任务也在要求带更新锁的读取。滚动锁根据在游标定义的   SELECT   语句中指定的锁提示，这些游标并发选项可以生成滚动锁。滚动锁在提取时在每行上获取，并保持到下次提取或者游标关闭，以先发生者为准。下次提取时，服务器 为新提取中的行获取滚动锁，并释放上次提取中行的滚动锁。滚动锁独立于事务锁，并可以保持到一个提交或回滚操作之后。如果提交时关闭游标的选项为关， 则   COMMIT   语句并不关闭任何打开的游标，而且滚动锁被保留到提交之后，以维护对所提取数据的隔离。所获取滚动锁的类型取决于游标并发选项和游标   SELECT   语句中的锁提示。 锁提示   只读   乐观数值   乐观行版本控制   锁定无提示   未锁定   未锁定   未锁定   更新   NOLOCK   未锁定   未锁定   未锁定   未锁定   HOLDLOCK   共享   共享   共享   更新   UPDLOCK   错误   更新   更新   更新   TABLOCKX   错误   未锁定   未锁定   更新其它   未锁定   未锁定   未锁定   更新   *指定   NOLOCK   提示将使指定了该提示的表在游标内是只读的。</li>
+<li>用Profiler来跟踪查询，得到查询所需的时间，找出SQL的问题所在;用索引优化器优化索引</li>
+<li>注意UNion和UNion   all   的区别。UNION   all好</li>
+<li>注意使用DISTINCT，在没有必要时不要用，它同UNION一样会使查询变慢。重复的记录在查询里是没有问题的</li>
+<li>查询时不要返回不需要的行、列</li>
+<li>用sp_configure   ‘query   governor   cost   limit’或者SET   QUERY_GOVERNOR_COST_LIMIT来限制查询消耗的资源。当评估查询消耗的资源超出限制时，服务器自动取消查询,在查询之前就扼杀掉。SET   LOCKTIME设置锁的时间</li>
+<li>用select   top   100   /   10   Percent   来限制用户返回的行数或者SET   ROWCOUNT来限制操作的行</li>
+<li>在SQL2000以前，一般不要用如下的字句 “IS   NULL”,   “ &lt;&gt; “,   “!=”,   “!&gt; “,   “! &lt;”,   “NOT”,   “NOT   EXISTS”,   “NOT   IN”,   “NOT   LIKE”,   and   “LIKE   ‘%500’”，因为他们不走索引全是表扫描。 也不要在WHere字句中的列名加函数，如 Convert，substring等,如果必须用函数的时候，创建计算列再创建索引来替代.还可以变通写法：WHERE   SUBSTRING(firstname,1,1)   =   ‘m’改为WHERE   firstname   like   ‘m%’（索引扫描），一定要将函数和列名分开。并且索引不能建得太多和太大。 NOT   IN会多次扫描表，使用EXISTS、NOT   EXISTS   ，IN   ,   LEFT   OUTER   JOIN   来替代，特别是左连接,而Exists比IN更快，最慢的是NOT操作.如果列的值含有空，以前它的索引不起作用，现在2000的优化器能够处理了。相同 的是IS   NULL，“NOT”,   “NOT   EXISTS”,   “NOT   IN”能优化她，而” &lt;&gt; ”等还是不能优化，用不到索引。</li>
+<li>使用Query   Analyzer，查看SQL语句的查询计划和评估分析是否是优化的SQL。一般的20%的代码占据了80%的资源，我们优化的重点是这些慢的地方。</li>
+<li>如果使用了IN或者OR等时发现查询没有走索引，使用显示申明指定索引：   SELECT   *   FROM   PersonMember   (INDEX   =   IX_Title)   WHERE   processid   IN   (‘男’，‘女’)</li>
+<li>将需要查询的结果预先计算好放在表中，查询的时候再SELECT。这在SQL7.0以前是最重要的手段。例如医院的住院费计算。</li>
+<li>MIN()   和   MAX()能使用到合适的索引</li>
+<li>数据库有一个原则是代码离数据越近越好，所以优先选择Default,依次为Rules,Triggers,   Constraint（约束如外健主健CheckUNIQUE……,数据类型的最大长度等等都是约束）,Procedure.这样不仅维护工作小，编写程 序质量高，并且执行的速度快。</li>
+<li>如果要插入大的二进制值到Image列，使用存储过程，千万不要用内嵌INsert来插入(不知JAVA是 否)。因为这样应用程序首先将二进制值转换成字符串（尺寸是它的两倍），服务器受到字符后又将他转换成二进制值.存储过程就没有这些动作:   方法：Create   procedure   p_insert   as   insert   into   table(Fimage)   values   (@image),   在前台调用这个存储过程传入二进制参数，这样处理速度明显改善。</li>
+<li>Between在某些时候比 IN速度更快,Between能够更快地根据索引找到范围。用查询优化器可见到差别。   select   *   from   chineseresume   where   title   in   (‘男’,’女’)   Select   *   from   chineseresume   where   between   ‘男’   and   ‘女’   是一样的。由于in会在比较多次，所以有时会慢些。</li>
+<li>在必要是对全局或者局部临时表创建索引，有时能够提高速度，但不是一定会这样，因为索引也耗费大量的资源。他的创建同是实际表一样。</li>
+<li>不要建没有作用的事物例如产生报表时，浪费资源。只有在必要使用事物时使用它。</li>
+<li>用OR的字句可以分解成多个查询，并且通过UNION   连接多个查询。他们的速度只同是否使用索引有关,如果查询需要用到联合索引，用UNION   all执行的效率更高.多个OR的字句没有用到索引，改写成UNION的形式再试图与索引匹配。一个关键的问题是否用到索引。</li>
+<li>尽量少用视 图，它的效率低。对视图操作比直接对表操作慢,可以用stored   procedure来代替她。特别的是不要用视图嵌套,嵌套视图增加了寻找原始资料的难度。我们看视图的本质：它是存放在服务器上的被优化好了的已经产生 了查询规划的SQL。对单个表检索数据时，不要使用指向多个表的视图，直接从表检索或者仅仅包含这个表的视图上读，否则增加了不必要的开销,查询受到干 扰.为了加快视图的查询，MsSQL增加了视图索引的功能。</li>
+<li>没有必要时不要用DISTINCT和ORDER   BY，这些动作可以改在客户端执行。它们增加了额外的开销。这同UNION   和UNION   ALL一样的道理。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT   top   20   ad.companyname,comid,position,ad.referenceid,worklocation,   convert(varchar(10),ad.postDate,120)   as   postDate1,workyear,degreedescription   FROM   jobcn_query.dbo.COMPANYAD_query   ad   where   referenceID   in(&#39;JCNAD00329667&#39;,&#39;JCNAD132168&#39;,&#39;JCNAD00337748&#39;,&#39;JCNAD00338345&#39;,&#39;JCNAD00333138&#39;,&#39;JCNAD00303570&#39;,   &#39;JCNAD00303569&#39;,&#39;JCNAD00303568&#39;,&#39;JCNAD00306698&#39;,&#39;JCNAD00231935&#39;,&#39;JCNAD00231933&#39;,&#39;JCNAD00254567&#39;,   &#39;JCNAD00254585&#39;,&#39;JCNAD00254608&#39;,&#39;JCNAD00254607&#39;,&#39;JCNAD00258524&#39;,&#39;JCNAD00332133&#39;,&#39;JCNAD00268618&#39;,   &#39;JCNAD00279196&#39;,&#39;JCNAD00268613&#39;)   order   by   postdate   desc</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p><img src="https://i.loli.net/2020/05/15/KezaDpgXPNFi9Gj.png" alt="image-20200515144249973"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; lpush list one	<span class="comment">#往左边（头部）插入</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; lpush list two</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line">127.0.0.1:6379&gt; lpush list three</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1   <span class="comment">#获取所有</span></span><br><span class="line">1) <span class="string">"three"</span></span><br><span class="line">2) <span class="string">"two"</span></span><br><span class="line">3) <span class="string">"one"</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 1	   <span class="comment">#获取0到1 倒叙</span></span><br><span class="line">1) <span class="string">"three"</span></span><br><span class="line">2) <span class="string">"two"</span></span><br><span class="line">127.0.0.1:6379&gt; rpush list right	<span class="comment">#往右边(尾部)插入</span></span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) <span class="string">"three"</span></span><br><span class="line">2) <span class="string">"two"</span></span><br><span class="line">3) <span class="string">"one"</span></span><br><span class="line">4) <span class="string">"right"</span></span><br><span class="line">127.0.0.1:6379&gt;</span><br><span class="line"><span class="comment">######################################################### </span></span><br><span class="line"><span class="comment">#移除pop</span></span><br><span class="line"><span class="comment">#lpop / rpop</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) <span class="string">"three"</span></span><br><span class="line">2) <span class="string">"two"</span></span><br><span class="line">3) <span class="string">"one"</span></span><br><span class="line">4) <span class="string">"right"</span></span><br><span class="line">127.0.0.1:6379&gt; lpop list</span><br><span class="line"><span class="string">"three"</span></span><br><span class="line">127.0.0.1:6379&gt; rpop list</span><br><span class="line"><span class="string">"right"</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) <span class="string">"two"</span></span><br><span class="line">2) <span class="string">"one"</span></span><br><span class="line">127.0.0.1:6379&gt; lindex list 1	<span class="comment">#index 也是从0开始</span></span><br><span class="line"><span class="string">"one"</span></span><br><span class="line"><span class="comment">######################################################### </span></span><br><span class="line"><span class="comment">#获取长度 	llen </span></span><br><span class="line"><span class="comment">#移除指定值	lrem </span></span><br><span class="line">127.0.0.1:6379&gt; lrem list 1 one</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) <span class="string">"two"</span></span><br><span class="line"><span class="comment">#通过下标截断指定长度 	ltrim</span></span><br><span class="line"><span class="comment">#移除列表最后一个元素（右边的） 并移到新列表中</span></span><br><span class="line"><span class="comment">#rpoplpush</span></span><br><span class="line"><span class="comment">#exists list 	是否存在</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#lset 将列表指定下标的值 替换为另一个值 | 更新操作</span></span><br><span class="line"><span class="comment">#linsert | linsert list before "value1" "value2"</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>在IN后面值的列表中，将出现最频繁的值放在最前面，出现得最少的放在最后面，减少判断的次数</li>
+<li>当用SELECT   INTO时，它会锁住系统表(sysobjects，sysindexes等等)，阻塞其他的连接的存取。创建临时表时用显示申明语句，而不是</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select   INTO.   drop   table   t_lxh   begin   tran   select   *   into   t_lxh   from   chineseresume   where   name   &#x3D;   &#39;XYZ&#39;  </span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>小结</p>
-</blockquote>
-<ul>
-<li>list其实是一个链表，before node after ，left right 都可以插入</li>
-<li>如果key不存在，则创建新的链表</li>
-<li>如果key存在，新增内容</li>
-<li>如果移除了key，空链表 | 即不存在</li>
-<li>在两边插入效率最高</li>
-</ul>
-<hr>
-<h2 id="Set-（集合）"><a href="#Set-（集合）" class="headerlink" title="Set （集合）"></a>Set （集合）</h2><h4 id="set中不能重复-redis-中都以s开头"><a href="#set中不能重复-redis-中都以s开头" class="headerlink" title="set中不能重复 redis 中都以s开头"></a>set中不能重复 redis 中都以s开头</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sadd myset <span class="string">"hello"</span>		<span class="comment">#set集合中添加</span></span><br><span class="line">smembers myset			<span class="comment">#查看指定set所有值</span></span><br><span class="line">sismember myset hello	<span class="comment">#判断某个值是否在set集合中</span></span><br><span class="line">scard myset				<span class="comment">#获取元素值</span></span><br><span class="line">srem myset hello		<span class="comment">#移除set 指定元素</span></span><br><span class="line">srandmember				<span class="comment">#随机抽选（指定个数）元素</span></span><br><span class="line">spop myset 				<span class="comment">#随机删除</span></span><br><span class="line">smove myset myset2 <span class="string">"value"</span>	<span class="comment">#移动元素到另一个set</span></span><br><span class="line"><span class="comment">#####################################################</span></span><br><span class="line">↓共同关注功能实现↓</span><br><span class="line">sdiff key1 key2  <span class="comment">#不同对比 以key1为比较对象 输出的是key1</span></span><br><span class="line">sinter key1 key2 <span class="comment">#取交集</span></span><br><span class="line">sunion key1 key2 <span class="comment">#取并集</span></span><br></pre></td></tr></table></figure>
+<p>–commit   在另一个连接中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT   *   from   sysobjects</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="Hash-哈希"><a href="#Hash-哈希" class="headerlink" title="Hash(哈希)"></a>Hash(哈希)</h2><p>map集合，key-map    –》 key -  <key-value> 本质和String 类型差不多<br>同理redis中 都以h开头</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">hset myhash field1 leib 	<span class="comment">#设置</span></span><br><span class="line">hget myhash field1			<span class="comment">#取值</span></span><br><span class="line">hmset myhash field1 hello field2 world <span class="comment">#hmset 设置多个</span></span><br><span class="line">hmget myhash field1 field2			<span class="comment">#hmget 取多个</span></span><br><span class="line">hgetall myhash					<span class="comment">#取所有</span></span><br><span class="line">hdel myhash field1			<span class="comment">#删除hash指定key字段 ，对应的value也就消失了</span></span><br><span class="line"><span class="comment">########################################3</span></span><br><span class="line">hlen		<span class="comment">#获取长度</span></span><br><span class="line">hexists myhash field1 	<span class="comment">#判断hash中指定字段是否存在</span></span><br><span class="line">hkeys myhash	<span class="comment">#获得所有key</span></span><br><span class="line">hvals myhash	<span class="comment">#获得所有val</span></span><br><span class="line">incr decr</span><br><span class="line">hincrby myhash fileld3 1 <span class="comment">#指定增量</span></span><br><span class="line">hsetnx myhash fileld3 hello <span class="comment">#不存在设置 存在即不行</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>hash变更的数据 user age name 用户信息 经常变动的信息</strong><br><strong>用hash存储对象 更适合 string 更适合字符串</strong></p>
-<hr>
-<h2 id="Zset-有序集合"><a href="#Zset-有序集合" class="headerlink" title="Zset(有序集合)"></a>Zset(有序集合)</h2><p>在set基础上，增加了一个值 </p>
-<ul>
-<li>set k v</li>
-<li>zset k socre v</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">zadd myset 1 one <span class="comment">#添加</span></span><br><span class="line">zrange myset 0 -1 </span><br><span class="line"><span class="comment">##############################</span></span><br><span class="line">zadd salary 2500 a</span><br><span class="line">zadd salary 5000 b</span><br><span class="line">zadd salary 500 c</span><br><span class="line">zrangebysocre salary -inf +inf  <span class="comment">#正序 </span></span><br><span class="line">zrange salary 0 -1</span><br><span class="line">zrem salary c	<span class="comment">#移除</span></span><br><span class="line">zcard salary 	<span class="comment">#获取有序集合个数</span></span><br><span class="line">zrevrange salary 0 -1     <span class="comment"># 降序</span></span><br><span class="line">zcount myset 1 3 <span class="comment">#获取指定区间的个数</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>set排序 存储班级成绩表，b站排行榜 工资表等等</p>
-<hr>
-<h2 id="三种特殊数据类型-1"><a href="#三种特殊数据类型-1" class="headerlink" title="三种特殊数据类型"></a>三种特殊数据类型</h2><h2 id="geospatial"><a href="#geospatial" class="headerlink" title="geospatial"></a><strong>geospatial</strong></h2><h3 id="地理位置-redis的geo"><a href="#地理位置-redis的geo" class="headerlink" title="地理位置 redis的geo"></a>地理位置 redis的geo</h3><p>朋友定位 附近的人 打车距离 （距离计算 </p>
-<p><strong>只有6个命令</strong></p>
-<p><img src="https://i.loli.net/2020/05/15/gbv8APVM2ExRNcy.png" alt="image-20200515162545893"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#geoadd</span></span><br><span class="line"><span class="comment">#添加地理位置</span></span><br><span class="line"><span class="comment">#一般会下载城市数据一次性导入by java</span></span><br><span class="line">参数key (纬度 经度 名称)</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 120.70 28.00 wenzhou</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 120.68 28.15 yongjia</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; geoadd china:city 120.16 30.24 hangzhou</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"><span class="comment">#geopos</span></span><br><span class="line">127.0.0.1:6379&gt; geopos china:city wenzhou</span><br><span class="line">1) 1) <span class="string">"120.69999843835831"</span></span><br><span class="line">   2) <span class="string">"27.999998796969891"</span></span><br><span class="line"><span class="comment">#geodist</span></span><br><span class="line">127.0.0.1:6379&gt; geodist china:city wenzhou yongjia</span><br><span class="line"><span class="string">"16799.2360"</span></span><br><span class="line">127.0.0.1:6379&gt; geodist china:city wenzhou yongjia km</span><br><span class="line"><span class="string">"16.7992"</span> <span class="comment">#16km</span></span><br><span class="line"><span class="comment">#georadius</span></span><br><span class="line">根据给定经纬度为中心，搜索一定距离半径的元素</span><br><span class="line">127.0.0.1:6379&gt; georadius china:city 110 30 1000 km</span><br><span class="line">1) <span class="string">"hangzhou"</span></span><br><span class="line"><span class="comment">#georadiusbymember </span></span><br><span class="line">127.0.0.1:6379&gt; georadiusbymember china:city hangzhou 1000 km</span><br><span class="line">1) <span class="string">"wenzhou"</span></span><br><span class="line">2) <span class="string">"yongjia"</span></span><br><span class="line">3) <span class="string">"hangzhou"</span></span><br><span class="line"><span class="comment">#geohash没什么用</span></span><br><span class="line">该命令返回11个字符的geohash字符串</span><br><span class="line">127.0.0.1:6379&gt; geohash china:city wenzhou yongjia</span><br><span class="line">1) <span class="string">"wsvz695pcf0"</span></span><br><span class="line">2) <span class="string">"wtjb4hs3xu0"</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>GEO 底层即是Zset 我们也可以用zset去使用</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrange china:city 0 -1 	<span class="comment">#查看所有元素</span></span><br><span class="line">1) <span class="string">"wenzhou"</span></span><br><span class="line">2) <span class="string">"yongjia"</span></span><br><span class="line">3) <span class="string">"hangzhou"</span></span><br><span class="line">zrem china:city wenzhou <span class="comment">#移除指定元素</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="hyperloglog"><a href="#hyperloglog" class="headerlink" title="hyperloglog"></a>hyperloglog</h2><p>优点：占用的内存是固定的，2^64 不同元素的技术，需要12kb内存。错误率低。</p>
-<blockquote>
-<p>什么是基数</p>
-</blockquote>
-<p>A{1,3,5,7,8,7}<br>B{1   ,5,7,8,7}</p>
-<p>基数：不重复的元素的个数 =5 <strong>可以接受误差</strong></p>
-<p><strong>应用： 网页的UV (一个人访问一个网站多次，但是还是算作一个人)</strong></p>
-<p>传统方法，set保存用户的id，然后就可以统计set中的元素数量作为标准判断。</p>
-<p>保存大量id，就会比较麻烦~</p>
-<p>目的是为了计数而不是保存用户id；</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; pfadd mykey a b c d e f g h i j</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; pfcount mykey</span><br><span class="line">(<span class="built_in">integer</span>) 10</span><br><span class="line">127.0.0.1:6379&gt; pfadd mykey2 i j p u q w</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; pfmerge mykey3 mykey2 mykey</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; pfcount mykey3</span><br><span class="line">(<span class="built_in">integer</span>) 14</span><br><span class="line"><span class="comment">#merge会消除重复元素 即并集</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h2><blockquote>
-<p>位存储</p>
-</blockquote>
-<p>统计疫情感染人数： 0 1 0 1 0<br>统计用户信息，活跃|不活跃    登录|未登录   打卡|未打卡</p>
-<p><img src="https://i.loli.net/2020/05/15/WpxXutgD3kZ4TIq.png" alt="image-20200515171739128"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; setbit sign 0 1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 1 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 2 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"><span class="comment">#0123456 分别代表周一~周日</span></span><br><span class="line"><span class="comment">#01分别代表是否打卡</span></span><br><span class="line">getbit sign 3 <span class="comment">#查看某一天是否打卡</span></span><br><span class="line">bitcount sign  <span class="comment">#统计</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="事务操作"><a href="#事务操作" class="headerlink" title="事务操作"></a>事务操作</h2><p>redis 事务本质：一组命令的集合！一个事务中的所有命令都会被序列化，在事务执行中，会按照顺序执行。一次性，顺序性，排他性！执行一些列的命令！</p>
-<p>—队列 set set set 执行—</p>
-<p>redis事务没有<strong>隔离级别</strong>的概念</p>
-<p>所有的命令在事务中，并没有直接被执行！<strong>只有发起执行命令的时候才会执行。</strong></p>
-<p>要么同时成功 要么同时失败 原子性<br>redis 单条命令式保存原子性的，但是事务不保证原子性。</p>
-<p>redis 事务</p>
-<ul>
-<li>开启事务    multi</li>
-<li>命令事务</li>
-<li>执行事务    exec</li>
-</ul>
-<blockquote>
-<p>正常执行事务</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; get k2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3 v3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) OK</span><br><span class="line">2) OK</span><br><span class="line">3) <span class="string">"v2"</span></span><br><span class="line">4) OK</span><br><span class="line"></span><br><span class="line">discart  <span class="comment">#取消事务 队列中所有都不会被执行</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>编译型异常（代码有问题！命令有错！） 事务中所有的命令都不会被执行</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; getset k3</span><br><span class="line">(error) ERR wrong number of arguments <span class="keyword">for</span> <span class="string">'getset'</span> <span class="built_in">command</span></span><br><span class="line">127.0.0.1:6379&gt; get k3</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span>	<span class="comment">#执行事务报错 以上所有命令都不会被执行</span></span><br><span class="line">(error) EXECABORT Transaction discarded because of previous errors.</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>运行时异常（1/0） 如果事务队列中存在余发星错误，那么执行命令的时候，其他命令是可以正常被执行的</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 <span class="string">"v1"</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; incr k1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) (error) ERR value is not an <span class="built_in">integer</span> or out of range</span><br><span class="line">2) OK</span><br><span class="line">127.0.0.1:6379&gt; get k2</span><br><span class="line"><span class="string">"v2"</span></span><br></pre></td></tr></table></figure>
-
-<p>以上行为在sql中是不存在的  就好比银行汇款，回滚。</p>
+<p>可以看到   SELECT   INTO   会锁住系统表，Create   table   也会锁系统表(不管是临时表还是系统表)。所以千万不要在事物内使用它！！！这样的话如果是经常要用的临时表请使用实表，或者临时表变量。</p>
+<ol>
+<li>一般在GROUP   BY   个HAVING字句之前就能剔除多余的行，所以尽量不要用它们来做剔除行的工作。他们的执行顺序应该如下最优：select   的Where字句选择所有合适的行，Group   By用来分组个统计行，Having字句用来剔除多余的分组。这样Group   By   个Having的开销小，查询快.对于大的数据行进行分组和Having十分消耗资源。如果Group   BY的目的不包括计算，只是分组，那么用Distinct更快</li>
+<li>一次更新多条记录比分多次更新每次一条快,就是说批处理好</li>
+<li>少用临时表，尽量用结果集和Table类性的变量来代替它,Table   类型的变量比临时表好</li>
+<li>在SQL2000下，计算字段是可以索引的，需要满足的条件如下：<ol>
+<li>计算字段的表达是确定的</li>
+<li>不能用在TEXT,Ntext，Image数据类型</li>
+<li>必须配制如下选项   ANSI_NULLS   =   ON,   ANSI_PADDINGS   =   ON,   …….</li>
+</ol>
+</li>
+<li>尽量将数据的处理工作放在服务器上，减少网络的开销，如使用存储过程。存储过程是编译好、优化过、并且被组织到一个执行规划里、且存储在数据库中的 SQL语句，是控制流语言的集合，速度当然快。反复执行的动态SQL,可以使用临时存储过程，该过程（临时表）被放在Tempdb中。以前由于SQL   SERVER对复杂的数学计算不支持，所以不得不将这个工作放在其他的层上而增加网络的开销。SQL2000支持UDFs,现在支持复杂的数学计算，函数 的返回值不要太大，这样的开销很大。用户自定义函数象光标一样执行的消耗大量的资源，如果返回大的结果采用存储过程</li>
+<li>不要在一句话里再三的使用相同的函数，浪费资源,将结果放在变量里再调用更快</li>
+<li>SELECT   COUNT(*)的效率教低，尽量变通他的写法，而EXISTS快.同时请注意区别：   select   count(Field   of   null)   from   Table   和   select   count(Field   of   NOT   null)   from   Table   的返回值是不同的。</li>
+<li>当服务器的内存够多时，配制线程数量   =   最大连接数+5，这样能发挥最大的效率；否则使用   配制线程数量 &lt;最大连接数启用SQL   SERVER的线程池来解决,如果还是数量   =   最大连接数+5，严重的损害服务器的性能。</li>
+<li>按照一定的次序来访问你的表。如果你先锁住表A，再锁住表B，那么在所有的存储过程中都要按照这个顺序来锁定它们。如果你（不经意的）某个存储过程中先锁定表B，再锁定表A，这可能就会导致一个死锁。如果锁定顺序没有被预先详细的设计好，死锁很难被发现</li>
+<li>通过SQL   Server   Performance   Monitor监视相应硬件的负载   Memory:   Page   Faults   /   sec计数器如果该值偶尔走高，表明当时有线程竞争内存。如果持续很高，则内存可能是瓶颈。   Process:<ol>
+<li>%   DPC   Time   指在范例间隔期间处理器用在缓延程序调用(DPC)接收和提供服务的百分比。(DPC   正在运行的为比标准间隔优先权低的间隔)。   由于   DPC   是以特权模式执行的，DPC   时间的百分比为特权时间   百分比的一部分。这些时间单独计算并且不属于间隔计算总数的一部   分。这个总数显示了作为实例时间百分比的平均忙时。</li>
+<li>%Processor   Time计数器 如果该参数值持续超过95%，表明瓶颈是CPU。可以考虑增加一个处理器或换一个更快的处理器。</li>
+<li>%   Privileged   Time   指非闲置处理器时间用于特权模式的百分比。(特权模式是为操作系统组件和操纵硬件驱动程序而设计的一种处理模式。它允许直接访问硬件和所有内存。另一种模 式为用户模式，它是一种为应用程序、环境分系统和整数分系统设计的一种有限处理模式。操作系统将应用程序线程转换成特权模式以访问操作系统服务)。   特权时间的   %   包括为间断和   DPC   提供服务的时间。特权时间比率高可能是由于失败设备产生的大数量的间隔而引起的。这个计数器将平均忙时作为样本时间的一部分显示。</li>
+<li>%   User   Time表示耗费CPU的数据库操作，如排序，执行aggregate   functions等。如果该值很高，可考虑增加索引，尽量使用简单的表联接，水平分割大表格等方法来降低该值。   Physical   Disk:   Curretn   Disk   Queue   Length计数器该值应不超过磁盘数的1.5~2倍。要提高性能，可增加磁盘。   SQLServer:Cache   Hit   Ratio计数器该值越高越好。如果持续低于80%，应考虑增加内存。   注意该参数值是从SQL   Server启动后，就一直累加记数，所以运行经过一段时间后，该值将不能反映系统当前值。</li>
+</ol>
+</li>
+<li>分析select   emp_name   form   employee   where   salary   &gt;   3000   在此语句中若salary是Float类型的，则优化器对其进行优化为Convert(float,3000)，因为3000是个整数，我们应在编程时使用3000.0而不要等运行时让DBMS进行转化。同样字符和整型数据的转换</li>
+</ol>
+</li>
+</ol>
+<pre><code>作者：玄之
+链接：https://juejin.im/post/6854573209485770765
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</code></pre><ol start="11">
+<li>作者：玄之<br>链接：<a href="https://juejin.im/post/6854573209485770765" target="_blank" rel="noopener">https://juejin.im/post/6854573209485770765</a><br>来源：掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ol>
 
       
 
@@ -420,7 +424,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">database</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySql</a>
         		</li>
       		
 		</ul>
@@ -476,7 +480,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/15/0515redis%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/11/10/1110_MySql%E4%BC%98%E5%8C%96/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -490,18 +494,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/15/0515redis%E8%BF%9B%E9%98%B6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          redis进阶
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/14/0514%E5%A4%9A%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">多线程相关</div>
+    <a href="/2020/11/09/1109MySql%E4%BC%98%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySql 优化</div>
       <i class="icon-circle-right"></i>
     </a>
   
